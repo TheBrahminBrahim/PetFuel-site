@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PetFuel — is your dog's homemade food actually complete?</title>
-  <meta name="description" content="Home-cook or raw-feed your dog? Build a meal and instantly see whether it's nutritionally complete against NRC/AAFCO targets — honestly, no faked numbers. Join the waitlist." />
+  <title>PetFuel — AI nutrition tracking for your pets</title>
+  <meta name="description" content="Home-cook or raw-feed your dog? Build a meal and instantly see whether it's nutritionally complete against NRC/AAFCO targets — honestly, no faked numbers." />
 
   <!-- Open Graph / social -->
-  <meta property="og:title" content="Is your dog's homemade food actually complete?" />
-  <meta property="og:description" content="~94% of homemade dog diets are nutritionally incomplete. Build a meal, see the gaps, fix them. Join the waitlist." />
+  <meta property="og:title" content="AI nutrition tracking for your pets" />
+  <meta property="og:description" content="~94% of homemade dog diets are nutritionally incomplete. Build a meal, see the gaps, fix them." />
   <meta property="og:url" content="https://petfuel.app" />
   <meta property="og:type" content="website" />
 
@@ -25,11 +25,10 @@
       --accent: #0E7C72; --accent-2: #0A5F58; --accent-weak: #DAEAE7;
       --on-accent: #FFFFFF;
       --good: #15876A; --good-weak: #DCEFE8;
-      --warn: #B5821A; --warn-weak: #F3E9D2;
       --bad: #C2433A; --bad-weak: #F6E0DE;
       --shadow: 0 1px 2px rgba(16,40,38,.05), 0 12px 30px rgba(16,40,38,.06);
       --shadow-sm: 0 1px 2px rgba(16,40,38,.06);
-      --radius-card: 18px; --radius-btn: 13px; --radius-chip: 9px;
+      --radius-card: 18px; --radius-btn: 13px;
       --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
       --label-spacing: .08em;
       --maxw: 980px;
@@ -55,7 +54,15 @@
     .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; }
     .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--accent);
       display: grid; place-items: center; color: #fff; font-size: 15px; }
-    .bar a.cta { text-decoration: none; }
+    .tag-coming-soon {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 11px; background: var(--accent-weak); color: var(--accent-2);
+      border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .tag-coming-soon::before {
+      content: ""; display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent);
+    }
 
     /* ── Hero ── */
     .hero { padding: 30px 0 56px; }
@@ -63,28 +70,6 @@
     h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin: 14px 0 16px; font-weight: 800; }
     h1 .hl { color: var(--accent-2); }
     .sub { font-size: 19px; color: var(--text-2); max-width: 30ch; }
-
-    /* ── Email / pre-order forms ── */
-    .form { margin-top: 26px; }
-    .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
-    input[type=email] {
-      flex: 1 1 220px; min-width: 0; padding: 14px 16px; font-size: 16px;
-      border: 1px solid var(--border-2); border-radius: var(--radius-btn);
-      background: var(--surface); color: var(--text);
-    }
-    input[type=email]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak); }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px 22px; font-size: 16px; font-weight: 700; cursor: pointer;
-      border-radius: var(--radius-btn); border: 1px solid transparent;
-      background: var(--accent); color: var(--on-accent); text-decoration: none;
-      transition: background .15s ease, transform .05s ease;
-    }
-    .btn:hover { background: var(--accent-2); }
-    .btn:active { transform: translateY(1px); }
-    .btn.ghost { background: var(--surface); color: var(--accent-2); border-color: var(--border-2); }
-    .btn.ghost:hover { background: var(--surface-2); }
-    .micro { font-size: 13px; color: var(--text-3); margin-top: 10px; }
 
     /* ── Phone mock ── */
     .phone {
@@ -138,16 +123,6 @@
     .honest p { margin: 0; color: var(--text-2); font-size: 14.5px; }
     .check { color: var(--good); } .cross { color: var(--text-3); }
 
-    /* ── Pricing / founding ── */
-    .price-card { max-width: 460px; margin: 30px auto 0; background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--radius-card); padding: 30px; box-shadow: var(--shadow); text-align: center; }
-    .price-card .tag { display: inline-block; background: var(--warn-weak); color: var(--warn); font-weight: 700; font-size: 12.5px; padding: 4px 12px; border-radius: 20px; letter-spacing: var(--label-spacing); text-transform: uppercase; }
-    .price-card .p { font-size: 44px; font-weight: 800; margin: 14px 0 2px; }
-    .price-card .p s { color: var(--text-3); font-weight: 600; font-size: 22px; }
-    .price-card .pn { color: var(--text-2); font-size: 14px; }
-    .price-card ul { list-style: none; padding: 0; margin: 20px 0; text-align: left; }
-    .price-card li { padding: 7px 0 7px 26px; position: relative; font-size: 14.5px; }
-    .price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--good); font-weight: 800; }
-
     /* ── FAQ ── */
     .faq { max-width: 720px; margin: 0 auto; }
     details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-btn); padding: 4px 18px; margin-bottom: 10px; }
@@ -175,7 +150,7 @@
   <header class="bar">
     <div class="wrap">
       <div class="logo"><span class="dot">🐾</span> PetFuel</div>
-      <a class="btn ghost cta" href="#join">Join the waitlist</a>
+      <span class="tag-coming-soon">Coming soon to iOS</span>
     </div>
   </header>
 
@@ -186,15 +161,6 @@
         <span class="eyebrow">For dogs who eat homemade &amp; raw</span>
         <h1>Is the food you make <span class="hl">actually complete</span> for your dog?</h1>
         <p class="sub">Build a meal from real ingredients and instantly see whether it hits your dog's nutrient targets — and exactly what's missing.</p>
-
-        <!-- Email capture (primary demand signal) -->
-        <form class="form" id="email-form" action="https://formspree.io/f/REPLACE_ME" method="POST">
-          <div class="form-row">
-            <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address" />
-            <button class="btn" type="submit">Get early access</button>
-          </div>
-          <p class="micro">Be first in line when the iOS app opens. No spam — launch news only.</p>
-        </form>
       </div>
 
       <!-- Phone mock: the dashboard payoff -->
@@ -265,43 +231,14 @@
     </div>
   </section>
 
-  <!-- ════════ Early access / waitlist (free — no payment) ════════ -->
-  <section class="block" id="join" style="padding-top:0">
-    <div class="wrap" style="text-align:center">
-      <span class="eyebrow">Early access</span>
-      <h2>Help shape it — and get in first.</h2>
-      <p class="lead" style="margin:0 auto">Join the waitlist for early TestFlight access, a say in what we build first, and a launch price locked for early members.</p>
-
-      <div class="price-card">
-        <span class="tag">Early member</span>
-        <div class="p">Free<span style="font-size:16px;font-weight:600"> to join</span></div>
-        <div class="pn">app launches at $49/yr · early members lock a lower price</div>
-        <ul>
-          <li>Early TestFlight access before public launch</li>
-          <li>Direct line to vote on the first features</li>
-          <li>A discounted launch price, locked for early members</li>
-          <li>Founding-member badge in-app</li>
-        </ul>
-        <form id="join-form" action="https://formspree.io/f/REPLACE_ME" method="POST">
-          <div class="form-row">
-            <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address" />
-            <button class="btn" type="submit" style="flex:0 0 auto">Join the waitlist →</button>
-          </div>
-        </form>
-        <p class="micro">No payment, no spam — just launch news when it's ready.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ════════ FAQ ════════ -->
   <section class="block" style="padding-top:0">
     <div class="wrap faq">
       <span class="eyebrow" style="display:block;text-align:center;margin-bottom:16px">Questions</span>
       <details><summary>Is this veterinary advice?</summary><p>No. PetFuel is an informational nutrition tool, not a substitute for your veterinarian. Anything medical — illness, weight loss, special diets — should go through your vet. We'll always point you there.</p></details>
-      <details><summary>Which pets does it support?</summary><p>Dogs first. Cats are the planned next step — if you raw- or home-feed a cat, join anyway and tell us; demand decides what we build next.</p></details>
+      <details><summary>Which pets does it support?</summary><p>Dogs first. Cats are the planned next step.</p></details>
       <details><summary>Where does the data come from?</summary><p>Ingredient nutrition comes from USDA FoodData Central; targets come from NRC and AAFCO life-stage profiles. For packaged foods we show only what's actually on the label.</p></details>
-      <details><summary>When does it launch?</summary><p>We're building toward an iOS launch. Waitlist members get TestFlight access first and launch news the moment it's ready.</p></details>
-      <details><summary>Does it cost anything to join?</summary><p>No. The waitlist is free — you only pay if you choose to subscribe after launch, and early members lock a lower price.</p></details>
+      <details><summary>When does it launch?</summary><p>We're building toward an iOS launch. Follow <a href="https://scarabyte.app">Scarabyte</a> for updates.</p></details>
     </div>
   </section>
 
@@ -310,8 +247,8 @@
     <div class="wrap" style="flex-direction:column;align-items:flex-start">
       <div class="disclaimer">Informational only — not veterinary advice. Nutrient targets are based on NRC/AAFCO life-stage profiles. Always consult your veterinarian about your individual pet's diet and health.</div>
       <div style="display:flex;justify-content:space-between;width:100%;margin-top:18px;flex-wrap:wrap;gap:10px">
-        <span>© 2026 PetFuel · a Scarabyte product</span>
-        <span><a href="/privacy">Privacy</a> · <a href="#join">Join the waitlist</a></span>
+        <span>© 2026 PetFuel · a <a href="https://scarabyte.app">Scarabyte</a> product</span>
+        <span><a href="/privacy">Privacy</a></span>
       </div>
     </div>
   </footer>
