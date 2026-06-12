@@ -3,255 +3,972 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PetFuel — AI nutrition tracking for your pets</title>
-  <meta name="description" content="Home-cook or raw-feed your dog? Build a meal and instantly see whether it's nutritionally complete against NRC/AAFCO targets — honestly, no faked numbers." />
-
-  <!-- Open Graph / social -->
-  <meta property="og:title" content="AI nutrition tracking for your pets" />
+  <title>PetFuel — Nutrition tracking for home-cooked & raw dog diets</title>
+  <meta name="description" content="Build a meal from real ingredients and see whether your dog's diet is nutritionally complete. NRC/AAFCO targets, honest data, no faked numbers." />
+  <meta property="og:title" content="PetFuel — Know what your dog is actually eating" />
   <meta property="og:description" content="~94% of homemade dog diets are nutritionally incomplete. Build a meal, see the gaps, fix them." />
   <meta property="og:url" content="https://petfuel.app" />
   <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Design tokens: matched 1:1 to the app (Direction A · "Clean", deep teal) ── */
+    /* ═══════════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════════ */
     :root {
-      --bg: #EFF3F2; --surface: #FFFFFF; --surface-2: #E7EDEC;
-      --text: #16201F; --text-2: #5B6968; --text-3: #8B9897;
-      --border: #E0E6E5; --border-2: #D2DAD9;
-      --accent: #0E7C72; --accent-2: #0A5F58; --accent-weak: #DAEAE7;
-      --on-accent: #FFFFFF;
-      --good: #15876A; --good-weak: #DCEFE8;
-      --bad: #C2433A; --bad-weak: #F6E0DE;
-      --shadow: 0 1px 2px rgba(16,40,38,.05), 0 12px 30px rgba(16,40,38,.06);
-      --shadow-sm: 0 1px 2px rgba(16,40,38,.06);
-      --radius-card: 18px; --radius-btn: 13px;
+      --ink:          #0E1917;
+      --ink-2:        #3D5250;
+      --ink-3:        #7A908E;
+      --bg:           #EFF3F2;
+      --surface:      #FFFFFF;
+      --surface-2:    #E3EEEC;
+      --border:       #D8E4E2;
+
+      --teal:         #0E7C72;
+      --teal-dark:    #0A5F58;
+      --teal-deep:    #091C1A;
+      --teal-mid:     #0D3530;
+      --teal-weak:    #D9EDEA;
+
+      --good:         #12876A;
+      --good-weak:    #DAEEE6;
+      --bad:          #C0433A;
+      --bad-weak:     #F5E0DE;
+
       --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
-      --label-spacing: .08em;
-      --maxw: 980px;
+
+      --r-card: 20px;
+      --r-btn:  14px;
+
+      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-inout:  cubic-bezier(0.77, 0, 0.175, 1);
+
+      --shadow:    0 1px 3px rgba(9,28,26,.05), 0 10px 30px rgba(9,28,26,.08);
+      --shadow-sm: 0 1px 3px rgba(9,28,26,.06);
+      --shadow-lg: 0 2px 4px rgba(9,28,26,.06), 0 24px 64px rgba(9,28,26,.14);
     }
 
-    * { box-sizing: border-box; }
+    /* ═══════════════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: var(--font); -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility; line-height: 1.5;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    a { color: var(--accent-2); }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
-    .eyebrow {
-      text-transform: uppercase; letter-spacing: var(--label-spacing);
-      font-size: 12.5px; font-weight: 700; color: var(--accent-2);
-    }
-
-    /* ── Top bar ── */
-    header.bar { padding: 18px 0; }
-    .bar .wrap { display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; }
-    .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--accent);
-      display: grid; place-items: center; color: #fff; font-size: 15px; }
-    .tag-coming-soon {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 11px; background: var(--accent-weak); color: var(--accent-2);
-      border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
-    }
-    .tag-coming-soon::before {
-      content: ""; display: inline-block; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--accent);
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal-dark); }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 64px);
     }
 
-    /* ── Hero ── */
-    .hero { padding: 30px 0 56px; }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: center; }
-    h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin: 14px 0 16px; font-weight: 800; }
-    h1 .hl { color: var(--accent-2); }
-    .sub { font-size: 19px; color: var(--text-2); max-width: 30ch; }
+    /* ═══════════════════════════════════════════════
+       REVEAL SYSTEM
+    ═══════════════════════════════════════════════ */
+    [data-reveal] {
+      transition:
+        opacity 0.65s var(--ease-out),
+        transform 0.65s var(--ease-out);
+    }
+    [data-reveal="hidden"] {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    [data-reveal="visible"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    [data-delay="1"] { transition-delay: 90ms; }
+    [data-delay="2"] { transition-delay: 180ms; }
+    [data-delay="3"] { transition-delay: 270ms; }
+    [data-delay="4"] { transition-delay: 360ms; }
 
-    /* ── Phone mock ── */
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal], * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════════════ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 20px 0;
+      transition: background 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out);
+    }
+    header.scrolled {
+      background: rgba(9,28,26,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 14px 0;
+    }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 18px;
+      color: #fff; text-decoration: none;
+    }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 10px;
+      flex-shrink: 0; object-fit: cover; display: block;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 15px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff; border-radius: 999px;
+      font-size: 12.5px; font-weight: 600;
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(4px);
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--teal);
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(14,124,114,0.4); }
+      50%      { opacity: 0.7; box-shadow: 0 0 0 4px rgba(14,124,114,0); }
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO — split: photo left | content right
+    ═══════════════════════════════════════════════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      min-height: 100svh;
+      position: relative;
+    }
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      background: var(--teal-deep);
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 72%;
+    }
+    /* Top fade so fixed header logo reads clearly over the photo */
+    .hero-photo::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 160px;
+      background: linear-gradient(to bottom, rgba(9,28,26,0.65), transparent);
+      z-index: 1; pointer-events: none;
+    }
+    /* Fallback gradient when image not loaded */
+    .hero-photo::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, var(--teal-mid) 0%, var(--teal-deep) 100%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .hero-photo.no-img::after { opacity: 1; }
+
+    .hero-content {
+      background: var(--teal-deep);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(64px,6vw,88px) clamp(40px,5vw,72px);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 15px;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+      align-self: flex-start;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+    }
+    h1 {
+      font-size: clamp(40px, 5.5vw, 74px);
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+      color: #fff;
+      max-width: 16ch;
+      margin: 0 0 28px;
+      text-wrap: balance;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 1.7vw, 20px);
+      color: rgba(255,255,255,0.72);
+      max-width: 40ch;
+      margin: 0 0 48px;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 15px 30px;
+      background: var(--teal);
+      color: #fff; font-weight: 700; font-size: 15.5px;
+      border-radius: var(--r-btn);
+      text-decoration: none;
+      align-self: flex-start;
+      transition:
+        background 0.18s var(--ease-out),
+        transform 0.16s var(--ease-out),
+        box-shadow 0.2s var(--ease-out);
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(14,124,114,0.38);
+    }
+    .btn-primary:active {
+      transform: scale(0.97);
+      transition-duration: 0.1s;
+    }
+    .btn-arrow { transition: transform 0.18s var(--ease-out); }
+    .btn-primary:hover .btn-arrow { transform: translateX(3px); }
+
+    /* Sits at bottom-center of the right (content) column */
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 75%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.35);
+      pointer-events: none;
+    }
+    .scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+      animation: drop 1.8s cubic-bezier(0.23,1,0.32,1) infinite;
+    }
+    @keyframes drop {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       STAT SLAB
+    ═══════════════════════════════════════════════ */
+    .stat-slab {
+      background: var(--teal-deep);
+      padding: clamp(56px,8vw,100px) 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .stat-big {
+      font-size: clamp(72px, 14vw, 148px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      color: #fff;
+    }
+    .stat-big em {
+      font-style: normal;
+      color: var(--teal);
+    }
+    .stat-desc {
+      font-size: clamp(16px,2vw,21px);
+      color: rgba(255,255,255,0.62);
+      max-width: 40ch;
+      margin: 20px auto 0;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .stat-pills {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 12px; margin-top: clamp(36px,5vw,56px);
+    }
+    .stat-pill {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      font-size: 13.5px; font-weight: 600;
+      color: rgba(255,255,255,0.78);
+    }
+    .stat-pill::before {
+      content: "";
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+    }
+
+    /* ═══════════════════════════════════════════════
+       EDITORIAL ROWS
+    ═══════════════════════════════════════════════ */
+    .editorial {
+      display: grid;
+      grid-template-columns: 46% 54%;
+    }
+    .editorial-flip {
+      grid-template-columns: 54% 46%;
+    }
+    .editorial-photo {
+      position: relative;
+      overflow: hidden;
+      background: var(--teal-mid);
+      min-height: clamp(500px, 58vw, 760px);
+    }
+    .editorial-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .editorial-body {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(56px,7vw,96px) clamp(40px,5.5vw,72px);
+    }
+    .editorial-body.dark { background: var(--teal-deep); }
+    .editorial-body.light { background: var(--surface); }
+
+    .editorial-quote {
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: #fff;
+      max-width: 18ch;
+      margin-bottom: clamp(20px,2.5vw,28px);
+      text-wrap: balance;
+    }
+    .editorial-quote-sub {
+      font-size: clamp(14px,1.4vw,16.5px);
+      color: rgba(255,255,255,0.62);
+      line-height: 1.7;
+      max-width: 40ch;
+      margin-bottom: clamp(32px,4vw,52px);
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROBLEM SECTION (inside editorial body)
+    ═══════════════════════════════════════════════ */
+    .editorial-body h2 { margin-bottom: 22px; max-width: 28ch; }
+    h2 {
+      font-size: clamp(28px,4vw,46px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      text-wrap: balance;
+    }
+    .lead {
+      font-size: clamp(15px,1.6vw,17.5px);
+      color: var(--ink-2);
+      line-height: 1.7;
+      max-width: 46ch;
+    }
+    .lead + .lead { margin-top: 16px; }
+
+    /* Phone mock */
+    .phone-scene {
+      display: flex; justify-content: flex-start;
+      margin-top: clamp(32px,4vw,48px);
+    }
     .phone {
-      width: 270px; margin: 0 auto; border-radius: 38px; padding: 12px;
-      background: #0c1413; box-shadow: var(--shadow);
+      width: clamp(220px,26vw,272px);
+      border-radius: 44px; padding: 13px;
+      background: #0A1210;
+      box-shadow: var(--shadow-lg);
     }
-    .screen { background: var(--bg); border-radius: 28px; overflow: hidden; }
-    .screen .top { padding: 16px 18px 8px; }
-    .screen .top .day { font-size: 12.5px; color: var(--text-3); font-weight: 600; }
+    .screen {
+      background: var(--bg);
+      border-radius: 32px; overflow: hidden;
+    }
+    .screen-bar {
+      padding: 18px 18px 6px;
+    }
+    .screen-day {
+      font-size: 12px; color: var(--ink-3); font-weight: 600;
+    }
+    .gauge-ring {
+      display: flex; justify-content: center;
+      padding: 10px 0 4px;
+    }
     .gauge {
-      margin: 6px auto 4px; width: 150px; height: 150px; border-radius: 50%;
+      width: 150px; height: 150px; border-radius: 50%;
       background:
-        radial-gradient(closest-side, var(--surface) 79%, transparent 80% 100%),
-        conic-gradient(var(--good) 0 72%, var(--ring-track, #E2E8E7) 72% 100%);
+        radial-gradient(closest-side, var(--surface) 78%, transparent 79% 100%),
+        conic-gradient(var(--good) 0 72%, var(--surface-2) 72% 100%);
       display: grid; place-items: center;
     }
-    .gauge b { font-size: 30px; font-weight: 800; }
-    .gauge span { display: block; font-size: 11.5px; color: var(--text-3); font-weight: 600; }
-    .card {
-      margin: 10px 14px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-card); padding: 13px 14px; box-shadow: var(--shadow-sm);
+    .gauge-inner { text-align: center; }
+    .gauge-num { font-size: 30px; font-weight: 900; line-height: 1; }
+    .gauge-label { font-size: 11px; color: var(--ink-3); font-weight: 600; margin-top: 2px; }
+    .s-card {
+      margin: 10px 14px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card); padding: 13px 14px;
+      box-shadow: var(--shadow-sm);
     }
-    .card h4 { margin: 0 0 9px; font-size: 13px; }
-    .nutr { display: flex; align-items: center; gap: 8px; font-size: 12.5px; margin: 7px 0; }
-    .nutr .lab { width: 64px; color: var(--text-2); }
-    .nutr .track { flex: 1; height: 7px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
-    .nutr .fill { height: 100%; border-radius: 5px; }
-    .pill { font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 20px; }
-    .pill.bad { background: var(--bad-weak); color: var(--bad); }
-    .pill.good { background: var(--good-weak); color: var(--good); }
+    .s-card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .s-card h4 { font-size: 13px; font-weight: 700; }
+    .nutr {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; margin: 7px 0;
+    }
+    .nutr-lab { width: 58px; color: var(--ink-3); flex-shrink: 0; }
+    .nutr-track {
+      flex: 1; height: 6px; border-radius: 5px;
+      background: var(--surface-2); overflow: hidden;
+    }
+    .nutr-fill { height: 100%; border-radius: 5px; }
+    .pill {
+      font-size: 10.5px; font-weight: 700;
+      padding: 1px 7px; border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .pill-bad  { background: var(--bad-weak);  color: var(--bad); }
+    .pill-good { background: var(--good-weak); color: var(--good); }
 
-    /* ── Stat band ── */
-    .band { background: var(--accent); color: #fff; padding: 40px 0; }
-    .band .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; text-align: center; }
-    .band .n { font-size: clamp(32px, 5vw, 46px); font-weight: 800; line-height: 1; }
-    .band .l { font-size: 14px; opacity: .9; margin-top: 8px; }
+    /* ═══════════════════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════════════════ */
+    .how {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: clamp(64px,9vw,120px) 0;
+    }
+    .how h2 { max-width: 20ch; margin-bottom: clamp(40px,5vw,64px); }
+    .step-list { display: flex; flex-direction: column; }
+    .step-row {
+      display: grid; grid-template-columns: 88px 1fr;
+      gap: 24px; align-items: start;
+      padding: clamp(24px,3.5vw,40px) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-row:last-child { border-bottom: none; }
+    .step-n {
+      font-size: clamp(52px,7vw,76px);
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      padding-top: 4px;
+    }
+    .step-body h3 {
+      font-size: clamp(18px,2.2vw,24px);
+      font-weight: 800; letter-spacing: -0.025em;
+      margin-bottom: 8px;
+    }
+    .step-body p {
+      font-size: clamp(14px,1.4vw,16px);
+      color: var(--ink-2); line-height: 1.65; max-width: 52ch;
+    }
 
-    /* ── Sections ── */
-    section.block { padding: 64px 0; }
-    h2 { font-size: clamp(26px, 3.5vw, 34px); letter-spacing: -.015em; margin: 8px 0 14px; font-weight: 800; }
-    .lead { font-size: 18px; color: var(--text-2); max-width: 60ch; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
-    .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 22px; box-shadow: var(--shadow-sm); }
-    .step .num { width: 30px; height: 30px; border-radius: 9px; background: var(--accent-weak); color: var(--accent-2); font-weight: 800; display: grid; place-items: center; margin-bottom: 12px; }
-    .step h3 { margin: 0 0 6px; font-size: 17px; }
-    .step p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+    /* ═══════════════════════════════════════════════
+       HONEST DATA
+    ═══════════════════════════════════════════════ */
+    .honest {
+      background: var(--teal-deep);
+      padding: clamp(64px,9vw,120px) 0;
+      color: #fff;
+    }
+    .honest h2 {
+      color: #fff; max-width: 24ch;
+      margin-bottom: clamp(32px,4vw,52px);
+    }
+    .honest-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(16px,3vw,32px);
+    }
+    .honest-card {
+      padding: clamp(24px,3vw,40px);
+      border-radius: var(--r-card);
+    }
+    .hc-yes {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    .hc-no {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .honest-icon {
+      font-size: 20px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .honest-icon-yes { color: var(--teal); }
+    .honest-icon-no  { color: rgba(255,255,255,0.35); }
+    .honest-card h3 {
+      font-size: clamp(16px,1.8vw,20px);
+      font-weight: 800; margin-bottom: 10px; color: #fff;
+    }
+    .honest-card p {
+      font-size: clamp(13.5px,1.3vw,15.5px);
+      color: rgba(255,255,255,0.6); line-height: 1.65;
+    }
 
-    /* ── Honest-data callout ── */
-    .honest { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .honest h3 { margin: 0 0 6px; font-size: 17px; display: flex; align-items: center; gap: 8px; }
-    .honest p { margin: 0; color: var(--text-2); font-size: 14.5px; }
-    .check { color: var(--good); } .cross { color: var(--text-3); }
+    /* ═══════════════════════════════════════════════
+       CATS TEASE
+    ═══════════════════════════════════════════════ */
+    .cats-tease {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .cats-tease-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: clamp(260px,35vw,440px);
+    }
+    .cats-tease-photo {
+      overflow: hidden;
+      position: relative;
+      background: var(--teal-mid);
+    }
+    .cats-tease-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      transition: transform 0.8s var(--ease-inout);
+    }
+    .cats-tease-photo:hover img { transform: scale(1.04); }
+    .cats-tease-copy {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(32px,5vw,72px);
+    }
+    .cats-coming {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 13px;
+      background: var(--teal-weak); color: var(--teal-dark);
+      border-radius: 999px; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.03em; margin-bottom: 18px; align-self: flex-start;
+    }
+    .cats-tease-copy h2 { font-size: clamp(22px,3vw,36px); margin-bottom: 14px; }
+    .cats-tease-copy p {
+      font-size: clamp(14px,1.4vw,16px);
+      color: var(--ink-2); max-width: 38ch; line-height: 1.65;
+    }
 
-    /* ── FAQ ── */
-    .faq { max-width: 720px; margin: 0 auto; }
-    details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-btn); padding: 4px 18px; margin-bottom: 10px; }
-    summary { cursor: pointer; padding: 14px 0; font-weight: 700; font-size: 15.5px; list-style: none; }
+    /* ═══════════════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════════════ */
+    .faq-section {
+      padding: clamp(64px,9vw,120px) 0;
+    }
+    .faq-section h2 {
+      text-align: center;
+      margin-bottom: clamp(36px,5vw,56px);
+    }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    details {
+      border-bottom: 1px solid var(--border);
+    }
+    details:first-of-type { border-top: 1px solid var(--border); }
+    summary {
+      cursor: pointer; list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 20px 0;
+      font-weight: 700; font-size: clamp(14.5px,1.4vw,16px);
+      color: var(--ink); user-select: none;
+    }
     summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; float: right; color: var(--text-3); font-weight: 700; }
-    details[open] summary::after { content: "–"; }
-    details p { color: var(--text-2); font-size: 14.5px; margin: 0 0 14px; }
+    .faq-toggle {
+      flex-shrink: 0;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--teal-weak); color: var(--teal-dark);
+      display: grid; place-items: center;
+      font-size: 15px; font-weight: 600;
+      transition:
+        background 0.2s var(--ease-out),
+        color 0.2s var(--ease-out),
+        transform 0.25s var(--ease-out);
+    }
+    details[open] .faq-toggle {
+      background: var(--teal); color: #fff;
+      transform: rotate(45deg);
+    }
+    .faq-ans {
+      padding: 0 0 20px;
+      font-size: clamp(14px,1.3vw,15.5px);
+      color: var(--ink-2); line-height: 1.7; max-width: 56ch;
+    }
 
-    /* ── Footer ── */
-    footer { padding: 40px 0; border-top: 1px solid var(--border); color: var(--text-3); font-size: 13px; }
-    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    .disclaimer { background: var(--surface-2); padding: 14px 18px; border-radius: var(--radius-btn); color: var(--text-2); font-size: 13px; margin-top: 20px; }
+    /* ═══════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════ */
+    footer {
+      background: var(--teal-deep);
+      padding: clamp(44px,6vw,72px) 0;
+    }
+    .footer-inner { display: flex; flex-direction: column; gap: 28px; }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 17px; color: #fff;
+    }
+    .footer-logo .logo-mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      object-fit: cover; display: block;
+    }
+    .footer-disclaimer {
+      font-size: 12.5px; line-height: 1.7; max-width: 68ch;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px; color: rgba(255,255,255,0.4);
+    }
+    .footer-bottom a {
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-bottom a:hover { color: #fff; }
 
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════ */
     @media (max-width: 760px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .phone { order: -1; }
-      .band .wrap, .steps, .honest { grid-template-columns: 1fr; }
+      /* Hero: stack photo above content */
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { min-height: clamp(280px, 72vw, 400px); }
+      .hero-content { padding: clamp(48px,8vw,64px) clamp(20px,5vw,28px); }
+      h1 { font-size: clamp(34px, 8vw, 52px); }
+      .scroll-hint { left: 50%; }
+
+      /* Editorial: stack photo above body */
+      .editorial, .editorial-flip { grid-template-columns: 1fr; }
+      .editorial-photo { min-height: clamp(260px, 68vw, 380px); }
+      /* Flip rows: bring photo to top on mobile */
+      .editorial-flip .editorial-photo { order: -1; }
+      .editorial-body { padding: clamp(40px,6vw,56px) clamp(20px,5vw,28px); }
+      .btn-primary { align-self: stretch; justify-content: center; }
+
+      .honest-grid { grid-template-columns: 1fr; }
+      .step-row { grid-template-columns: 60px 1fr; }
+      .cats-tease-inner { grid-template-columns: 1fr; }
+      .cats-tease-photo { min-height: 240px; order: -1; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ════════ Top bar ════════ -->
-  <header class="bar">
+  <!-- ══ HEADER ══════════════════════════════════ -->
+  <header id="hdr">
     <div class="wrap">
-      <div class="logo"><span class="dot">🐾</span> PetFuel</div>
-      <span class="tag-coming-soon">Coming soon to iOS</span>
+      <a href="/" class="logo">
+        <img class="logo-mark" src="img/logo.png" alt="PetFuel" />
+        PetFuel
+      </a>
+      <span class="badge">
+        <span class="badge-dot"></span>
+        Coming soon to iOS
+      </span>
     </div>
   </header>
 
-  <!-- ════════ Hero ════════ -->
+  <!-- ══ HERO ════════════════════════════════════ -->
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">For dogs who eat homemade &amp; raw</span>
-        <h1>Is the food you make <span class="hl">actually complete</span> for your dog?</h1>
-        <p class="sub">Build a meal from real ingredients and instantly see whether it hits your dog's nutrient targets — and exactly what's missing.</p>
-      </div>
-
-      <!-- Phone mock: the dashboard payoff -->
-      <div class="phone" aria-hidden="true">
-        <div class="screen">
-          <div class="top">
-            <div class="day">Today · Cooper, 4y Lab</div>
-          </div>
-          <div class="gauge"><div><b>72%</b><span>1,030 / 1,430 kcal</span></div></div>
-          <div class="card">
-            <h4>Nutrient completeness <span class="pill bad" style="float:right">3 gaps</span></h4>
-            <div class="nutr"><span class="lab">Calcium</span><span class="track"><span class="fill" style="width:48%;background:var(--bad)"></span></span><span class="pill bad">low</span></div>
-            <div class="nutr"><span class="lab">Ca : P</span><span class="track"><span class="fill" style="width:55%;background:var(--bad)"></span></span><span class="pill bad">low</span></div>
-            <div class="nutr"><span class="lab">Protein</span><span class="track"><span class="fill" style="width:92%;background:var(--good)"></span></span><span class="pill good">ok</span></div>
-            <div class="nutr"><span class="lab">Vit E</span><span class="track"><span class="fill" style="width:40%;background:var(--bad)"></span></span><span class="pill bad">low</span></div>
-          </div>
-        </div>
-      </div>
+    <div class="hero-photo" id="heroBg">
+      <img src="img/hero.jpg" alt="Dog owner standing with two greyhounds at the edge of a sunlit forest lake" id="heroImg" />
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow" id="hEyebrow">For dogs who eat homemade &amp; raw</div>
+      <h1 id="hH1">Know what your dog is actually eating.</h1>
+      <p class="hero-sub" id="hSub">
+        Build a meal from real ingredients and see — instantly — whether it's
+        nutritionally complete. NRC&nbsp;/&nbsp;AAFCO targets. Honest data.&nbsp;No faked numbers.
+      </p>
+      <a href="#faq" class="btn-primary" id="hCta">
+        Join the waitlist
+        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ════════ Stat band ════════ -->
-  <div class="band">
+  <!-- ══ STAT SLAB ════════════════════════════════ -->
+  <div class="stat-slab">
     <div class="wrap">
-      <div><div class="n">~94%</div><div class="l">of homemade dog diets are nutritionally incomplete</div></div>
-      <div><div class="n">NRC / AAFCO</div><div class="l">science-based targets, by life stage</div></div>
-      <div><div class="n">Honest</div><div class="l">real data — never faked micronutrient numbers</div></div>
+      <div class="stat-big" data-reveal="hidden">~<em>94%</em></div>
+      <p class="stat-desc" data-reveal="hidden" data-delay="1">
+        of homemade dog diets are nutritionally incomplete — gaps you can't see in the bowl, that compound over months
+      </p>
+      <div class="stat-pills" data-reveal="hidden" data-delay="2">
+        <span class="stat-pill">NRC / AAFCO targets</span>
+        <span class="stat-pill">USDA FoodData Central</span>
+        <span class="stat-pill">Honest data — never faked</span>
+      </div>
     </div>
   </div>
 
-  <!-- ════════ The problem ════════ -->
-  <section class="block">
-    <div class="wrap">
-      <span class="eyebrow">The problem</span>
-      <h2>Cooking for your dog is loving — and easy to get wrong.</h2>
-      <p class="lead">Most home-cooked and raw recipes are short on calcium, the calcium-to-phosphorus ratio, zinc or vitamin E — gaps you can't see in the bowl, that add up over months. PetFuel does the nutrient math so you don't need a spreadsheet or a degree in animal nutrition.</p>
+  <!-- ══ EDITORIAL 1: BORDER COLLIE + PROBLEM ════ -->
+  <div class="editorial">
+    <div class="editorial-photo">
+      <img src="img/teal-dog.jpg" alt="Black and white Border Collie against a deep teal painted door, mouth open and joyful" />
     </div>
-  </section>
+    <div class="editorial-body light">
+      <h2 data-reveal="hidden">Cooking for your dog is loving —&nbsp;and easy to get wrong.</h2>
+      <p class="lead" data-reveal="hidden" data-delay="1">
+        Most home-cooked and raw recipes run short on calcium, the calcium-to-phosphorus ratio,
+        zinc, or vitamin E. Gaps you can't taste in the bowl, that add up over months.
+      </p>
+      <p class="lead" data-reveal="hidden" data-delay="2" style="margin-top:16px">
+        PetFuel does the nutrient math so you don't need a spreadsheet or a degree in animal
+        nutrition. Real science. Surface-level simplicity.
+      </p>
 
-  <!-- ════════ How it works ════════ -->
-  <section class="block" style="padding-top:0">
+      <div class="phone-scene" data-reveal="hidden" data-delay="3">
+        <div class="phone" aria-hidden="true">
+          <div class="screen">
+            <div class="screen-bar">
+              <div class="screen-day">Today · Cooper, 4y Lab</div>
+            </div>
+            <div class="gauge-ring">
+              <div class="gauge">
+                <div class="gauge-inner">
+                  <div class="gauge-num">72%</div>
+                  <div class="gauge-label">1,030 / 1,430 kcal</div>
+                </div>
+              </div>
+            </div>
+            <div class="s-card">
+              <div class="s-card-head">
+                <h4>Completeness</h4>
+                <span class="pill pill-bad">3 gaps</span>
+              </div>
+              <div class="nutr"><span class="nutr-lab">Calcium</span><span class="nutr-track"><span class="nutr-fill" style="width:48%;background:var(--bad)"></span></span><span class="pill pill-bad">low</span></div>
+              <div class="nutr"><span class="nutr-lab">Ca : P</span><span class="nutr-track"><span class="nutr-fill" style="width:55%;background:var(--bad)"></span></span><span class="pill pill-bad">low</span></div>
+              <div class="nutr"><span class="nutr-lab">Protein</span><span class="nutr-track"><span class="nutr-fill" style="width:92%;background:var(--good)"></span></span><span class="pill pill-good">ok</span></div>
+              <div class="nutr"><span class="nutr-lab">Vit E</span><span class="nutr-track"><span class="nutr-fill" style="width:40%;background:var(--bad)"></span></span><span class="pill pill-bad">low</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HOW IT WORKS ═════════════════════════════ -->
+  <section class="how">
     <div class="wrap">
-      <span class="eyebrow">How it works</span>
-      <h2>From bowl to balanced in three taps.</h2>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><h3>Build the meal</h3><p>Search real ingredients and set the grams. Calories and macros update live as you go.</p></div>
-        <div class="step"><div class="num">2</div><h3>See the gaps</h3><p>Get a completeness score against your dog's NRC/AAFCO targets, with each shortfall flagged.</p></div>
-        <div class="step"><div class="num">3</div><h3>Fix &amp; track</h3><p>Apply a suggested fix to close the gaps, then track completeness and weight over time.</p></div>
+      <h2 data-reveal="hidden">From bowl to balanced<br>in three taps.</h2>
+      <div class="step-list">
+        <div class="step-row" data-reveal="hidden" data-delay="1">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <h3>Build the meal</h3>
+            <p>Search real ingredients and set the grams. Calories and macros update live — backed by USDA FoodData Central, the same database researchers use.</p>
+          </div>
+        </div>
+        <div class="step-row" data-reveal="hidden" data-delay="2">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <h3>See the gaps</h3>
+            <p>Get a completeness score against your dog's NRC/AAFCO life-stage targets, with every shortfall named and ranked. No guesswork, no averages.</p>
+          </div>
+        </div>
+        <div class="step-row" data-reveal="hidden" data-delay="3">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <h3>Fix &amp; track over time</h3>
+            <p>Apply a whole-food fix to close the gaps, then track completeness week by week — so you see the diet improving, not just today's score.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ════════ Honest data ════════ -->
-  <section class="block" style="padding-top:0">
+  <!-- ══ EDITORIAL 2: QUOTE + FLOWERS ════════════ -->
+  <div class="editorial editorial-flip">
+    <div class="editorial-body dark">
+      <p class="editorial-quote" data-reveal="hidden">Your dog can't tell you what's missing.</p>
+      <p class="editorial-quote-sub" data-reveal="hidden" data-delay="1">
+        A home-cooked meal can look complete — chicken, sweet potato, kale. What's invisible
+        is the balance: calcium ratios, zinc levels, vitamin E. PetFuel makes the invisible visible.
+      </p>
+      <a href="#faq" class="btn-primary" data-reveal="hidden" data-delay="2">
+        Join the waitlist
+        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="editorial-photo">
+      <img src="img/flowers.jpg" alt="Golden Nova Scotia Duck Tolling Retriever sitting in a yellow rapeseed flower field" />
+    </div>
+  </div>
+
+  <!-- ══ HONEST DATA ══════════════════════════════ -->
+  <section class="honest">
     <div class="wrap">
-      <span class="eyebrow">Why you can trust it</span>
-      <h2>We'd rather say "we don't know" than fake it.</h2>
-      <div class="honest" style="margin-top:24px">
-        <div>
-          <h3><span class="check">✓</span> Homemade meals</h3>
-          <p>Full micronutrient breakdown computed from USDA ingredient data — because every gram is known.</p>
+      <h2 data-reveal="hidden">We'd rather say "we don't know"<br>than fake it.</h2>
+      <div class="honest-grid">
+        <div class="honest-card hc-yes" data-reveal="hidden" data-delay="1">
+          <div class="honest-icon honest-icon-yes">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M6.5 10.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Homemade meals
+          </div>
+          <h3>Full micronutrient breakdown</h3>
+          <p>Computed from USDA ingredient data — because every gram is accounted for. You see exactly where your dog's diet stands against NRC/AAFCO targets.</p>
         </div>
-        <div>
-          <h3><span class="cross">✗</span> Packaged food (barcode)</h3>
-          <p>Only calories, macros and the manufacturer's AAFCO "complete &amp; balanced" status — because pet-food labels don't publish micronutrients, and we won't invent numbers that aren't there.</p>
+        <div class="honest-card hc-no" data-reveal="hidden" data-delay="2">
+          <div class="honest-icon honest-icon-no">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+            </svg>
+            Packaged food (barcode)
+          </div>
+          <h3>Calories &amp; macros only</h3>
+          <p>Pet-food labels don't publish micronutrients — so we show only what's actually there: calories, macros, and the manufacturer's AAFCO "complete &amp; balanced" status. We won't invent numbers.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ════════ FAQ ════════ -->
-  <section class="block" style="padding-top:0">
-    <div class="wrap faq">
-      <span class="eyebrow" style="display:block;text-align:center;margin-bottom:16px">Questions</span>
-      <details><summary>Is this veterinary advice?</summary><p>No. PetFuel is an informational nutrition tool, not a substitute for your veterinarian. Anything medical — illness, weight loss, special diets — should go through your vet. We'll always point you there.</p></details>
-      <details><summary>Which pets does it support?</summary><p>Dogs first. Cats are the planned next step.</p></details>
-      <details><summary>Where does the data come from?</summary><p>Ingredient nutrition comes from USDA FoodData Central; targets come from NRC and AAFCO life-stage profiles. For packaged foods we show only what's actually on the label.</p></details>
-      <details><summary>When does it launch?</summary><p>We're building toward an iOS launch. Follow <a href="https://scarabyte.app">Scarabyte</a> for updates.</p></details>
+  <!-- ══ CATS TEASE ═══════════════════════════════ -->
+  <section class="cats-tease">
+    <div class="cats-tease-inner">
+      <div class="cats-tease-photo">
+        <!-- Save image 1 from batch 2 (human eye + cat eye side-by-side) as: PetFuel-site/img/cats.jpg -->
+        <img src="img/cats.jpg" alt="Close-up of a human eye and a cat's eye side by side — the bond between owner and pet" />
+      </div>
+      <div class="cats-tease-copy" data-reveal="hidden">
+        <span class="cats-coming">Coming next</span>
+        <h2>Dogs first.<br>Cats are on their way.</h2>
+        <p>PetFuel is built dog-first — cats have different nutritional requirements and deserve the same precision. We're designing their profiles next.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ════════ Footer ════════ -->
+  <!-- ══ FAQ ══════════════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="wrap">
+      <h2 data-reveal="hidden">Questions</h2>
+      <div class="faq-list">
+        <details data-reveal="hidden" data-delay="1">
+          <summary>Is this veterinary advice? <span class="faq-toggle">+</span></summary>
+          <p class="faq-ans">No. PetFuel is an informational nutrition tool, not a substitute for your vet. Illness, weight issues, or special diets should go through your veterinarian. We'll always point you there.</p>
+        </details>
+        <details data-reveal="hidden" data-delay="2">
+          <summary>Which pets does it support? <span class="faq-toggle">+</span></summary>
+          <p class="faq-ans">Dogs first. Cats are the planned next step — they have distinct nutritional requirements and will get their own science-based profiles.</p>
+        </details>
+        <details data-reveal="hidden" data-delay="3">
+          <summary>Where does the nutrient data come from? <span class="faq-toggle">+</span></summary>
+          <p class="faq-ans">Ingredient nutrition comes from USDA FoodData Central. Requirement targets come from NRC and AAFCO life-stage profiles. For packaged foods we show only what's on the label.</p>
+        </details>
+        <details data-reveal="hidden" data-delay="4">
+          <summary>When does it launch? <span class="faq-toggle">+</span></summary>
+          <p class="faq-ans">We're building toward an iOS launch. Follow <a href="https://scarabyte.app">Scarabyte</a> for updates on the release date.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════ -->
   <footer>
-    <div class="wrap" style="flex-direction:column;align-items:flex-start">
-      <div class="disclaimer">Informational only — not veterinary advice. Nutrient targets are based on NRC/AAFCO life-stage profiles. Always consult your veterinarian about your individual pet's diet and health.</div>
-      <div style="display:flex;justify-content:space-between;width:100%;margin-top:18px;flex-wrap:wrap;gap:10px">
-        <span>© 2026 PetFuel · a <a href="https://scarabyte.app">Scarabyte</a> product</span>
-        <span><a href="/privacy">Privacy</a></span>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img class="logo-mark" src="img/logo.png" alt="PetFuel" />
+          PetFuel
+        </div>
+        <p class="footer-disclaimer">
+          Informational only — not veterinary advice. Nutrient targets are based on NRC/AAFCO
+          life-stage profiles. Always consult your veterinarian about your pet's individual diet and health.
+        </p>
+        <div class="footer-bottom">
+          <span>© 2026 PetFuel · a <a href="https://scarabyte.app">Scarabyte</a> product</span>
+          <a href="/privacy">Privacy</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- ══ MOTION ═══════════════════════════════════ -->
+  <script>
+    /* ── Header: transparent ➜ frosted on scroll ── */
+    const hdr = document.getElementById('hdr');
+    const hero = document.querySelector('.hero');
+    const headerObs = new IntersectionObserver(
+      ([e]) => hdr.classList.toggle('scrolled', !e.isIntersecting),
+      { threshold: 0, rootMargin: '-1px 0px 0px 0px' }
+    );
+    headerObs.observe(hero);
+
+    /* ── Hero image error fallback ── */
+    const heroImg = document.getElementById('heroImg');
+    if (heroImg) {
+      heroImg.addEventListener('error', () => {
+        document.getElementById('heroBg').classList.add('no-img');
+      });
+    }
+
+    /* ── Hero entrance — stagger each element ── */
+    const heroEls = [
+      { id: 'hEyebrow', delay: 120 },
+      { id: 'hH1',      delay: 280 },
+      { id: 'hSub',     delay: 450 },
+      { id: 'hCta',     delay: 600 },
+    ];
+    heroEls.forEach(({ id, delay }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.cssText = 'opacity:0;transform:translateY(20px);transition:opacity 0.72s cubic-bezier(0.23,1,0.32,1),transform 0.72s cubic-bezier(0.23,1,0.32,1)';
+    });
+    /* Small timeout ensures the initial hidden state paints before we animate in */
+    setTimeout(() => {
+      heroEls.forEach(({ id, delay }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, delay);
+      });
+    }, 60);
+
+    /* ── Scroll reveals ── */
+    const revealObs = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.dataset.reveal = 'visible';
+            revealObs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('[data-reveal="hidden"]').forEach(el => revealObs.observe(el));
+
+    /* ── FAQ: rotate icon on toggle ── */
+    document.querySelectorAll('details').forEach(d => {
+      /* icon rotation handled by CSS details[open] rule */
+    });
+  </script>
 </body>
 </html>
