@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetFuel — Privacy Policy</title>
+  <meta name="description" content="PetFuel's privacy policy: what we collect, how we use it, who we share it with, and your rights." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design tokens: matched 1:1 to the app & landing page (deep teal) ── */
+    :root {
+      --bg: #EFF3F2; --surface: #FFFFFF; --surface-2: #E7EDEC;
+      --text: #16201F; --text-2: #5B6968; --text-3: #8B9897;
+      --border: #E0E6E5; --border-2: #D2DAD9;
+      --accent: #0E7C72; --accent-2: #0A5F58; --accent-weak: #DAEAE7;
+      --good: #15876A;
+      --shadow-sm: 0 1px 2px rgba(16,40,38,.06);
+      --radius-card: 18px; --radius-btn: 13px;
+      --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+      --label-spacing: .08em;
+      --maxw: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font); -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility; line-height: 1.65;
+    }
+    a { color: var(--accent-2); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: var(--label-spacing);
+      font-size: 12.5px; font-weight: 700; color: var(--accent-2);
+    }
+
+    /* ── Top bar ── */
+    header.bar { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; text-decoration: none; color: var(--text); }
+    .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--accent);
+      display: grid; place-items: center; color: #fff; font-size: 15px; }
+    .back { font-size: 14px; color: var(--text-2); text-decoration: none; }
+    .back:hover { color: var(--accent-2); }
+
+    /* ── Policy header ── */
+    .policy-head { padding: 48px 0 8px; }
+    h1 { font-size: clamp(30px, 4.5vw, 40px); line-height: 1.08; letter-spacing: -.02em; margin: 10px 0 8px; font-weight: 800; }
+    .updated { font-size: 14px; color: var(--text-3); font-weight: 600; }
+    .intro { font-size: 18px; color: var(--text-2); max-width: 62ch; margin: 18px 0 0; }
+
+    /* ── Body ── */
+    main { padding: 8px 0 64px; }
+    h2 { font-size: 21px; letter-spacing: -.01em; margin: 40px 0 12px; font-weight: 800;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    p { font-size: 16px; color: var(--text); margin: 0 0 14px; }
+    ul { margin: 0 0 16px; padding-left: 22px; }
+    li { font-size: 16px; margin-bottom: 8px; }
+    li strong { font-weight: 700; }
+
+    .callout {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+      padding: 16px 20px; margin: 18px 0; box-shadow: var(--shadow-sm); font-size: 15.5px; color: var(--text-2);
+    }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card);
+      padding: 22px 24px; margin: 18px 0; box-shadow: var(--shadow-sm);
+    }
+    .contact-card strong { display: block; margin-bottom: 4px; }
+
+    /* ── Footer ── */
+    footer { padding: 34px 0; border-top: 1px solid var(--border); color: var(--text-3); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--text-3); }
+    footer a:hover { color: var(--accent-2); }
+  </style>
+</head>
+<body>
+
+  <!-- ════════ Top bar ════════ -->
+  <header class="bar">
+    <div class="wrap">
+      <a class="logo" href="/"><span class="dot">🐾</span> PetFuel</a>
+      <a class="back" href="/">← Back to home</a>
+    </div>
+  </header>
+
+  <!-- ════════ Header ════════ -->
+  <section class="policy-head">
+    <div class="wrap">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: June 2026</p>
+      <p class="intro">
+        PetFuel ("we", "our", or "the app") is a pet nutrition tracker for iOS. It helps
+        owners who home-cook or fresh-feed their dogs understand whether a meal meets
+        science-based nutritional requirements. This policy explains what data we collect
+        and how we use it.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+
+      <h2>What data we collect</h2>
+      <ul>
+        <li><strong>Account information</strong> — your name and email address when you sign in with Apple or Google.</li>
+        <li><strong>Pet profiles</strong> — your dog's name, breed, age, weight history, and optionally a profile photo.</li>
+        <li><strong>Meal logs</strong> — ingredients you enter, commercial foods you scan by barcode, and the nutritional analysis we compute from them.</li>
+        <li><strong>Crash reports</strong> — device type, app version, and error context via Sentry, to help us fix bugs. This does not include your pet data.</li>
+        <li><strong>Anonymous usage data</strong> — which features are used and how, via Amplitude, to improve the app. This is not linked to your identity.</li>
+        <li><strong>Subscription status</strong> — managed via RevenueCat to verify your active plan.</li>
+      </ul>
+
+      <h2>What data we do NOT collect</h2>
+      <ul>
+        <li>We do not collect your location.</li>
+        <li>We do not collect advertising identifiers (IDFA).</li>
+        <li>We do not sell your data to anyone.</li>
+      </ul>
+
+      <h2>Camera and photos</h2>
+      <p>
+        PetFuel uses your camera to scan product barcodes so it can look up nutritional
+        information for commercial pet foods. It also uses your photo library so you can
+        set a profile picture for your dog. Photos are used only to display them in the app.
+      </p>
+
+      <h2>Nutritional data and accuracy</h2>
+      <p>
+        For home-cooked and ingredient-based meals, nutritional values are computed from
+        the USDA FoodData Central database. For commercially-produced pet foods scanned by
+        barcode, we display only what the manufacturer publishes: calories, macros, and
+        whether the product is labeled "complete and balanced."
+      </p>
+      <div class="callout">
+        We never fabricate or estimate micronutrient data for commercial foods. Pet-food
+        labels don't publish those numbers, so we don't invent them — if we don't know, we say so.
+      </div>
+      <p>
+        PetFuel provides nutritional information only — it is not a substitute for
+        veterinary advice. Consult your veterinarian for any health or medical concerns.
+      </p>
+
+      <h2>How your data is stored</h2>
+      <p>
+        Your data is stored securely on our servers so you can access it across devices.
+        We use industry-standard encryption in transit and at rest. If you delete your
+        account, your data is deleted from our servers within 30 days.
+      </p>
+
+      <h2>Who we share data with</h2>
+      <p>
+        We do not sell your data. We share information only with the third-party services
+        that make the app work — your sign-in provider (Apple or Google), Sentry, Amplitude,
+        and RevenueCat — each of which has its own privacy policy. See
+        <a href="https://www.revenuecat.com/privacy">RevenueCat's privacy policy</a> for how
+        subscription receipt data is handled.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        You can delete your account and all associated data at any time from within the app,
+        or by contacting us at the address below. We will process deletion requests within 30 days.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        PetFuel is not directed at children under 13. We do not knowingly collect data from children.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we update this policy, the new version will be posted here with an updated date.
+        Continued use of PetFuel after changes constitutes acceptance.
+      </p>
+
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <strong>Questions about this policy?</strong>
+        Email us at <a href="mailto:hello@scarabyte.app">hello@scarabyte.app</a>.<br />
+        PetFuel is a Scarabyte product.
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ════════ Footer ════════ -->
+  <footer>
+    <div class="wrap">
+      <span>© 2026 PetFuel · a Scarabyte product</span>
+      <span><a href="/">Home</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

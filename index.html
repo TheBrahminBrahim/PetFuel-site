@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetFuel — is your dog's homemade food actually complete?</title>
+  <meta name="description" content="Home-cook or raw-feed your dog? Build a meal and instantly see whether it's nutritionally complete against NRC/AAFCO targets — honestly, no faked numbers. Join the waitlist." />
+
+  <!-- Open Graph / social -->
+  <meta property="og:title" content="Is your dog's homemade food actually complete?" />
+  <meta property="og:description" content="~94% of homemade dog diets are nutritionally incomplete. Build a meal, see the gaps, fix them. Join the waitlist." />
+  <meta property="og:url" content="https://petfuel.app" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design tokens: matched 1:1 to the app (Direction A · "Clean", deep teal) ── */
+    :root {
+      --bg: #EFF3F2; --surface: #FFFFFF; --surface-2: #E7EDEC;
+      --text: #16201F; --text-2: #5B6968; --text-3: #8B9897;
+      --border: #E0E6E5; --border-2: #D2DAD9;
+      --accent: #0E7C72; --accent-2: #0A5F58; --accent-weak: #DAEAE7;
+      --on-accent: #FFFFFF;
+      --good: #15876A; --good-weak: #DCEFE8;
+      --warn: #B5821A; --warn-weak: #F3E9D2;
+      --bad: #C2433A; --bad-weak: #F6E0DE;
+      --shadow: 0 1px 2px rgba(16,40,38,.05), 0 12px 30px rgba(16,40,38,.06);
+      --shadow-sm: 0 1px 2px rgba(16,40,38,.06);
+      --radius-card: 18px; --radius-btn: 13px; --radius-chip: 9px;
+      --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+      --label-spacing: .08em;
+      --maxw: 980px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font); -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility; line-height: 1.5;
+    }
+    a { color: var(--accent-2); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: var(--label-spacing);
+      font-size: 12.5px; font-weight: 700; color: var(--accent-2);
+    }
+
+    /* ── Top bar ── */
+    header.bar { padding: 18px 0; }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; }
+    .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--accent);
+      display: grid; place-items: center; color: #fff; font-size: 15px; }
+    .bar a.cta { text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero { padding: 30px 0 56px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: center; }
+    h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin: 14px 0 16px; font-weight: 800; }
+    h1 .hl { color: var(--accent-2); }
+    .sub { font-size: 19px; color: var(--text-2); max-width: 30ch; }
+
+    /* ── Email / pre-order forms ── */
+    .form { margin-top: 26px; }
+    .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    input[type=email] {
+      flex: 1 1 220px; min-width: 0; padding: 14px 16px; font-size: 16px;
+      border: 1px solid var(--border-2); border-radius: var(--radius-btn);
+      background: var(--surface); color: var(--text);
+    }
+    input[type=email]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 22px; font-size: 16px; font-weight: 700; cursor: pointer;
+      border-radius: var(--radius-btn); border: 1px solid transparent;
+      background: var(--accent); color: var(--on-accent); text-decoration: none;
+      transition: background .15s ease, transform .05s ease;
+    }
+    .btn:hover { background: var(--accent-2); }
+    .btn:active { transform: translateY(1px); }
+    .btn.ghost { background: var(--surface); color: var(--accent-2); border-color: var(--border-2); }
+    .btn.ghost:hover { background: var(--surface-2); }
+    .micro { font-size: 13px; color: var(--text-3); margin-top: 10px; }
+
+    /* ── Phone mock ── */
+    .phone {
+      width: 270px; margin: 0 auto; border-radius: 38px; padding: 12px;
+      background: #0c1413; box-shadow: var(--shadow);
+    }
+    .screen { background: var(--bg); border-radius: 28px; overflow: hidden; }
+    .screen .top { padding: 16px 18px 8px; }
+    .screen .top .day { font-size: 12.5px; color: var(--text-3); font-weight: 600; }
+    .gauge {
+      margin: 6px auto 4px; width: 150px; height: 150px; border-radius: 50%;
+      background:
+        radial-gradient(closest-side, var(--surface) 79%, transparent 80% 100%),
+        conic-gradient(var(--good) 0 72%, var(--ring-track, #E2E8E7) 72% 100%);
+      display: grid; place-items: center;
+    }
+    .gauge b { font-size: 30px; font-weight: 800; }
+    .gauge span { display: block; font-size: 11.5px; color: var(--text-3); font-weight: 600; }
+    .card {
+      margin: 10px 14px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 13px 14px; box-shadow: var(--shadow-sm);
+    }
+    .card h4 { margin: 0 0 9px; font-size: 13px; }
+    .nutr { display: flex; align-items: center; gap: 8px; font-size: 12.5px; margin: 7px 0; }
+    .nutr .lab { width: 64px; color: var(--text-2); }
+    .nutr .track { flex: 1; height: 7px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
+    .nutr .fill { height: 100%; border-radius: 5px; }
+    .pill { font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 20px; }
+    .pill.bad { background: var(--bad-weak); color: var(--bad); }
+    .pill.good { background: var(--good-weak); color: var(--good); }
+
+    /* ── Stat band ── */
+    .band { background: var(--accent); color: #fff; padding: 40px 0; }
+    .band .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; text-align: center; }
+    .band .n { font-size: clamp(32px, 5vw, 46px); font-weight: 800; line-height: 1; }
+    .band .l { font-size: 14px; opacity: .9; margin-top: 8px; }
+
+    /* ── Sections ── */
+    section.block { padding: 64px 0; }
+    h2 { font-size: clamp(26px, 3.5vw, 34px); letter-spacing: -.015em; margin: 8px 0 14px; font-weight: 800; }
+    .lead { font-size: 18px; color: var(--text-2); max-width: 60ch; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 22px; box-shadow: var(--shadow-sm); }
+    .step .num { width: 30px; height: 30px; border-radius: 9px; background: var(--accent-weak); color: var(--accent-2); font-weight: 800; display: grid; place-items: center; margin-bottom: 12px; }
+    .step h3 { margin: 0 0 6px; font-size: 17px; }
+    .step p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+
+    /* ── Honest-data callout ── */
+    .honest { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .honest h3 { margin: 0 0 6px; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+    .honest p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+    .check { color: var(--good); } .cross { color: var(--text-3); }
+
+    /* ── Pricing / founding ── */
+    .price-card { max-width: 460px; margin: 30px auto 0; background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--radius-card); padding: 30px; box-shadow: var(--shadow); text-align: center; }
+    .price-card .tag { display: inline-block; background: var(--warn-weak); color: var(--warn); font-weight: 700; font-size: 12.5px; padding: 4px 12px; border-radius: 20px; letter-spacing: var(--label-spacing); text-transform: uppercase; }
+    .price-card .p { font-size: 44px; font-weight: 800; margin: 14px 0 2px; }
+    .price-card .p s { color: var(--text-3); font-weight: 600; font-size: 22px; }
+    .price-card .pn { color: var(--text-2); font-size: 14px; }
+    .price-card ul { list-style: none; padding: 0; margin: 20px 0; text-align: left; }
+    .price-card li { padding: 7px 0 7px 26px; position: relative; font-size: 14.5px; }
+    .price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--good); font-weight: 800; }
+
+    /* ── FAQ ── */
+    .faq { max-width: 720px; margin: 0 auto; }
+    details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-btn); padding: 4px 18px; margin-bottom: 10px; }
+    summary { cursor: pointer; padding: 14px 0; font-weight: 700; font-size: 15.5px; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--text-3); font-weight: 700; }
+    details[open] summary::after { content: "–"; }
+    details p { color: var(--text-2); font-size: 14.5px; margin: 0 0 14px; }
+
+    /* ── Footer ── */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); color: var(--text-3); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .disclaimer { background: var(--surface-2); padding: 14px 18px; border-radius: var(--radius-btn); color: var(--text-2); font-size: 13px; margin-top: 20px; }
+
+    @media (max-width: 760px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .phone { order: -1; }
+      .band .wrap, .steps, .honest { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════ Top bar ════════ -->
+  <header class="bar">
+    <div class="wrap">
+      <div class="logo"><span class="dot">🐾</span> PetFuel</div>
+      <a class="btn ghost cta" href="#join">Join the waitlist</a>
+    </div>
+  </header>
+
+  <!-- ════════ Hero ════════ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">For dogs who eat homemade &amp; raw</span>
+        <h1>Is the food you make <span class="hl">actually complete</span> for your dog?</h1>
+        <p class="sub">Build a meal from real ingredients and instantly see whether it hits your dog's nutrient targets — and exactly what's missing.</p>
+
+        <!-- Email capture (primary demand signal) -->
+        <form class="form" id="email-form" action="https://formspree.io/f/REPLACE_ME" method="POST">
+          <div class="form-row">
+            <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address" />
+            <button class="btn" type="submit">Get early access</button>
+          </div>
+          <p class="micro">Be first in line when the iOS app opens. No spam — launch news only.</p>
+        </form>
+      </div>
+
+      <!-- Phone mock: the dashboard payoff -->
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="top">
+            <div class="day">Today · Cooper, 4y Lab</div>
+          </div>
+          <div class="gauge"><div><b>72%</b><span>1,030 / 1,430 kcal</span></div></div>
+          <div class="card">
+            <h4>Nutrient completeness <span class="pill bad" style="float:right">3 gaps</span></h4>
+            <div class="nutr"><span class="lab">Calcium</span><span class="track"><span class="fill" style="width:48%;background:var(--bad)"></span></span><span class="pill bad">low</span></div>
+            <div class="nutr"><span class="lab">Ca : P</span><span class="track"><span class="fill" style="width:55%;background:var(--bad)"></span></span><span class="pill bad">low</span></div>
+            <div class="nutr"><span class="lab">Protein</span><span class="track"><span class="fill" style="width:92%;background:var(--good)"></span></span><span class="pill good">ok</span></div>
+            <div class="nutr"><span class="lab">Vit E</span><span class="track"><span class="fill" style="width:40%;background:var(--bad)"></span></span><span class="pill bad">low</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ Stat band ════════ -->
+  <div class="band">
+    <div class="wrap">
+      <div><div class="n">~94%</div><div class="l">of homemade dog diets are nutritionally incomplete</div></div>
+      <div><div class="n">NRC / AAFCO</div><div class="l">science-based targets, by life stage</div></div>
+      <div><div class="n">Honest</div><div class="l">real data — never faked micronutrient numbers</div></div>
+    </div>
+  </div>
+
+  <!-- ════════ The problem ════════ -->
+  <section class="block">
+    <div class="wrap">
+      <span class="eyebrow">The problem</span>
+      <h2>Cooking for your dog is loving — and easy to get wrong.</h2>
+      <p class="lead">Most home-cooked and raw recipes are short on calcium, the calcium-to-phosphorus ratio, zinc or vitamin E — gaps you can't see in the bowl, that add up over months. PetFuel does the nutrient math so you don't need a spreadsheet or a degree in animal nutrition.</p>
+    </div>
+  </section>
+
+  <!-- ════════ How it works ════════ -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2>From bowl to balanced in three taps.</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Build the meal</h3><p>Search real ingredients and set the grams. Calories and macros update live as you go.</p></div>
+        <div class="step"><div class="num">2</div><h3>See the gaps</h3><p>Get a completeness score against your dog's NRC/AAFCO targets, with each shortfall flagged.</p></div>
+        <div class="step"><div class="num">3</div><h3>Fix &amp; track</h3><p>Apply a suggested fix to close the gaps, then track completeness and weight over time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ Honest data ════════ -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <span class="eyebrow">Why you can trust it</span>
+      <h2>We'd rather say "we don't know" than fake it.</h2>
+      <div class="honest" style="margin-top:24px">
+        <div>
+          <h3><span class="check">✓</span> Homemade meals</h3>
+          <p>Full micronutrient breakdown computed from USDA ingredient data — because every gram is known.</p>
+        </div>
+        <div>
+          <h3><span class="cross">✗</span> Packaged food (barcode)</h3>
+          <p>Only calories, macros and the manufacturer's AAFCO "complete &amp; balanced" status — because pet-food labels don't publish micronutrients, and we won't invent numbers that aren't there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ Early access / waitlist (free — no payment) ════════ -->
+  <section class="block" id="join" style="padding-top:0">
+    <div class="wrap" style="text-align:center">
+      <span class="eyebrow">Early access</span>
+      <h2>Help shape it — and get in first.</h2>
+      <p class="lead" style="margin:0 auto">Join the waitlist for early TestFlight access, a say in what we build first, and a launch price locked for early members.</p>
+
+      <div class="price-card">
+        <span class="tag">Early member</span>
+        <div class="p">Free<span style="font-size:16px;font-weight:600"> to join</span></div>
+        <div class="pn">app launches at $49/yr · early members lock a lower price</div>
+        <ul>
+          <li>Early TestFlight access before public launch</li>
+          <li>Direct line to vote on the first features</li>
+          <li>A discounted launch price, locked for early members</li>
+          <li>Founding-member badge in-app</li>
+        </ul>
+        <form id="join-form" action="https://formspree.io/f/REPLACE_ME" method="POST">
+          <div class="form-row">
+            <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address" />
+            <button class="btn" type="submit" style="flex:0 0 auto">Join the waitlist →</button>
+          </div>
+        </form>
+        <p class="micro">No payment, no spam — just launch news when it's ready.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FAQ ════════ -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap faq">
+      <span class="eyebrow" style="display:block;text-align:center;margin-bottom:16px">Questions</span>
+      <details><summary>Is this veterinary advice?</summary><p>No. PetFuel is an informational nutrition tool, not a substitute for your veterinarian. Anything medical — illness, weight loss, special diets — should go through your vet. We'll always point you there.</p></details>
+      <details><summary>Which pets does it support?</summary><p>Dogs first. Cats are the planned next step — if you raw- or home-feed a cat, join anyway and tell us; demand decides what we build next.</p></details>
+      <details><summary>Where does the data come from?</summary><p>Ingredient nutrition comes from USDA FoodData Central; targets come from NRC and AAFCO life-stage profiles. For packaged foods we show only what's actually on the label.</p></details>
+      <details><summary>When does it launch?</summary><p>We're building toward an iOS launch. Waitlist members get TestFlight access first and launch news the moment it's ready.</p></details>
+      <details><summary>Does it cost anything to join?</summary><p>No. The waitlist is free — you only pay if you choose to subscribe after launch, and early members lock a lower price.</p></details>
+    </div>
+  </section>
+
+  <!-- ════════ Footer ════════ -->
+  <footer>
+    <div class="wrap" style="flex-direction:column;align-items:flex-start">
+      <div class="disclaimer">Informational only — not veterinary advice. Nutrient targets are based on NRC/AAFCO life-stage profiles. Always consult your veterinarian about your individual pet's diet and health.</div>
+      <div style="display:flex;justify-content:space-between;width:100%;margin-top:18px;flex-wrap:wrap;gap:10px">
+        <span>© 2026 PetFuel · a Scarabyte product</span>
+        <span><a href="/privacy">Privacy</a> · <a href="#join">Join the waitlist</a></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
