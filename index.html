@@ -117,7 +117,7 @@
       -webkit-backdrop-filter: blur(16px);
       padding: 14px 0;
     }
-    header .wrap { display: flex; align-items: center; justify-content: space-between; }
+    header .wrap { display: flex; align-items: center; justify-content: flex-end; }
     .logo {
       display: flex; align-items: center; gap: 10px;
       font-weight: 800; font-size: 18px;
@@ -127,13 +127,22 @@
       width: 32px; height: 32px; border-radius: 10px;
       flex-shrink: 0; object-fit: cover; display: block;
     }
+    .hero-logo {
+      display: flex; align-items: center; gap: 20px;
+      font-weight: 800; font-size: clamp(52px, 6vw, 80px);
+      color: rgba(255,255,255,0.95); text-decoration: none;
+      margin-bottom: clamp(36px, 4.5vw, 56px);
+    }
+    .hero-logo .logo-mark {
+      width: clamp(96px, 10vw, 120px); height: clamp(96px, 10vw, 120px); border-radius: 22px;
+    }
     .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 15px;
+      display: inline-flex; align-items: center; gap: 11px;
+      padding: clamp(12px,1.2vw,20px) clamp(20px,2vw,34px);
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.18);
       color: #fff; border-radius: 999px;
-      font-size: 12.5px; font-weight: 600;
+      font-size: clamp(19px,1.3vw,26px); font-weight: 600;
       letter-spacing: 0.02em;
       backdrop-filter: blur(4px);
     }
@@ -154,6 +163,7 @@
       display: grid;
       grid-template-columns: 50% 50%;
       height: 100svh;
+      min-height: fit-content;
       position: relative;
     }
     .hero-photo {
@@ -184,15 +194,18 @@
 
     .hero-content {
       background: var(--teal-deep);
-      display: flex; flex-direction: column; justify-content: center;
-      padding: clamp(64px,6vw,88px) clamp(40px,5vw,72px);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: clamp(200px,26vh,280px) clamp(40px,5vw,72px) clamp(48px,5vw,72px);
+    }
+    .hero-main {
+      display: flex; flex-direction: column; justify-content: center; flex: 1;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 15px;
+      padding: clamp(7px,0.7vw,11px) clamp(16px,1.4vw,24px);
       border: 1px solid rgba(255,255,255,0.22);
       border-radius: 999px;
-      font-size: 13px; font-weight: 600;
+      font-size: clamp(15px,1.2vw,23px); font-weight: 600;
       color: rgba(255,255,255,0.82);
       letter-spacing: 0.02em;
       margin-bottom: 28px;
@@ -204,7 +217,7 @@
       background: var(--teal);
     }
     h1 {
-      font-size: clamp(40px, 5.5vw, 74px);
+      font-size: clamp(48px, 6.2vw, 112px);
       line-height: 1.0;
       letter-spacing: -0.04em;
       font-weight: 900;
@@ -214,7 +227,7 @@
       text-wrap: balance;
     }
     .hero-sub {
-      font-size: clamp(16px, 1.7vw, 20px);
+      font-size: clamp(20px, 2vw, 34px);
       color: rgba(255,255,255,0.72);
       max-width: 40ch;
       margin: 0 0 48px;
@@ -222,10 +235,10 @@
       font-weight: 400;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 15px 30px;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: clamp(16px,1.6vw,28px) clamp(28px,2.8vw,52px);
       background: var(--teal);
-      color: #fff; font-weight: 700; font-size: 15.5px;
+      color: #fff; font-weight: 700; font-size: clamp(18px,1.6vw,28px);
       border-radius: var(--r-btn);
       text-decoration: none;
       align-self: flex-start;
@@ -245,6 +258,9 @@
     }
     .btn-arrow { transition: transform 0.18s var(--ease-out); }
     .btn-primary:hover .btn-arrow { transform: translateX(3px); }
+    .hero-cta-row {
+      display: flex; align-items: center; gap: clamp(14px,1.5vw,24px); flex-wrap: wrap;
+    }
 
     /* Sits at bottom-center of the right (content) column */
     .scroll-hint {
@@ -287,7 +303,7 @@
       color: var(--teal);
     }
     .stat-desc {
-      font-size: clamp(16px,2vw,21px);
+      font-size: clamp(19px,2vw,30px);
       color: rgba(255,255,255,0.62);
       max-width: 40ch;
       margin: 20px auto 0;
@@ -300,11 +316,11 @@
     }
     .stat-pill {
       display: flex; align-items: center; gap: 9px;
-      padding: 9px 18px;
+      padding: clamp(9px,0.9vw,14px) clamp(18px,1.8vw,28px);
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 999px;
-      font-size: 13.5px; font-weight: 600;
+      font-size: clamp(15px,1.2vw,20px); font-weight: 600;
       color: rgba(255,255,255,0.78);
     }
     .stat-pill::before {
@@ -342,21 +358,21 @@
     .editorial-body.light { background: var(--surface); }
 
     .editorial-quote {
-      font-size: clamp(28px, 3.5vw, 48px);
+      font-size: clamp(50px, 5.6vw, 124px);
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       color: #fff;
-      max-width: 18ch;
-      margin-bottom: clamp(20px,2.5vw,28px);
+      max-width: 16ch;
+      margin-bottom: clamp(28px,3vw,44px);
       text-wrap: balance;
     }
     .editorial-quote-sub {
-      font-size: clamp(14px,1.4vw,16.5px);
-      color: rgba(255,255,255,0.62);
-      line-height: 1.7;
-      max-width: 40ch;
-      margin-bottom: clamp(32px,4vw,52px);
+      font-size: clamp(21px,2.1vw,37px);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      max-width: 42ch;
+      margin-bottom: clamp(40px,4vw,60px);
     }
 
     /* ═══════════════════════════════════════════════
@@ -364,17 +380,17 @@
     ═══════════════════════════════════════════════ */
     .editorial-body h2 { margin-bottom: 22px; max-width: 28ch; }
     h2 {
-      font-size: clamp(28px,4vw,46px);
+      font-size: clamp(40px,4.8vw,98px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 22px;
+      line-height: 1.08;
+      margin-bottom: clamp(22px,2vw,34px);
       text-wrap: balance;
     }
     .lead {
-      font-size: clamp(15px,1.6vw,17.5px);
+      font-size: clamp(19px,1.9vw,32px);
       color: var(--ink-2);
-      line-height: 1.7;
+      line-height: 1.65;
       max-width: 46ch;
     }
     .lead + .lead { margin-top: 16px; }
@@ -385,10 +401,15 @@
       margin-top: clamp(32px,4vw,48px);
     }
     .phone {
-      width: clamp(220px,26vw,272px);
+      width: clamp(240px,28vw,320px);
       border-radius: 44px; padding: 13px;
       background: #0A1210;
       box-shadow: var(--shadow-lg);
+    }
+    .screen-shot {
+      width: 100%;
+      border-radius: 32px;
+      display: block;
     }
     .screen {
       background: var(--bg);
@@ -471,12 +492,12 @@
       padding-top: 4px;
     }
     .step-body h3 {
-      font-size: clamp(18px,2.2vw,24px);
+      font-size: clamp(24px,2.6vw,46px);
       font-weight: 800; letter-spacing: -0.025em;
       margin-bottom: 8px;
     }
     .step-body p {
-      font-size: clamp(14px,1.4vw,16px);
+      font-size: clamp(18px,1.7vw,29px);
       color: var(--ink-2); line-height: 1.65; max-width: 52ch;
     }
 
@@ -515,11 +536,11 @@
     .honest-icon-yes { color: var(--teal); }
     .honest-icon-no  { color: rgba(255,255,255,0.35); }
     .honest-card h3 {
-      font-size: clamp(16px,1.8vw,20px);
+      font-size: clamp(21px,2.1vw,37px);
       font-weight: 800; margin-bottom: 10px; color: #fff;
     }
     .honest-card p {
-      font-size: clamp(13.5px,1.3vw,15.5px);
+      font-size: clamp(17px,1.6vw,27px);
       color: rgba(255,255,255,0.6); line-height: 1.65;
     }
 
@@ -557,9 +578,9 @@
       border-radius: 999px; font-size: 12px; font-weight: 700;
       letter-spacing: 0.03em; margin-bottom: 18px; align-self: flex-start;
     }
-    .cats-tease-copy h2 { font-size: clamp(22px,3vw,36px); margin-bottom: 14px; }
+    .cats-tease-copy h2 { font-size: clamp(31px,3.6vw,70px); margin-bottom: 14px; }
     .cats-tease-copy p {
-      font-size: clamp(14px,1.4vw,16px);
+      font-size: clamp(18px,1.7vw,29px);
       color: var(--ink-2); max-width: 38ch; line-height: 1.65;
     }
 
@@ -581,8 +602,8 @@
     summary {
       cursor: pointer; list-style: none;
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 20px 0;
-      font-weight: 700; font-size: clamp(14.5px,1.4vw,16px);
+      padding: clamp(20px,1.8vw,30px) 0;
+      font-weight: 700; font-size: clamp(17px,1.6vw,26px);
       color: var(--ink); user-select: none;
     }
     summary::-webkit-details-marker { display: none; }
@@ -603,7 +624,7 @@
     }
     .faq-ans {
       padding: 0 0 20px;
-      font-size: clamp(14px,1.3vw,15.5px);
+      font-size: clamp(17px,1.6vw,27px);
       color: var(--ink-2); line-height: 1.7; max-width: 56ch;
     }
 
@@ -671,14 +692,6 @@
   <!-- ══ HEADER ══════════════════════════════════ -->
   <header id="hdr">
     <div class="wrap">
-      <a href="/" class="logo">
-        <img class="logo-mark" src="img/logo.png" alt="PetFuel" />
-        PetFuel
-      </a>
-      <span class="badge">
-        <span class="badge-dot"></span>
-        Coming soon to iOS
-      </span>
     </div>
   </header>
 
@@ -688,18 +701,29 @@
       <img src="img/hero.jpg" alt="Dog owner standing with two greyhounds at the edge of a sunlit forest lake" id="heroImg" />
     </div>
     <div class="hero-content">
-      <div class="hero-eyebrow" id="hEyebrow">For dogs who eat homemade &amp; raw</div>
-      <h1 id="hH1">Know what your dog is actually eating.</h1>
-      <p class="hero-sub" id="hSub">
-        Build a meal from real ingredients and see — instantly — whether it's
-        nutritionally complete. NRC&nbsp;/&nbsp;AAFCO targets. Honest data.&nbsp;No faked numbers.
-      </p>
-      <a href="#faq" class="btn-primary" id="hCta">
-        Join the waitlist
-        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M9 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <a href="/" class="hero-logo">
+        <img class="logo-mark" src="img/logo.png" alt="PetFuel" />
+        PetFuel
       </a>
+      <div class="hero-main">
+        <h1 id="hH1">Know what your dog is actually eating.</h1>
+        <p class="hero-sub" id="hSub">
+          Photograph your dog's bowl and get a complete nutrition analysis in seconds.
+          See exactly what's missing against NRC&nbsp;/&nbsp;AAFCO targets — honest data, no guesswork.
+        </p>
+        <div class="hero-cta-row">
+          <span class="badge">
+            <span class="badge-dot"></span>
+            Coming soon to iOS
+          </span>
+          <a href="#faq" class="btn-primary" id="hCta">
+            Join the waitlist
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
       <div class="scroll-line"></div>
@@ -738,30 +762,8 @@
       </p>
 
       <div class="phone-scene" data-reveal="hidden" data-delay="3">
-        <div class="phone" aria-hidden="true">
-          <div class="screen">
-            <div class="screen-bar">
-              <div class="screen-day">Today · Cooper, 4y Lab</div>
-            </div>
-            <div class="gauge-ring">
-              <div class="gauge">
-                <div class="gauge-inner">
-                  <div class="gauge-num">72%</div>
-                  <div class="gauge-label">1,030 / 1,430 kcal</div>
-                </div>
-              </div>
-            </div>
-            <div class="s-card">
-              <div class="s-card-head">
-                <h4>Completeness</h4>
-                <span class="pill pill-bad">3 gaps</span>
-              </div>
-              <div class="nutr"><span class="nutr-lab">Calcium</span><span class="nutr-track"><span class="nutr-fill" style="width:48%;background:var(--bad)"></span></span><span class="pill pill-bad">low</span></div>
-              <div class="nutr"><span class="nutr-lab">Ca : P</span><span class="nutr-track"><span class="nutr-fill" style="width:55%;background:var(--bad)"></span></span><span class="pill pill-bad">low</span></div>
-              <div class="nutr"><span class="nutr-lab">Protein</span><span class="nutr-track"><span class="nutr-fill" style="width:92%;background:var(--good)"></span></span><span class="pill pill-good">ok</span></div>
-              <div class="nutr"><span class="nutr-lab">Vit E</span><span class="nutr-track"><span class="nutr-fill" style="width:40%;background:var(--bad)"></span></span><span class="pill pill-bad">low</span></div>
-            </div>
-          </div>
+        <div class="phone">
+          <img class="screen-shot" src="img/app-home.png" alt="PetFuel home screen: Luna the Labrador's daily dashboard showing 1,000 of 1,290 kcal fed, protein and fat bars, and a 98% nutrient-completeness ring marked Complete" />
         </div>
       </div>
     </div>
@@ -770,20 +772,20 @@
   <!-- ══ HOW IT WORKS ═════════════════════════════ -->
   <section class="how">
     <div class="wrap">
-      <h2 data-reveal="hidden">From bowl to balanced<br>in three taps.</h2>
+      <h2 data-reveal="hidden">From photo to<br>nutritionally complete.</h2>
       <div class="step-list">
         <div class="step-row" data-reveal="hidden" data-delay="1">
           <div class="step-n">1</div>
           <div class="step-body">
-            <h3>Build the meal</h3>
-            <p>Search real ingredients and set the grams. Calories and macros update live — backed by USDA FoodData Central, the same database researchers use.</p>
+            <h3>Snap your bowl</h3>
+            <p>Photograph your dog's meal and AI identifies the ingredients instantly. Confirm the grams, add anything it missed. Done in seconds — no manual searching required.</p>
           </div>
         </div>
         <div class="step-row" data-reveal="hidden" data-delay="2">
           <div class="step-n">2</div>
           <div class="step-body">
-            <h3>See the gaps</h3>
-            <p>Get a completeness score against your dog's NRC/AAFCO life-stage targets, with every shortfall named and ranked. No guesswork, no averages.</p>
+            <h3>See every gap</h3>
+            <p>Get a full nutrition breakdown against your dog's NRC / AAFCO life-stage targets — every shortfall named and ranked. Backed by USDA FoodData Central, the database researchers use.</p>
           </div>
         </div>
         <div class="step-row" data-reveal="hidden" data-delay="3">
@@ -903,6 +905,7 @@
         <div class="footer-bottom">
           <span>© 2026 PetFuel · a <a href="https://scarabyte.app">Scarabyte</a> product</span>
           <a href="/privacy">Privacy</a>
+          <a href="/disclaimer">Disclaimer</a>
         </div>
       </div>
     </div>
@@ -929,10 +932,9 @@
 
     /* ── Hero entrance — stagger each element ── */
     const heroEls = [
-      { id: 'hEyebrow', delay: 120 },
-      { id: 'hH1',      delay: 280 },
-      { id: 'hSub',     delay: 450 },
-      { id: 'hCta',     delay: 600 },
+      { id: 'hH1',  delay: 120 },
+      { id: 'hSub', delay: 290 },
+      { id: 'hCta', delay: 440 },
     ];
     heroEls.forEach(({ id, delay }) => {
       const el = document.getElementById(id);
