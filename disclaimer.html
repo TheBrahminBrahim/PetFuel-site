@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetFuel — Disclaimer</title>
+  <meta name="description" content="PetFuel is a nutrition tracking tool, not a substitute for veterinary care. Read our full disclaimer here." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design tokens: matched 1:1 to the app & landing page (deep teal) ── */
+    :root {
+      --bg: #EFF3F2; --surface: #FFFFFF; --surface-2: #E7EDEC;
+      --text: #16201F; --text-2: #5B6968; --text-3: #8B9897;
+      --border: #E0E6E5; --border-2: #D2DAD9;
+      --accent: #0E7C72; --accent-2: #0A5F58; --accent-weak: #DAEAE7;
+      --good: #15876A;
+      --shadow-sm: 0 1px 2px rgba(16,40,38,.06);
+      --radius-card: 18px; --radius-btn: 13px;
+      --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+      --label-spacing: .08em;
+      --maxw: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font); -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility; line-height: 1.65;
+    }
+    a { color: var(--accent-2); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: var(--label-spacing);
+      font-size: 12.5px; font-weight: 700; color: var(--accent-2);
+    }
+
+    /* ── Top bar ── */
+    header.bar { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; text-decoration: none; color: var(--text); }
+    .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--accent);
+      display: grid; place-items: center; color: #fff; font-size: 15px; }
+    .back { font-size: 14px; color: var(--text-2); text-decoration: none; }
+    .back:hover { color: var(--accent-2); }
+
+    /* ── Policy header ── */
+    .policy-head { padding: 48px 0 8px; }
+    h1 { font-size: clamp(30px, 4.5vw, 40px); line-height: 1.08; letter-spacing: -.02em; margin: 10px 0 8px; font-weight: 800; }
+    .updated { font-size: 14px; color: var(--text-3); font-weight: 600; }
+    .intro { font-size: 18px; color: var(--text-2); max-width: 62ch; margin: 18px 0 0; }
+
+    /* ── Body ── */
+    main { padding: 8px 0 64px; }
+    h2 { font-size: 21px; letter-spacing: -.01em; margin: 40px 0 12px; font-weight: 800;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    p { font-size: 16px; color: var(--text); margin: 0 0 14px; }
+
+    .callout {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+      padding: 16px 20px; margin: 18px 0; box-shadow: var(--shadow-sm); font-size: 15.5px; color: var(--text-2);
+    }
+
+    /* ── Footer ── */
+    footer { padding: 34px 0; border-top: 1px solid var(--border); color: var(--text-3); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--text-3); }
+    footer a:hover { color: var(--accent-2); }
+  </style>
+</head>
+<body>
+
+  <!-- ════════ Top bar ════════ -->
+  <header class="bar">
+    <div class="wrap">
+      <a class="logo" href="/"><span class="dot">🐾</span> PetFuel</a>
+      <a class="back" href="/">← Back to home</a>
+    </div>
+  </header>
+
+  <!-- ════════ Header ════════ -->
+  <section class="policy-head">
+    <div class="wrap">
+      <span class="eyebrow">Legal</span>
+      <h1>Disclaimer</h1>
+      <p class="updated">Last updated: June 2026</p>
+      <p class="intro">
+        PetFuel is a nutrition tracking tool for your pet — not a substitute for
+        veterinary care. Please read this disclaimer before relying on any
+        information you see in the app.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+
+      <p>
+        PetFuel is a nutrition tracking tool for your pet — not a substitute for veterinary
+        care. The nutrient targets, meal scores, and analysis you see are reference information
+        based on published science (NRC / AAFCO). They reflect general guidelines for healthy
+        adult animals, not your pet's specific medical situation.
+      </p>
+
+      <div class="callout">
+        If your pet has a health condition, is in a life stage with elevated needs (puppy,
+        kitten, pregnant, nursing, senior), or you're managing weight under veterinary
+        supervision — please work with a licensed vet or board-certified veterinary
+        nutritionist (DACVN) before making significant dietary changes.
+      </div>
+
+      <p>
+        Nothing in this app is medical or veterinary advice, and no content here should be
+        used to diagnose, treat, cure, or prevent any disease or condition in your pet.
+      </p>
+
+    </div>
+  </main>
+
+  <!-- ════════ Footer ════════ -->
+  <footer>
+    <div class="wrap">
+      <span>© 2026 PetFuel · a Scarabyte product</span>
+      <span><a href="/">Home</a> · <a href="/privacy">Privacy Policy</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
