@@ -151,18 +151,78 @@ h1 em{font-style:normal;font-weight:500}
 .band .statsub{font-size:clamp(18px,1.7vw,24px);font-weight:300;color:rgba(255,255,255,.86);max-width:30ch;margin:24px auto 0;line-height:1.5}
 
 /* SECTION: steps (calm dark) */
-.steps-sec{position:relative;min-height:100vh;display:flex;align-items:center;padding:clamp(70px,10vw,130px) 0;overflow:hidden}
+.steps-sec{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;padding:clamp(34px,6vh,70px) 0;overflow:hidden}
 .steps-sec-bg{position:absolute;inset:0;background:url(img/hero-c.jpg) center 40%/cover no-repeat;transform:scale(1.03)}
 .steps-sec-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.82) 0%,rgba(8,20,17,.65) 50%,rgba(8,20,17,.80) 100%)}
 .steps-sec .wrap{position:relative;z-index:3}
-.steps-sec .eyebrow{display:block;text-align:left;margin-bottom:18px}
-.steps-sec h2{text-align:left;font-weight:300;font-size:clamp(32px,4vw,54px);letter-spacing:-.02em;color:#fff;margin-bottom:clamp(46px,6vw,72px)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,56px)}
+.steps-sec .eyebrow{display:block;text-align:left;margin-bottom:14px}
+.steps-sec h2{text-align:left;font-weight:300;font-size:clamp(26px,2.8vw,40px);letter-spacing:-.02em;color:#fff;margin-bottom:clamp(16px,2.4vh,26px)}
+.steps-sec h2 em{font-style:normal;font-weight:500;color:var(--sage)}
+.steps{display:flex;flex-direction:column;gap:clamp(12px,1.8vh,22px)}
 .step{text-align:left}
-.step .n{font-weight:300;font-size:34px;color:var(--sage);letter-spacing:.02em}
-.step .ln{width:34px;height:1px;background:rgba(169,195,181,.4);margin:18px 0}
-.step h3{font-weight:500;font-size:22px;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
-.step p{font-size:15.5px;font-weight:300;color:rgba(244,240,230,.6);line-height:1.6;max-width:30ch;margin:0}
+.step .n{font-weight:300;font-size:26px;color:var(--sage);letter-spacing:.02em}
+.step .ln{width:28px;height:1px;background:rgba(169,195,181,.4);margin:8px 0}
+.step h3{font-weight:500;font-size:18px;color:#fff;letter-spacing:-.01em;margin-bottom:5px}
+.step p{font-size:14px;font-weight:300;color:rgba(244,240,230,.6);line-height:1.5;max-width:32ch;margin:0}
+
+/* HOW IT WORKS — two-column with floating app-card cluster around the dog */
+.how-inner{position:relative;z-index:3;width:100%;margin-left:0}
+.how-copy{max-width:400px}
+.how-copy .eyebrow{display:block;text-align:left;margin-bottom:16px}
+.how-stage{position:absolute;inset:0;z-index:2;pointer-events:none}
+.how-card{position:absolute;background:#fff;border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.5),0 10px 24px rgba(0,0,0,.32);color:#0E1917;overflow:hidden;transform:scale(.72);transform-origin:center}
+.how-card,.how-card *{font-family:var(--font-app);box-sizing:border-box}
+.hc-lab{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.hc-big{font-size:30px;font-weight:900;letter-spacing:-.03em;color:#0E1917;line-height:1}
+.hc-big span{font-size:16px;font-weight:600;color:var(--ink-3);letter-spacing:0}
+/* Calories card */
+.hc-cal{width:clamp(255px,21vw,300px);top:40%;left:44%;z-index:2;padding:16px 17px}
+.hc-cal-top{display:flex;align-items:center;gap:13px}
+.hc-gauge{width:74px;flex-shrink:0;align-self:flex-start;margin-top:1px}
+.hc-gauge svg{width:100%;height:auto;display:block}
+.hc-pill-fed{display:inline-flex;align-items:center;gap:6px;background:var(--good-weak);color:var(--good);font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:6px}
+.hc-pill-fed::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--good)}
+.hc-csub{font-size:10.5px;color:var(--ink-3);font-weight:600;margin-top:5px}
+.hc-mrow{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;font-weight:700;color:#0E1917;margin-top:13px}
+.hc-mrow .v{font-size:11px;color:var(--ink-3);font-weight:600}
+.hc-mrow .v b{color:var(--good);font-weight:800;font-size:12.5px;margin-left:5px}
+.hc-track{height:6px;border-radius:6px;background:var(--surface-2);margin-top:7px;position:relative}
+.hc-track i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:linear-gradient(90deg,var(--good-weak),var(--good))}
+.hc-track .knob{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--good);border:2.5px solid #fff;transform:translate(-50%,-50%);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.hc-comp{margin-top:15px;border-top:1px solid var(--border-app);padding-top:12px}
+.hc-comp .r{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:#0E1917}
+.hc-comp .amber{color:var(--amber)}
+.hc-cbar{height:7px;border-radius:6px;background:var(--surface-2);margin:8px 0;overflow:hidden}
+.hc-cbar i{display:block;height:100%;border-radius:6px;background:var(--amber)}
+.hc-comp .foot{display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;margin-top:2px}
+.hc-comp .muted{color:var(--ink-3);font-weight:600}
+/* Weight card */
+.hc-weight{width:clamp(200px,16vw,236px);top:63%;left:55%;z-index:3;padding:15px 16px}
+.hc-wtop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hc-chip-soft{background:var(--surface-2);color:#45605C;font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.hc-weight .hc-big{margin-top:9px}
+.hc-chart{display:block;width:100%;height:auto;margin-top:8px}
+.hc-logbtn{width:100%;margin-top:11px;padding:10px;border:none;border-radius:13px;background:var(--surface-2);color:#0E1917;font-size:12.5px;font-weight:800}
+/* Missing card */
+.hc-miss{width:clamp(245px,19vw,285px);top:30%;right:1%;left:auto;z-index:2;padding:15px 16px}
+.hc-chips{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 2px}
+.hc-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px}
+.hc-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.hc-chip.red{background:#FBE3E0;color:#C2452F}
+.hc-chip.amb{background:var(--amber-weak);color:var(--amber)}
+.hc-ing{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--border-app)}
+.hc-ing .em{font-size:20px;flex-shrink:0;line-height:1}
+.hc-ing .tx{flex:1;min-width:0}
+.hc-ing .tx b{display:block;font-size:14px;font-weight:800;color:#0E1917}
+.hc-ing .tx span{font-size:10.5px;color:var(--ink-3);font-weight:600;line-height:1.3;display:block}
+.hc-ing .pl{color:var(--teal);font-size:19px;font-weight:700;flex-shrink:0}
+.hc-mfoot{font-size:10px;color:var(--ink-3);font-weight:600;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-app)}
+@media(max-width:1024px){
+  .steps-sec{display:block}
+  .how-copy{max-width:none}
+  .how-stage{position:static;width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:32px}
+  .how-card{position:static;transform:none;width:min(340px,94%)!important}
+}
 
 /* FINAL CTA band */
 .final{position:relative;min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;text-align:center;padding-top:clamp(80px,10vh,130px)}
@@ -357,21 +417,6 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
   </div>
 </section>
 
-<!-- STEPS -->
-<section class="steps-sec" id="how">
-  <div class="steps-sec-bg"></div>
-  <div class="steps-sec-scrim"></div>
-  <div class="wrap" style="margin-left:0;max-width:640px">
-  <span class="eyebrow">How it works</span>
-  <h2>Three taps to a complete bowl.</h2>
-  <div class="steps">
-    <div class="step"><div class="n">01</div><div class="ln"></div><h3>Add the meal</h3><p>Search real ingredients, or snap the bowl and let AI fill them in.</p></div>
-    <div class="step"><div class="n">02</div><div class="ln"></div><h3>See every gap</h3><p>A full nutrient read against your dog's life-stage targets — not a vague score.</p></div>
-    <div class="step"><div class="n">03</div><div class="ln"></div><h3>Fix &amp; track</h3><p>Close the gaps and watch completeness climb, week over week.</p></div>
-  </div>
-  </div>
-</section>
-
 <!-- LOGGING METHODS -->
 <section class="log-sec">
   <div class="log-zone" id="logZone">
@@ -429,6 +474,84 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
       </div>
     </div>
   </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-sec" id="how">
+  <div class="steps-sec-bg"></div>
+  <div class="steps-sec-scrim"></div>
+  <div class="how-inner wrap">
+    <div class="how-copy">
+      <h2>Know what's missing, <em>and how to fix it.</em></h2>
+      <div class="steps">
+        <div class="step"><div class="ln"></div><h3>See every gap</h3><p>A full nutrient read against your pet's life-stage targets — not a vague score.</p></div>
+        <div class="step"><div class="ln"></div><h3>Fix &amp; track</h3><p>Close the gaps and watch completeness climb, week over week.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-stage" aria-hidden="true">
+      <!-- Weight card -->
+      <div class="how-card hc-weight">
+        <div class="hc-wtop"><span class="hc-lab">Weight</span><span class="hc-chip-soft">↑ 4.2 lb this month</span></div>
+        <div class="hc-big">30.9 <span>lb</span></div>
+        <svg class="hc-chart" viewBox="0 0 240 76" fill="none">
+          <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E7C72" stop-opacity=".18"/><stop offset="1" stop-color="#0E7C72" stop-opacity="0"/></linearGradient></defs>
+          <path d="M12 58 L56 53 L100 46 L144 40 L188 30 L228 20 L228 76 L12 76 Z" fill="url(#wg)"/>
+          <polyline points="12,58 56,53 100,46 144,40 188,30 228,20" stroke="#0E7C72" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="58" r="3.4" fill="#fff" stroke="#0E7C72" stroke-width="2"/>
+          <circle cx="56" cy="53" r="3.4" fill="#fff" stroke="#0E7C72" stroke-width="2"/>
+          <circle cx="100" cy="46" r="3.4" fill="#fff" stroke="#0E7C72" stroke-width="2"/>
+          <circle cx="144" cy="40" r="3.4" fill="#fff" stroke="#0E7C72" stroke-width="2"/>
+          <circle cx="188" cy="30" r="3.4" fill="#fff" stroke="#0E7C72" stroke-width="2"/>
+          <circle cx="228" cy="20" r="5" fill="#0E7C72"/>
+        </svg>
+        <button class="hc-logbtn">Log weight</button>
+      </div>
+
+      <!-- Calories card -->
+      <div class="how-card hc-cal">
+        <div class="hc-cal-top">
+          <span class="hc-gauge">
+            <svg viewBox="221.1 79.9 1137.1 882.7" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs><clipPath id="dgClip"><path d="M 1111 131.032 C 1093.001 133.161, 1079.872 139.105, 1069.002 150.048 C 1061.374 157.727, 1059.411 160.393, 1047.679 179 C 1044.038 184.775, 1036.951 194.675, 1031.931 201 C 1016.948 219.876, 1016.553 222.382, 1026.852 233.250 C 1030.747 237.360, 1030.177 238.098, 1025.500 235 C 1023.850 233.907, 1021.825 233.012, 1021 233.011 C 1020.123 233.010, 1014.961 240.540, 1008.562 251.155 C 974.813 307.148, 957.790 324.595, 920 341.924 C 897.155 352.400, 885.071 355.939, 859.835 359.543 C 850.301 360.904, 834.850 363.351, 825.500 364.979 C 787.092 371.669, 779.710 372.134, 713 372.071 C 629.815 371.991, 594.537 373.766, 565.109 379.512 C 512.299 389.824, 469.684 412.887, 440.763 446.806 C 418.934 472.407, 411.824 486.975, 395.030 540.500 C 385.008 572.441, 379.845 586.411, 372.483 601.500 C 353.363 640.690, 326.183 667.781, 284.668 689.027 C 263.214 700.007, 272.608 707.982, 307 707.987 C 342.315 707.991, 370.390 696.980, 384.730 677.500 L 386.939 674.500 385.440 678.500 C 383.986 682.381, 384.176 682.257, 391.798 674.372 C 415.400 649.957, 425.674 623.296, 432.984 567.500 C 435.249 550.215, 438.688 529.979, 439.499 529.168 C 439.775 528.891, 439.723 533.353, 439.382 539.083 C 439 545.508, 439.463 559.656, 440.592 576 C 441.673 591.665, 442.437 614.152, 442.460 631 C 442.499 659.053, 442.456 659.672, 439.682 670.500 C 433.865 693.202, 421.028 714.045, 398.996 736.561 C 383.931 751.957, 384.260 750.968, 385.956 775.765 C 387.061 791.907, 387.014 798.098, 385.617 820.500 C 381.799 881.735, 384.055 897.392, 397.891 905.690 C 413.994 915.347, 454.753 913.398, 459.815 902.729 C 460.925 900.388, 460.880 899.100, 459.525 894.439 C 457.450 887.302, 452.740 882.604, 442.851 877.810 C 429.858 871.511, 427.355 865.687, 428.329 844.016 C 429.658 814.469, 440.137 786.848, 457.842 766.229 C 461.621 761.828, 482.899 742.791, 491.500 736.116 C 492.600 735.263, 486.448 741.525, 477.830 750.032 C 466.539 761.177, 461.990 766.342, 461.553 768.512 C 460.688 772.800, 469.834 837.995, 473.979 857.095 C 476.371 868.121, 477.972 871.857, 482.411 876.770 C 489.457 884.568, 502.008 887.603, 523.500 886.705 C 544.940 885.809, 551.610 882.699, 550.773 873.990 C 549.789 863.744, 542.602 856.360, 529.308 851.936 C 519.193 848.570, 516.122 842.017, 513.787 818.824 C 511.624 797.343, 515.021 773.772, 523.404 752.098 C 529.871 735.374, 536.778 725.410, 557.274 703.233 C 587.540 670.482, 604.970 644.650, 618.492 612.500 C 623.916 599.604, 624.913 598.569, 633.312 597.106 C 654.973 593.334, 673.247 597.233, 727.500 617.203 C 793.414 641.466, 831.155 649.203, 890.786 650.681 C 904.693 651.025, 916.259 651.609, 916.487 651.979 C 917.205 653.141, 923.834 686.845, 926.423 702.500 C 928.688 716.193, 931.606 736.457, 935.495 765.500 C 938.589 788.608, 941 815.579, 941 827.082 L 941 839.050 946.886 845.378 C 951.404 850.234, 953.114 852.960, 954.241 857.102 C 955.048 860.071, 957.362 868.800, 959.381 876.500 C 963.918 893.799, 966.909 900.197, 972.274 904.084 C 981.303 910.624, 1003.020 914.213, 1021.333 912.190 C 1040.457 910.079, 1047 906.717, 1047 899.006 C 1047 888.897, 1038.525 880.887, 1022.159 875.528 C 1007.769 870.816, 1003.259 858.432, 1002.301 821 C 1001.083 773.375, 1008.205 712.006, 1021.065 659.329 C 1025.329 641.864, 1025.972 640.635, 1033.153 636.243 C 1036.519 634.184, 1045.597 628.348, 1053.326 623.273 C 1061.055 618.198, 1067.516 614.182, 1067.683 614.350 C 1068.797 615.464, 1041.108 634.354, 1032.743 638.187 C 1027.703 640.496, 1026.184 645.091, 1020.409 675.500 C 1012.349 717.943, 1009.815 743.763, 1010.110 780.455 C 1010.217 793.680, 1010.193 809.333, 1010.059 815.240 L 1009.814 825.980 1015.786 832.240 C 1022.745 839.536, 1024.422 842.638, 1029.438 857.500 C 1033.541 869.659, 1036.392 875.161, 1040.661 879.160 C 1048.468 886.476, 1061.548 889.505, 1082 888.732 C 1097.569 888.144, 1105.123 886.146, 1108.355 881.762 C 1110.333 879.078, 1110.338 878.912, 1108.590 873.368 C 1105.647 864.033, 1099.727 858.980, 1087.110 855.035 C 1072.785 850.555, 1070.648 847.503, 1067.480 827 C 1061.481 788.180, 1071.684 674.271, 1085.487 625.952 C 1092.773 600.447, 1095.368 595.166, 1109.540 577 C 1125.326 556.766, 1133.536 540.470, 1139.513 517.500 C 1143.994 500.284, 1144.701 495.658, 1146.009 475 C 1147.862 445.746, 1148.658 442.513, 1166.948 390 C 1176.264 363.255, 1178.488 354.741, 1179.949 340.226 C 1182.903 310.881, 1189.093 304.121, 1209 308.500 C 1219.105 310.723, 1221.766 310.408, 1231.053 305.894 C 1239.183 301.943, 1240.006 301.757, 1253 300.950 C 1273.759 299.661, 1277.681 297.976, 1291.541 284.398 C 1299.003 277.088, 1304.163 270.247, 1306.582 264.458 C 1309.817 256.716, 1316.095 230.674, 1315.799 226.221 C 1315.272 218.264, 1309.316 215.139, 1273.500 204.032 C 1248.331 196.226, 1243.128 192.645, 1241.493 182 C 1240.259 173.973, 1237.604 169.467, 1231.156 164.460 C 1227.848 161.891, 1223.256 157.100, 1220.950 153.813 C 1218.645 150.527, 1214.930 146.513, 1212.697 144.895 C 1198.661 134.728, 1143.418 127.197, 1111 131.032" clip-rule="evenodd"/></clipPath></defs>
+              <g clip-path="url(#dgClip)">
+                <rect x="107.4" y="-8.4" width="1364.6" height="1059.2" fill="#E0E8E7"/>
+                <rect x="130.1" y="264.0" width="1319.1" height="786.8" fill="#15876A"/>
+              </g>
+              <path d="M 1111 131.032 C 1093.001 133.161, 1079.872 139.105, 1069.002 150.048 C 1061.374 157.727, 1059.411 160.393, 1047.679 179 C 1044.038 184.775, 1036.951 194.675, 1031.931 201 C 1016.948 219.876, 1016.553 222.382, 1026.852 233.250 C 1030.747 237.360, 1030.177 238.098, 1025.500 235 C 1023.850 233.907, 1021.825 233.012, 1021 233.011 C 1020.123 233.010, 1014.961 240.540, 1008.562 251.155 C 974.813 307.148, 957.790 324.595, 920 341.924 C 897.155 352.400, 885.071 355.939, 859.835 359.543 C 850.301 360.904, 834.850 363.351, 825.500 364.979 C 787.092 371.669, 779.710 372.134, 713 372.071 C 629.815 371.991, 594.537 373.766, 565.109 379.512 C 512.299 389.824, 469.684 412.887, 440.763 446.806 C 418.934 472.407, 411.824 486.975, 395.030 540.500 C 385.008 572.441, 379.845 586.411, 372.483 601.500 C 353.363 640.690, 326.183 667.781, 284.668 689.027 C 263.214 700.007, 272.608 707.982, 307 707.987 C 342.315 707.991, 370.390 696.980, 384.730 677.500 L 386.939 674.500 385.440 678.500 C 383.986 682.381, 384.176 682.257, 391.798 674.372 C 415.400 649.957, 425.674 623.296, 432.984 567.500 C 435.249 550.215, 438.688 529.979, 439.499 529.168 C 439.775 528.891, 439.723 533.353, 439.382 539.083 C 439 545.508, 439.463 559.656, 440.592 576 C 441.673 591.665, 442.437 614.152, 442.460 631 C 442.499 659.053, 442.456 659.672, 439.682 670.500 C 433.865 693.202, 421.028 714.045, 398.996 736.561 C 383.931 751.957, 384.260 750.968, 385.956 775.765 C 387.061 791.907, 387.014 798.098, 385.617 820.500 C 381.799 881.735, 384.055 897.392, 397.891 905.690 C 413.994 915.347, 454.753 913.398, 459.815 902.729 C 460.925 900.388, 460.880 899.100, 459.525 894.439 C 457.450 887.302, 452.740 882.604, 442.851 877.810 C 429.858 871.511, 427.355 865.687, 428.329 844.016 C 429.658 814.469, 440.137 786.848, 457.842 766.229 C 461.621 761.828, 482.899 742.791, 491.500 736.116 C 492.600 735.263, 486.448 741.525, 477.830 750.032 C 466.539 761.177, 461.990 766.342, 461.553 768.512 C 460.688 772.800, 469.834 837.995, 473.979 857.095 C 476.371 868.121, 477.972 871.857, 482.411 876.770 C 489.457 884.568, 502.008 887.603, 523.500 886.705 C 544.940 885.809, 551.610 882.699, 550.773 873.990 C 549.789 863.744, 542.602 856.360, 529.308 851.936 C 519.193 848.570, 516.122 842.017, 513.787 818.824 C 511.624 797.343, 515.021 773.772, 523.404 752.098 C 529.871 735.374, 536.778 725.410, 557.274 703.233 C 587.540 670.482, 604.970 644.650, 618.492 612.500 C 623.916 599.604, 624.913 598.569, 633.312 597.106 C 654.973 593.334, 673.247 597.233, 727.500 617.203 C 793.414 641.466, 831.155 649.203, 890.786 650.681 C 904.693 651.025, 916.259 651.609, 916.487 651.979 C 917.205 653.141, 923.834 686.845, 926.423 702.500 C 928.688 716.193, 931.606 736.457, 935.495 765.500 C 938.589 788.608, 941 815.579, 941 827.082 L 941 839.050 946.886 845.378 C 951.404 850.234, 953.114 852.960, 954.241 857.102 C 955.048 860.071, 957.362 868.800, 959.381 876.500 C 963.918 893.799, 966.909 900.197, 972.274 904.084 C 981.303 910.624, 1003.020 914.213, 1021.333 912.190 C 1040.457 910.079, 1047 906.717, 1047 899.006 C 1047 888.897, 1038.525 880.887, 1022.159 875.528 C 1007.769 870.816, 1003.259 858.432, 1002.301 821 C 1001.083 773.375, 1008.205 712.006, 1021.065 659.329 C 1025.329 641.864, 1025.972 640.635, 1033.153 636.243 C 1036.519 634.184, 1045.597 628.348, 1053.326 623.273 C 1061.055 618.198, 1067.516 614.182, 1067.683 614.350 C 1068.797 615.464, 1041.108 634.354, 1032.743 638.187 C 1027.703 640.496, 1026.184 645.091, 1020.409 675.500 C 1012.349 717.943, 1009.815 743.763, 1010.110 780.455 C 1010.217 793.680, 1010.193 809.333, 1010.059 815.240 L 1009.814 825.980 1015.786 832.240 C 1022.745 839.536, 1024.422 842.638, 1029.438 857.500 C 1033.541 869.659, 1036.392 875.161, 1040.661 879.160 C 1048.468 886.476, 1061.548 889.505, 1082 888.732 C 1097.569 888.144, 1105.123 886.146, 1108.355 881.762 C 1110.333 879.078, 1110.338 878.912, 1108.590 873.368 C 1105.647 864.033, 1099.727 858.980, 1087.110 855.035 C 1072.785 850.555, 1070.648 847.503, 1067.480 827 C 1061.481 788.180, 1071.684 674.271, 1085.487 625.952 C 1092.773 600.447, 1095.368 595.166, 1109.540 577 C 1125.326 556.766, 1133.536 540.470, 1139.513 517.500 C 1143.994 500.284, 1144.701 495.658, 1146.009 475 C 1147.862 445.746, 1148.658 442.513, 1166.948 390 C 1176.264 363.255, 1178.488 354.741, 1179.949 340.226 C 1182.903 310.881, 1189.093 304.121, 1209 308.500 C 1219.105 310.723, 1221.766 310.408, 1231.053 305.894 C 1239.183 301.943, 1240.006 301.757, 1253 300.950 C 1273.759 299.661, 1277.681 297.976, 1291.541 284.398 C 1299.003 277.088, 1304.163 270.247, 1306.582 264.458 C 1309.817 256.716, 1316.095 230.674, 1315.799 226.221 C 1315.272 218.264, 1309.316 215.139, 1273.500 204.032 C 1248.331 196.226, 1243.128 192.645, 1241.493 182 C 1240.259 173.973, 1237.604 169.467, 1231.156 164.460 C 1227.848 161.891, 1223.256 157.100, 1220.950 153.813 C 1218.645 150.527, 1214.930 146.513, 1212.697 144.895 C 1198.661 134.728, 1143.418 127.197, 1111 131.032" fill="none" stroke="rgba(14,124,114,0.30)" stroke-width="10.6" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <div class="hc-lab">Calories today</div>
+            <div class="hc-big">531 <span>/ 620</span></div>
+            <span class="hc-pill-fed">86% fed</span>
+          </div>
+        </div>
+        <div class="hc-mrow"><span>Protein</span><span class="v">39 / 29 g<b>134%</b></span></div>
+        <div class="hc-track"><i style="width:62%"></i><span class="knob" style="left:62%"></span></div>
+        <div class="hc-mrow"><span>Fat</span><span class="v">14 / 7 g<b>200%</b></span></div>
+        <div class="hc-track"><i style="width:90%"></i><span class="knob" style="left:90%"></span></div>
+        <div class="hc-comp">
+          <div class="r"><span>Nutritional completeness</span><span class="amber">51%</span></div>
+          <div class="hc-cbar"><i style="width:51%"></i></div>
+          <div class="foot"><span class="amber">Gaps found</span></div>
+        </div>
+      </div>
+
+      <!-- What's missing card -->
+      <div class="how-card hc-miss">
+        <div class="hc-lab">What's missing</div>
+        <div class="hc-chips">
+          <span class="hc-chip red">Zinc</span>
+          <span class="hc-chip red">Calcium</span>
+          <span class="hc-chip amb">Vitamin E</span>
+        </div>
+        <div class="hc-ing"><span class="em">🥬</span><span class="tx"><b>Spinach</b><span>Rich source of Zinc, Calcium, Vitamin E</span></span><span class="pl">+</span></div>
+        <div class="hc-ing"><span class="em">🥬</span><span class="tx"><b>Kale</b><span>Rich source of Calcium, Vitamin E</span></span><span class="pl">+</span></div>
+        <div class="hc-ing"><span class="em">🥩</span><span class="tx"><b>Beef</b><span>Rich source of Zinc</span></span><span class="pl">+</span></div>
+      </div>
+    </div>
 </section>
 
 <!-- FINAL CTA -->
