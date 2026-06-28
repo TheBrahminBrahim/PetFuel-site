@@ -62,11 +62,11 @@ header.scrolled{background:rgba(11,25,22,.7);backdrop-filter:blur(12px);-webkit-
   linear-gradient(to top,rgba(8,20,17,.88) 0%,rgba(8,20,17,0) 34%),
   linear-gradient(to bottom,rgba(8,20,17,.45) 0%,rgba(8,20,17,0) 16%)}
 .hero-inner{position:relative;z-index:5;width:100%;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:clamp(20px,4vw,72px);padding-top:170px;padding-bottom:70px}
-.hero-copy{margin-top:-90px}.hero-copy .eyebrow{display:block;margin-bottom:24px}
+.hero-copy{margin-top:-140px}.hero-copy .eyebrow{display:block;margin-bottom:24px}
 h1{font-weight:300;font-size:clamp(46px,5.2vw,86px);line-height:.98;letter-spacing:-.02em;color:#fff;text-wrap:balance}
 h1 em{font-style:normal;font-weight:500}
 .hero-sub{font-size:clamp(17px,1.45vw,21px);font-weight:300;color:rgba(255,255,255,.84);max-width:40ch;margin-top:clamp(140px,18vh,220px);line-height:1.62}
-.hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(140px,18vh,220px)}
+.hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(230px,28vh,310px)}
 .appstore{display:inline-flex;align-items:center;gap:11px;color:#fff;font-weight:400;font-size:14px}
 .appstore svg{width:30px;height:30px;opacity:.95}
 .appstore .s1{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;line-height:1.2}
@@ -165,9 +165,9 @@ h1 em{font-style:normal;font-weight:500}
 .step p{font-size:15.5px;font-weight:300;color:rgba(244,240,230,.6);line-height:1.6;max-width:30ch;margin:0}
 
 /* FINAL CTA band */
-.final{position:relative;min-height:78vh;display:flex;align-items:flex-start;overflow:hidden;text-align:center;padding-top:clamp(80px,10vh,130px)}
+.final{position:relative;min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;text-align:center;padding-top:clamp(80px,10vh,130px)}
 .final-bg{position:absolute;inset:0;background:url(img/hero-d.jpg) center 72%/cover no-repeat;transform:scale(1.03)}
-.final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.5),rgba(8,20,17,.7))}
+.final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.55) 0%,rgba(8,20,17,.38) 45%,rgba(8,20,17,.72) 80%,rgba(8,20,17,.88) 100%)}
 .final .wrap{position:relative;z-index:3}
 .final .eyebrow{display:block;margin-bottom:20px}
 .final h2{font-weight:300;font-size:clamp(40px,5.5vw,82px);line-height:1.02;letter-spacing:-.02em;color:#fff;max-width:16ch;margin:0 auto}
@@ -238,13 +238,13 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
 .log-cur::after{content:'';position:absolute;top:50%;left:50%;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:currentColor;transition:opacity .25s}
 .log-cur.on-target::after{opacity:0}
 @media(pointer:coarse){.log-zone{cursor:auto}.log-cur{display:none}}
-.log-h2{text-align:left;font-weight:300;font-size:clamp(34px,4.8vw,64px);letter-spacing:-.02em;color:#fff;margin-bottom:12px}
+.log-h2{text-align:left;font-weight:300;font-size:clamp(26px,3.2vw,44px);letter-spacing:-.02em;color:#fff;margin-bottom:12px;white-space:nowrap}
 .log-h2 em{font-style:normal;font-weight:500;color:var(--sage)}
-.log-sub{text-align:left;font-size:clamp(15px,1.35vw,19px);font-weight:300;color:rgba(244,240,230,.6);max-width:38ch;margin:0 0 clamp(52px,7vw,88px)}
+.log-sub{text-align:left;font-size:clamp(15px,1.35vw,19px);font-weight:300;color:rgba(244,240,230,.6);white-space:nowrap;margin:0 0 clamp(52px,7vw,88px)}
 .log-cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,44px);max-width:580px;margin:0}
-.log-card{background:rgba(255,255,255,.03);border:1px solid rgba(169,195,181,.14);border-radius:26px;padding:clamp(28px,5vw,54px) 28px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:border-color .3s,background .3s}
+.log-card{background:rgba(255,255,255,.03);border:1px solid rgba(169,195,181,.14);border-radius:26px;padding:clamp(16px,2.5vw,28px) 20px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:border-color .3s,background .3s}
 .log-card:hover{border-color:rgba(169,195,181,.32);background:rgba(255,255,255,.06)}
-.log-icon{width:128px;height:128px;margin-bottom:26px;color:var(--sage)}
+.log-icon{width:72px;height:72px;margin-bottom:14px;color:var(--sage)}
 .log-card-label{font-weight:600;font-size:17px;color:#fff;margin-bottom:8px;letter-spacing:-.01em}
 .log-card-desc{font-weight:300;font-size:14px;color:rgba(244,240,230,.5);line-height:1.58;max-width:22ch}
 @keyframes log-scanline{0%{transform:translateY(0);opacity:0}15%{opacity:.8}85%{opacity:.8}100%{transform:translateY(70px);opacity:0}}
@@ -364,7 +364,7 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
 <section class="steps-sec" id="how">
   <div class="steps-sec-bg"></div>
   <div class="steps-sec-scrim"></div>
-  <div class="wrap">
+  <div class="wrap" style="margin-left:0;max-width:640px">
   <span class="eyebrow">How it works</span>
   <h2>Three taps to a complete bowl.</h2>
   <div class="steps">
@@ -384,8 +384,7 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
     </div>
 
     <div class="wrap" style="margin-left:0;max-width:620px">
-      <span class="eyebrow" style="display:block;text-align:left;margin-bottom:20px">Multiple ways to log</span>
-      <h2 class="log-h2">Add any meal,<br><em>any way.</em></h2>
+      <h2 class="log-h2">Add any meal, <em>any way.</em></h2>
       <p class="log-sub">From a home-cooked bowl to a bag of kibble — PetFuel handles it all.</p>
 
       <div class="log-cards">
@@ -440,8 +439,6 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
   <div class="final-bg"></div>
   <div class="final-scrim"></div>
   <div class="wrap">
-    <span class="eyebrow">Be first in line</span>
-    <h2>Feed with certainty.</h2>
     <p>Join the waitlist and we'll tell you the moment PetFuel reaches the App&nbsp;Store.</p>
     <form class="wl-form" id="waitlist" action="https://formspree.io/f/FORMSPREE_ID" method="POST">
       <input type="email" name="email" placeholder="you@email.com" autocomplete="email" required aria-label="Email address" />
