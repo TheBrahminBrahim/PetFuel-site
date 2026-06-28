@@ -228,7 +228,7 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
 .log-sec{background:#0d1e1a url(img/hero-f.jpg) center 55%/cover no-repeat;padding:clamp(90px,12vw,150px) 0;position:relative;overflow:hidden}
 .log-sec::before{content:'';position:absolute;inset:0;background:rgba(8,20,17,.78);pointer-events:none}
 .log-zone{position:relative;cursor:none}
-.log-cur{position:absolute;top:0;left:0;width:44px;height:44px;pointer-events:none;z-index:50;opacity:0;color:var(--sage);transition:color .28s,opacity .18s,width .34s var(--ease),height .34s var(--ease)}
+.log-cur{will-change:transform;position:absolute;top:0;left:0;width:44px;height:44px;pointer-events:none;z-index:50;opacity:0;color:var(--sage);transition:color .28s,opacity .18s,width .34s var(--ease),height .34s var(--ease)}
 .log-cur.on-target{color:var(--teal)}
 .log-cur span{position:absolute;width:14px;height:14px;border-color:currentColor;border-style:solid;border-width:0}
 .log-cur .lc-tl{top:0;left:0;border-top-width:2px;border-left-width:2px;border-radius:3px 0 0 0}
@@ -355,8 +355,8 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
   <div class="band-bg" style="background-image:url(img/hero-b.jpg);background-position:center 50%"></div>
   <div class="band-scrim" style="background:linear-gradient(to right,rgba(8,20,17,.92) 0%,rgba(8,20,17,.75) 38%,rgba(8,20,17,.22) 65%,rgba(8,20,17,.1) 100%),linear-gradient(to top,rgba(8,20,17,.55) 0%,rgba(8,20,17,0) 40%)"></div>
   <div class="wrap" style="text-align:left;margin-left:0;max-width:560px">
-    <div class="stat">~<em>94%</em></div>
-    <p class="statsub" style="margin:24px 0 0;max-width:28ch">of homemade dog diets are nutritionally incomplete. Yours doesn't have to be.</p>
+    <div class="stat">~<em>90%</em></div>
+    <p class="statsub" style="margin:24px 0 0;max-width:30ch">of homemade pet meals miss an essential nutrient. Yours doesn't have to be.</p>
   </div>
 </section>
 
@@ -464,44 +464,61 @@ addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
 (function(){
   var zone=document.getElementById('logZone'),cur=document.getElementById('logCur');
   if(!zone||!cur)return;
-  var mx=0,my=0,cx=0,cy=0,inside=false,snapped=false;
+  // skip entirely on touch / reduced-motion
+  if(window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches))return;
+  var mx=0,my=0,cx=0,cy=0,inside=false,snapped=false,raf=0;
   var PAD=16,FREE=44;
   var tgts=zone.querySelectorAll('.cursor-target');
-  zone.addEventListener('mouseenter',function(e){
-    var r=zone.getBoundingClientRect();
-    mx=e.clientX-r.left;my=e.clientY-r.top;
-    cx=mx-FREE/2;cy=my-FREE/2;
-    inside=true;cur.style.opacity='1';
-  });
-  zone.addEventListener('mousemove',function(e){
-    var r=zone.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;
-  });
-  zone.addEventListener('mouseleave',function(){inside=false;cur.style.opacity='0';});
-  function getSnap(){
-    if(!inside)return null;
-    var zr=zone.getBoundingClientRect(),best=null;
+  // cached, zone-relative geometry — recomputed only on enter/scroll/resize, never per-frame
+  var zr={left:0,top:0},boxes=[];
+  function measure(){
+    zr=zone.getBoundingClientRect();
+    boxes=[];
     tgts.forEach(function(t){
-      var tr=t.getBoundingClientRect(),hp=20;
-      if(mx>=tr.left-zr.left-hp&&mx<=tr.right-zr.left+hp&&
-         my>=tr.top-zr.top-hp&&my<=tr.bottom-zr.top+hp)
-        best={tx:tr.left-zr.left-PAD,ty:tr.top-zr.top-PAD,tw:tr.width,th:tr.height};
+      var tr=t.getBoundingClientRect();
+      boxes.push({l:tr.left-zr.left,t:tr.top-zr.top,w:tr.width,h:tr.height});
     });
+  }
+  function getSnap(){
+    var hp=20,best=null;
+    for(var i=0;i<boxes.length;i++){var b=boxes[i];
+      if(mx>=b.l-hp&&mx<=b.l+b.w+hp&&my>=b.t-hp&&my<=b.t+b.h+hp)
+        best={tx:b.l-PAD,ty:b.t-PAD,tw:b.w,th:b.h};
+    }
     return best;
   }
-  (function tick(){
-    var snap=getSnap(),tx,ty;
+  function tick(){
+    var snap=inside?getSnap():null,tx,ty;
     if(snap){
       tx=snap.tx;ty=snap.ty;
       if(!snapped){cur.style.width=(snap.tw+PAD*2)+'px';cur.style.height=(snap.th+PAD*2)+'px';}
+      // ease only when locking onto a card (intentional snap animation)
+      cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
     } else {
       tx=mx-FREE/2;ty=my-FREE/2;
       if(snapped){cur.style.width=FREE+'px';cur.style.height=FREE+'px';}
+      // free movement tracks the mouse 1:1 — no smoothing, native sensitivity
+      cx=tx;cy=ty;
     }
-    cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
     cur.style.transform='translate('+cx+'px,'+cy+'px)';
     var ns=!!snap;if(ns!==snapped){cur.classList.toggle('on-target',ns);snapped=ns;}
-    requestAnimationFrame(tick);
-  })();
+    // keep animating only while inside, or until a snap-out has settled after leaving
+    if(inside||Math.abs(tx-cx)>0.5||Math.abs(ty-cy)>0.5){raf=requestAnimationFrame(tick);}
+    else{raf=0;}
+  }
+  function start(){if(!raf)raf=requestAnimationFrame(tick);}
+  zone.addEventListener('mouseenter',function(e){
+    measure();
+    mx=e.clientX-zr.left;my=e.clientY-zr.top;
+    cx=mx-FREE/2;cy=my-FREE/2;
+    inside=true;cur.style.opacity='1';start();
+  });
+  zone.addEventListener('mousemove',function(e){
+    mx=e.clientX-zr.left;my=e.clientY-zr.top;
+  });
+  zone.addEventListener('mouseleave',function(){inside=false;cur.style.opacity='0';start();});
+  addEventListener('scroll',function(){if(inside)measure();},{passive:true});
+  addEventListener('resize',function(){if(inside)measure();});
 })();
 
 // Waitlist: submit to Formspree via fetch, show inline confirmation (falls back to a normal POST)
