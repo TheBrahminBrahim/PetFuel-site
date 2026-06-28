@@ -166,7 +166,7 @@ h1 em{font-style:normal;font-weight:500}
 
 /* FINAL CTA band */
 .final{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;text-align:center}
-.final-bg{position:absolute;inset:0;background:url(img/flowers.jpg) center 30%/cover no-repeat;transform:scale(1.03)}
+.final-bg{position:absolute;inset:0;background:url(img/hero-b.jpg) center 30%/cover no-repeat;transform:scale(1.03)}
 .final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.5),rgba(8,20,17,.7))}
 .final .wrap{position:relative;z-index:3}
 .final .eyebrow{display:block;margin-bottom:20px}
@@ -223,6 +223,33 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
   .steps{grid-template-columns:1fr;gap:40px}
   .hero-trust{gap:16px}
 }
+
+/* LOGGING METHODS */
+.log-sec{background:#0d1e1a;padding:clamp(90px,12vw,150px) 0;position:relative;overflow:hidden}
+.log-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(14,124,114,.08) 0%,transparent 70%);pointer-events:none}
+.log-zone{position:relative;cursor:none}
+.log-cur{position:absolute;top:0;left:0;width:44px;height:44px;pointer-events:none;z-index:50;opacity:0;color:var(--sage);transition:color .28s,opacity .18s,width .34s var(--ease),height .34s var(--ease)}
+.log-cur.on-target{color:var(--teal)}
+.log-cur span{position:absolute;width:14px;height:14px;border-color:currentColor;border-style:solid;border-width:0}
+.log-cur .lc-tl{top:0;left:0;border-top-width:2px;border-left-width:2px;border-radius:3px 0 0 0}
+.log-cur .lc-tr{top:0;right:0;border-top-width:2px;border-right-width:2px;border-radius:0 3px 0 0}
+.log-cur .lc-bl{bottom:0;left:0;border-bottom-width:2px;border-left-width:2px;border-radius:0 0 0 3px}
+.log-cur .lc-br{bottom:0;right:0;border-bottom-width:2px;border-right-width:2px;border-radius:0 0 3px 0}
+.log-cur::after{content:'';position:absolute;top:50%;left:50%;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:currentColor;transition:opacity .25s}
+.log-cur.on-target::after{opacity:0}
+@media(pointer:coarse){.log-zone{cursor:auto}.log-cur{display:none}}
+.log-h2{text-align:center;font-weight:300;font-size:clamp(34px,4.8vw,64px);letter-spacing:-.02em;color:#fff;margin-bottom:12px}
+.log-h2 em{font-style:normal;font-weight:500;color:var(--sage)}
+.log-sub{text-align:center;font-size:clamp(15px,1.35vw,19px);font-weight:300;color:rgba(244,240,230,.6);max-width:38ch;margin:0 auto clamp(52px,7vw,88px)}
+.log-cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,44px);max-width:780px;margin:0 auto}
+.log-card{background:rgba(255,255,255,.03);border:1px solid rgba(169,195,181,.14);border-radius:26px;padding:clamp(28px,5vw,54px) 28px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:border-color .3s,background .3s}
+.log-card:hover{border-color:rgba(169,195,181,.32);background:rgba(255,255,255,.06)}
+.log-icon{width:128px;height:128px;margin-bottom:26px;color:var(--sage)}
+.log-card-label{font-weight:600;font-size:17px;color:#fff;margin-bottom:8px;letter-spacing:-.01em}
+.log-card-desc{font-weight:300;font-size:14px;color:rgba(244,240,230,.5);line-height:1.58;max-width:22ch}
+@keyframes log-scanline{0%{transform:translateY(0);opacity:0}15%{opacity:.8}85%{opacity:.8}100%{transform:translateY(70px);opacity:0}}
+.log-scanline{animation:log-scanline 2.5s ease-in-out infinite}
+@media(max-width:600px){.log-cards{grid-template-columns:1fr;max-width:340px}.log-icon{width:108px;height:108px}}
 </style>
 </head>
 <body>
@@ -333,6 +360,66 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
   </div>
 </section>
 
+<!-- LOGGING METHODS -->
+<section class="log-sec">
+  <div class="log-zone" id="logZone">
+    <div class="log-cur" id="logCur" aria-hidden="true">
+      <span class="lc-tl"></span><span class="lc-tr"></span>
+      <span class="lc-bl"></span><span class="lc-br"></span>
+    </div>
+
+    <div class="wrap">
+      <span class="eyebrow" style="display:block;text-align:center;margin-bottom:20px">Multiple ways to log</span>
+      <h2 class="log-h2">Add any meal,<br><em>any way.</em></h2>
+      <p class="log-sub">From a home-cooked bowl to a bag of kibble — PetFuel handles it all.</p>
+
+      <div class="log-cards">
+
+        <div class="log-card cursor-target">
+          <div class="log-icon">
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="64" cy="42" rx="46" ry="13" stroke="currentColor" stroke-width="2.4" fill="rgba(169,195,181,.08)"/>
+              <path d="M18 42 Q15 87 64 96 Q113 87 110 42" stroke="currentColor" stroke-width="2.4" fill="rgba(169,195,181,.08)" stroke-linejoin="round"/>
+              <ellipse cx="64" cy="97" rx="24" ry="6.5" stroke="currentColor" stroke-width="2" fill="rgba(169,195,181,.08)"/>
+              <circle cx="50" cy="60" r="7.5" fill="rgba(169,195,181,.22)" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="66" cy="53" r="9" fill="rgba(169,195,181,.22)" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="81" cy="60" r="7" fill="rgba(169,195,181,.22)" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="56" cy="73" r="6.5" fill="rgba(169,195,181,.22)" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="74" cy="72" r="7.5" fill="rgba(169,195,181,.22)" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="log-card-label">Snap the bowl</div>
+          <div class="log-card-desc">AI identifies every ingredient from a photo of your pet's meal</div>
+        </div>
+
+        <div class="log-card cursor-target">
+          <div class="log-icon">
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g fill="currentColor" opacity=".82">
+                <rect x="16" y="22" width="3.5" height="70"/><rect x="22" y="22" width="1.5" height="70"/>
+                <rect x="26" y="22" width="4.5" height="70"/><rect x="33" y="22" width="2" height="70"/>
+                <rect x="37.5" y="22" width="3" height="70"/><rect x="42.5" y="22" width="1.5" height="70"/>
+                <rect x="46" y="22" width="4" height="70"/><rect x="52" y="22" width="2" height="70"/>
+                <rect x="56.5" y="22" width="3" height="70"/><rect x="62" y="22" width="1.5" height="70"/>
+                <rect x="65.5" y="22" width="3.5" height="70"/><rect x="71.5" y="22" width="2" height="70"/>
+                <rect x="76" y="22" width="4" height="70"/><rect x="82.5" y="22" width="1.5" height="70"/>
+                <rect x="86" y="22" width="3" height="70"/><rect x="91.5" y="22" width="2" height="70"/>
+                <rect x="95.5" y="22" width="1.5" height="70"/><rect x="99" y="22" width="4" height="70"/>
+                <rect x="105" y="22" width="2" height="70"/><rect x="109" y="22" width="3.5" height="70"/>
+              </g>
+              <line class="log-scanline" x1="12" y1="22" x2="116" y2="22" stroke="var(--sage)" stroke-width="2.5" opacity=".75"/>
+              <text x="64" y="108" text-anchor="middle" font-family="'DM Sans',monospace" font-size="9" fill="currentColor" opacity=".3">4 71234 56789 0</text>
+            </svg>
+          </div>
+          <div class="log-card-label">Scan the label</div>
+          <div class="log-card-desc">Scan any packaged pet food barcode — full nutrition auto-filled</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- STEPS -->
 <section class="steps-sec" id="how">
   <div class="steps-sec-bg"></div>
@@ -375,6 +462,50 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
 <script>
 const hdr=document.getElementById('hdr');
 addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+
+// Target cursor for logging section
+(function(){
+  var zone=document.getElementById('logZone'),cur=document.getElementById('logCur');
+  if(!zone||!cur)return;
+  var mx=0,my=0,cx=0,cy=0,inside=false,snapped=false;
+  var PAD=16,FREE=44;
+  var tgts=zone.querySelectorAll('.cursor-target');
+  zone.addEventListener('mouseenter',function(e){
+    var r=zone.getBoundingClientRect();
+    mx=e.clientX-r.left;my=e.clientY-r.top;
+    cx=mx-FREE/2;cy=my-FREE/2;
+    inside=true;cur.style.opacity='1';
+  });
+  zone.addEventListener('mousemove',function(e){
+    var r=zone.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;
+  });
+  zone.addEventListener('mouseleave',function(){inside=false;cur.style.opacity='0';});
+  function getSnap(){
+    if(!inside)return null;
+    var zr=zone.getBoundingClientRect(),best=null;
+    tgts.forEach(function(t){
+      var tr=t.getBoundingClientRect(),hp=20;
+      if(mx>=tr.left-zr.left-hp&&mx<=tr.right-zr.left+hp&&
+         my>=tr.top-zr.top-hp&&my<=tr.bottom-zr.top+hp)
+        best={tx:tr.left-zr.left-PAD,ty:tr.top-zr.top-PAD,tw:tr.width,th:tr.height};
+    });
+    return best;
+  }
+  (function tick(){
+    var snap=getSnap(),tx,ty;
+    if(snap){
+      tx=snap.tx;ty=snap.ty;
+      if(!snapped){cur.style.width=(snap.tw+PAD*2)+'px';cur.style.height=(snap.th+PAD*2)+'px';}
+    } else {
+      tx=mx-FREE/2;ty=my-FREE/2;
+      if(snapped){cur.style.width=FREE+'px';cur.style.height=FREE+'px';}
+    }
+    cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
+    cur.style.transform='translate('+cx+'px,'+cy+'px)';
+    var ns=!!snap;if(ns!==snapped){cur.classList.toggle('on-target',ns);snapped=ns;}
+    requestAnimationFrame(tick);
+  })();
+})();
 
 // Waitlist: submit to Formspree via fetch, show inline confirmation (falls back to a normal POST)
 const wf=document.getElementById('waitlist');
