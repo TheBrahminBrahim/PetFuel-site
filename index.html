@@ -1,978 +1,392 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PetFuel — Nutrition tracking for home-cooked & raw dog diets</title>
-  <meta name="description" content="Build a meal from real ingredients and see whether your dog's diet is nutritionally complete. NRC/AAFCO targets, honest data, no faked numbers." />
-  <meta property="og:title" content="PetFuel — Know what your dog is actually eating" />
-  <meta property="og:description" content="~94% of homemade dog diets are nutritionally incomplete. Build a meal, see the gaps, fix them." />
-  <meta property="og:url" content="https://petfuel.app" />
-  <meta property="og:type" content="website" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PetFuel — Is your dog's home-cooked bowl complete?</title>
+<meta name="description" content="PetFuel weighs your dog's home-cooked bowl against real veterinary nutrition science (NRC / AAFCO) and shows you exactly what's missing. Join the waitlist for the iOS app." />
+<link rel="canonical" href="https://petfuel.app/" />
+<meta name="theme-color" content="#0B1916" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://petfuel.app/" />
+<meta property="og:title" content="PetFuel — Is your dog's home-cooked bowl complete?" />
+<meta property="og:description" content="Weigh your dog's home-cooked bowl against real veterinary nutrition science and see exactly what's missing. Join the waitlist." />
+<meta property="og:image" content="https://petfuel.app/img/hero-a.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PetFuel — Is your dog's home-cooked bowl complete?" />
+<meta name="twitter:description" content="Weigh your dog's home-cooked bowl against real veterinary nutrition science and see exactly what's missing. Join the waitlist." />
+<meta name="twitter:image" content="https://petfuel.app/img/hero-a.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Hanken+Grotesk:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0B1916; --cream:#F4F0E6; --cream-2:#E9E3D3;
+  --sage:#A9C3B5; --sage-deep:#5E7E70; --teal:#0E7C72; --teal-deep:#0A3F38;
+  --good:#12876A; --good-weak:#DCEFE6; --amber:#B97A12; --amber-weak:#F6ECD7;
+  --surface-2:#EAF2F0; --border-app:#DCE7E5; --ink-3:#80948F;
+  --font:'DM Sans',system-ui,-apple-system,sans-serif;
+  --font-app:'Hanken Grotesk',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,64px)}
+.eyebrow{font-size:13px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--sage)}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:background .4s var(--ease),padding .4s var(--ease)}
+header.scrolled{background:rgba(11,25,22,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px 0}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:20px;letter-spacing:.04em;color:#fff}
+.mark{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)}
+.mark svg{width:19px;height:19px}
+.nav-links{display:flex;gap:38px}
+.nav-links a{font-size:14px;font-weight:400;letter-spacing:.04em;color:rgba(255,255,255,.82);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:500;letter-spacing:.04em;cursor:pointer;border-radius:999px;transition:transform .2s var(--ease),background .2s,border-color .2s,color .2s;border:1px solid transparent}
+.pill-ghost{border-color:rgba(255,255,255,.45);color:#fff;padding:11px 22px;font-size:14px;background:transparent}
+.pill-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.pill-cream{background:var(--cream);color:var(--ink);padding:15px 28px;font-size:15px}
+.pill-cream:hover{transform:translateY(-2px);background:#fff}
+@media(max-width:880px){.nav-links{display:none}}
 
-  <style>
-    /* ═══════════════════════════════════════════════
-       TOKENS
-    ═══════════════════════════════════════════════ */
-    :root {
-      --ink:          #0E1917;
-      --ink-2:        #3D5250;
-      --ink-3:        #7A908E;
-      --bg:           #EFF3F2;
-      --surface:      #FFFFFF;
-      --surface-2:    #E3EEEC;
-      --border:       #D8E4E2;
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url(img/hero-a.jpg) center 42%/cover no-repeat;transform:scale(1.26) translateX(-6.5%);transform-origin:center;transition:background-image .35s ease}
+.hero-scrim{position:absolute;inset:0;background:
+  linear-gradient(100deg,rgba(8,20,17,.9) 0%,rgba(8,20,17,.68) 36%,rgba(8,20,17,.34) 62%,rgba(8,20,17,.52) 100%),
+  linear-gradient(to top,rgba(8,20,17,.88) 0%,rgba(8,20,17,0) 34%),
+  linear-gradient(to bottom,rgba(8,20,17,.45) 0%,rgba(8,20,17,0) 16%)}
+.hero-inner{position:relative;z-index:5;width:100%;max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:clamp(20px,4vw,72px);padding-top:120px;padding-bottom:70px}
+.hero-copy .eyebrow{display:block;margin-bottom:24px}
+h1{font-weight:300;font-size:clamp(52px,7.2vw,108px);line-height:.98;letter-spacing:-.02em;color:#fff;text-wrap:balance}
+h1 em{font-style:normal;font-weight:500}
+.hero-sub{font-size:clamp(17px,1.45vw,21px);font-weight:300;color:rgba(255,255,255,.84);max-width:40ch;margin-top:28px;line-height:1.62}
+.hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:38px}
+.appstore{display:inline-flex;align-items:center;gap:11px;color:#fff;font-weight:400;font-size:14px}
+.appstore svg{width:30px;height:30px;opacity:.95}
+.appstore .s1{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;line-height:1.2}
+.appstore .s2{font-size:16px;font-weight:500;letter-spacing:.02em;line-height:1.15}
+.hero-trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:46px}
+.hero-trust span{font-size:12.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:8px}
+.hero-trust span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--sage)}
 
-      --teal:         #0E7C72;
-      --teal-dark:    #0A5F58;
-      --teal-deep:    #091C1A;
-      --teal-mid:     #0D3530;
-      --teal-weak:    #D9EDEA;
+/* PHONE CLUSTER over photo — realistic iPhone proportions (≈19.5:9) */
+.stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:640px;transform:scale(.84);transform-origin:center}
+.phone{width:252px;border-radius:46px;padding:12px;background:#0a1311;box-shadow:0 40px 90px rgba(0,0,0,.55),0 8px 24px rgba(0,0,0,.4);position:relative}
+.phone::after{content:"";position:absolute;inset:3px;border-radius:43px;border:1px solid rgba(255,255,255,.10);pointer-events:none}
+.phone .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:78px;height:23px;background:#000;border-radius:999px;z-index:5}
+.screen{background:#F4F8F7;border-radius:38px;overflow:hidden;position:relative;aspect-ratio:9/19.5;display:flex;flex-direction:column}
+.phone-front{position:relative;z-index:3}
+.phone-back{position:absolute;z-index:1;left:calc(50% + 16px);top:30px;transform:rotate(6deg) scale(.85);transform-origin:bottom left}
+.float{position:absolute;z-index:4;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,.3);padding:11px 14px;display:flex;align-items:center;gap:10px}
+.float .fi{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+.float .ft{font-size:11.5px;font-weight:500;color:#45605C;line-height:1.3;font-family:var(--font-app)}
+.float .ft b{display:block;color:#0E1917;font-weight:800;font-size:13px}
+.float-a{left:-30px;top:150px}
+.float-b{right:-22px;bottom:96px}
 
-      --good:         #12876A;
-      --good-weak:    #DAEEE6;
-      --bad:          #C0433A;
-      --bad-weak:     #F5E0DE;
+/* APP SCREEN INTERNALS */
+.screen *{font-family:var(--font-app)}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:15px 22px 4px;font-size:12px;font-weight:700;color:#0E1917;flex-shrink:0}
+.sb .dots i{width:15px;height:9px;border:1.5px solid #0E1917;border-radius:2px;display:inline-block}
+.app{padding:6px 16px 0;flex:1;display:flex;flex-direction:column;min-height:0}
+.app-head{display:flex;align-items:center;justify-content:space-between;padding:10px 2px 6px}
+.app-head .lab{font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+.app-head h3{font-size:19px;font-weight:800;letter-spacing:-.02em;color:#0E1917}
+.app-head .meta{font-size:11px;color:var(--ink-3);font-weight:600}
+.pet-av{width:38px;height:38px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:18px}
+.ring-wrap{display:flex;justify-content:center;padding:8px 0 6px}
+.ring{width:148px;height:148px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(closest-side,#fff 79%,transparent 80%),conic-gradient(var(--good) 0 352deg,var(--surface-2) 352deg)}
+.ring .num{font-size:34px;font-weight:900;line-height:1;letter-spacing:-.03em;color:#0E1917}
+.ring .cap{font-size:11px;font-weight:800;color:var(--good);margin-top:3px;letter-spacing:.02em}
+.ring .vs{font-size:9px;color:var(--ink-3);font-weight:600;margin-top:2px}
+.card{background:#fff;border:1px solid var(--border-app);border-radius:18px;padding:13px 14px;margin-top:11px}
+.kcal{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--ink-3);font-weight:600}
+.kcal b{font-size:15px;color:#0E1917;font-weight:800}
+.bar{height:7px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;border-radius:6px;background:var(--teal)}
+.macros{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:11px}
+.macro{background:#fff;border:1px solid var(--border-app);border-radius:13px;padding:10px;text-align:center}
+.macro .mv{font-size:15px;font-weight:800;color:#0E1917}
+.macro .ml{font-size:10px;color:var(--ink-3);font-weight:700;margin-top:1px;text-transform:uppercase;letter-spacing:.04em}
+.nrow{display:flex;align-items:center;gap:9px;margin-top:10px;font-size:12px}
+.nrow .nl{width:62px;color:#45605C;font-weight:600;flex-shrink:0}
+.ntrack{flex:1;height:6px;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.nfill{height:100%;border-radius:5px}
+.npill{font-size:10px;font-weight:800;padding:2px 8px;border-radius:999px;flex-shrink:0}
+.npill.g{background:var(--good-weak);color:var(--good)}
+.npill.a{background:var(--amber-weak);color:var(--amber)}
+.tabs{display:flex;justify-content:space-around;align-items:center;padding:12px 6px 16px;margin-top:auto;border-top:1px solid var(--border-app);background:#fff;flex-shrink:0;margin-left:-16px;margin-right:-16px;padding-left:22px;padding-right:22px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;font-weight:700;color:var(--ink-3)}
+.tab.on{color:var(--teal)}
+.tab svg{width:21px;height:21px}
+.snap{display:flex;align-items:center;gap:11px;background:var(--teal-deep);color:#fff;border-radius:14px;padding:12px 14px;margin-top:8px}
+.snap svg{width:22px;height:22px;flex-shrink:0}
+.snap .st{font-size:13px;font-weight:800}
+.snap .ss{font-size:10.5px;opacity:.72;font-weight:600}
+.ing{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border-app);font-size:13px}
+.ing:last-child{border-bottom:none}
+.ing .nm{font-weight:700;color:#0E1917}
+.ing .gr{font-size:11px;color:var(--ink-3);font-weight:700}
+.ing .ic{width:26px;height:26px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:14px;margin-right:9px}
+.addrow{width:100%;display:flex;align-items:center;gap:8px;margin-top:10px;padding:11px 14px;border:1px dashed var(--border-app);border-radius:14px;background:transparent;font-family:var(--font-app);font-size:12.5px;font-weight:700;color:var(--ink-3);cursor:pointer}
+.addrow .plus{width:18px;height:18px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:14px;color:var(--teal);font-weight:800;line-height:1}
+.totals{display:flex;justify-content:space-between;align-items:baseline;margin-top:13px;padding:0 4px;font-size:12px;color:var(--ink-3);font-weight:700}
+.totals b{font-size:15px;color:#0E1917;font-weight:800}
+.cta-btn{width:100%;margin-top:12px;padding:13px;border:none;border-radius:14px;background:var(--teal);color:#fff;font-family:var(--font-app);font-size:13.5px;font-weight:800;letter-spacing:.01em;cursor:pointer}
 
-      --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+/* SECTION: photo statement band */
+.band{position:relative;min-height:74vh;display:flex;align-items:center;overflow:hidden}
+.band-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.03)}
+.band-scrim{position:absolute;inset:0}
+.band .wrap{position:relative;z-index:3;text-align:center}
+.band .stat{font-weight:300;font-size:clamp(58px,10vw,150px);line-height:1;letter-spacing:-.04em;color:#fff}
+.band .stat em{font-style:normal;font-weight:500;color:var(--sage)}
+.band .statsub{font-size:clamp(18px,1.7vw,24px);font-weight:300;color:rgba(255,255,255,.86);max-width:30ch;margin:24px auto 0;line-height:1.5}
 
-      --r-card: 20px;
-      --r-btn:  14px;
+/* SECTION: steps (calm dark) */
+.steps-sec{background:var(--ink);padding:clamp(70px,10vw,130px) 0}
+.steps-sec .eyebrow{display:block;text-align:center;margin-bottom:18px}
+.steps-sec h2{text-align:center;font-weight:300;font-size:clamp(32px,4vw,54px);letter-spacing:-.02em;color:#fff;margin-bottom:clamp(46px,6vw,72px)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,56px)}
+.step{text-align:center}
+.step .n{font-weight:300;font-size:34px;color:var(--sage);letter-spacing:.02em}
+.step .ln{width:34px;height:1px;background:rgba(169,195,181,.4);margin:18px auto}
+.step h3{font-weight:500;font-size:22px;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
+.step p{font-size:15.5px;font-weight:300;color:rgba(244,240,230,.6);line-height:1.6;max-width:30ch;margin:0 auto}
 
-      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
-      --ease-inout:  cubic-bezier(0.77, 0, 0.175, 1);
+/* FINAL CTA band */
+.final{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;text-align:center}
+.final-bg{position:absolute;inset:0;background:url(img/flowers.jpg) center 30%/cover no-repeat;transform:scale(1.03)}
+.final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.5),rgba(8,20,17,.7))}
+.final .wrap{position:relative;z-index:3}
+.final .eyebrow{display:block;margin-bottom:20px}
+.final h2{font-weight:300;font-size:clamp(40px,5.5vw,82px);line-height:1.02;letter-spacing:-.02em;color:#fff;max-width:16ch;margin:0 auto}
+.final p{font-size:clamp(17px,1.4vw,20px);font-weight:300;color:rgba(255,255,255,.82);margin:22px auto 0;max-width:42ch}
+.final .hero-cta{justify-content:center;margin-top:38px}
 
-      --shadow:    0 1px 3px rgba(9,28,26,.05), 0 10px 30px rgba(9,28,26,.08);
-      --shadow-sm: 0 1px 3px rgba(9,28,26,.06);
-      --shadow-lg: 0 2px 4px rgba(9,28,26,.06), 0 24px 64px rgba(9,28,26,.14);
-    }
+/* FOOTER */
+footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,.5)}
+.foot{display:flex;flex-direction:column;gap:22px}
+.foot .brand{color:#fff}
+.disc{font-size:12.5px;line-height:1.7;max-width:70ch;color:rgba(244,240,230,.38);font-weight:300}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;font-weight:300;letter-spacing:.03em}
+.foot-bot a{color:rgba(244,240,230,.6)}
 
-    /* ═══════════════════════════════════════════════
-       RESET
-    ═══════════════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--font);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    img { display: block; max-width: 100%; }
-    a { color: var(--teal-dark); }
-    .wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 64px);
-    }
+/* WAITLIST FORM */
+.wl-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.wl-form input{font-family:var(--font);font-size:15px;font-weight:400;padding:15px 24px;border-radius:999px;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.1);color:#fff;min-width:268px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:border-color .2s,background .2s}
+.wl-form input::placeholder{color:rgba(255,255,255,.55)}
+.wl-form input:focus{outline:none;border-color:var(--cream);background:rgba(255,255,255,.16)}
+.wl-form button{cursor:pointer}
+.wl-note{font-size:12.5px;color:rgba(255,255,255,.55);margin-top:16px;letter-spacing:.02em}
+.wl-success{display:none;font-size:clamp(19px,1.6vw,23px);font-weight:300;color:#fff;margin-top:34px}
+.final.wl-ok .wl-form,.final.wl-ok .wl-note{display:none}
+.final.wl-ok .wl-success{display:block}
 
-    /* ═══════════════════════════════════════════════
-       REVEAL SYSTEM
-    ═══════════════════════════════════════════════ */
-    [data-reveal] {
-      transition:
-        opacity 0.65s var(--ease-out),
-        transform 0.65s var(--ease-out);
-    }
-    [data-reveal="hidden"] {
-      opacity: 0;
-      transform: translateY(26px);
-    }
-    [data-reveal="visible"] {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    [data-delay="1"] { transition-delay: 90ms; }
-    [data-delay="2"] { transition-delay: 180ms; }
-    [data-delay="3"] { transition-delay: 270ms; }
-    [data-delay="4"] { transition-delay: 360ms; }
+/* density tuning so app content fits the real-iPhone screen height */
+.sb{padding-top:12px}
+.app-head{padding:4px 2px 2px}
+.app-head h3{font-size:18px}
+.ring-wrap{padding:2px 0 0}
+.ring{width:90px;height:90px}
+.ring .num{font-size:22px}
+.ring .cap{font-size:9.5px;margin-top:1px}
+.ring .vs{font-size:8px}
+.card{padding:9px 13px;margin-top:6px}
+.kcal b{font-size:14px}
+.bar{margin-top:6px}
+.macros{margin-top:7px;gap:7px}
+.macro{padding:7px}
+.macro .mv{font-size:14px}
+.nrow{margin-top:6px}
+.snap{padding:9px 12px;margin-top:5px}
+.snap .st{font-size:12.5px}
+.ing{padding:4px 0}
+.addrow{margin-top:5px;padding:8px 13px}
+.totals{margin-top:6px}
+.cta-btn{margin-top:6px;padding:10px}
+.tabs{padding:8px 6px 11px}
 
-    @media (prefers-reduced-motion: reduce) {
-      [data-reveal], * {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-      }
-    }
-
-    /* ═══════════════════════════════════════════════
-       HEADER
-    ═══════════════════════════════════════════════ */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      padding: 20px 0;
-      transition: background 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out);
-    }
-    header.scrolled {
-      background: rgba(9,28,26,0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 14px 0;
-    }
-    header .wrap { display: flex; align-items: center; justify-content: flex-end; }
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 800; font-size: 18px;
-      color: #fff; text-decoration: none;
-    }
-    .logo-mark {
-      width: 32px; height: 32px; border-radius: 10px;
-      flex-shrink: 0; object-fit: cover; display: block;
-    }
-    .hero-logo {
-      display: flex; align-items: center; gap: 20px;
-      font-weight: 800; font-size: clamp(52px, 6vw, 80px);
-      color: rgba(255,255,255,0.95); text-decoration: none;
-      margin-bottom: clamp(36px, 4.5vw, 56px);
-    }
-    .hero-logo .logo-mark {
-      width: clamp(96px, 10vw, 120px); height: clamp(96px, 10vw, 120px); border-radius: 22px;
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 11px;
-      padding: clamp(12px,1.2vw,20px) clamp(20px,2vw,34px);
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: #fff; border-radius: 999px;
-      font-size: clamp(19px,1.3vw,26px); font-weight: 600;
-      letter-spacing: 0.02em;
-      backdrop-filter: blur(4px);
-    }
-    .badge-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--teal);
-      animation: glow 2.2s ease-in-out infinite;
-    }
-    @keyframes glow {
-      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(14,124,114,0.4); }
-      50%      { opacity: 0.7; box-shadow: 0 0 0 4px rgba(14,124,114,0); }
-    }
-
-    /* ═══════════════════════════════════════════════
-       HERO — split: photo left | content right
-    ═══════════════════════════════════════════════ */
-    .hero {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      height: 100svh;
-      min-height: fit-content;
-      position: relative;
-    }
-    .hero-photo {
-      position: relative;
-      overflow: hidden;
-      background: var(--teal-deep);
-    }
-    .hero-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 85%;
-    }
-    /* Top fade so fixed header logo reads clearly over the photo */
-    .hero-photo::before {
-      content: "";
-      position: absolute; top: 0; left: 0; right: 0; height: 160px;
-      background: linear-gradient(to bottom, rgba(9,28,26,0.65), transparent);
-      z-index: 1; pointer-events: none;
-    }
-    /* Fallback gradient when image not loaded */
-    .hero-photo::after {
-      content: "";
-      position: absolute; inset: 0;
-      background: linear-gradient(160deg, var(--teal-mid) 0%, var(--teal-deep) 100%);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .hero-photo.no-img::after { opacity: 1; }
-
-    .hero-content {
-      background: var(--teal-deep);
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: clamp(200px,26vh,280px) clamp(40px,5vw,72px) clamp(48px,5vw,72px);
-    }
-    .hero-main {
-      display: flex; flex-direction: column; justify-content: center; flex: 1;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: clamp(7px,0.7vw,11px) clamp(16px,1.4vw,24px);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: 999px;
-      font-size: clamp(15px,1.2vw,23px); font-weight: 600;
-      color: rgba(255,255,255,0.82);
-      letter-spacing: 0.02em;
-      margin-bottom: 28px;
-      align-self: flex-start;
-    }
-    .hero-eyebrow::before {
-      content: "";
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal);
-    }
-    h1 {
-      font-size: clamp(48px, 6.2vw, 112px);
-      line-height: 1.0;
-      letter-spacing: -0.04em;
-      font-weight: 900;
-      color: #fff;
-      max-width: 16ch;
-      margin: 0 0 28px;
-      text-wrap: balance;
-    }
-    .hero-sub {
-      font-size: clamp(20px, 2vw, 34px);
-      color: rgba(255,255,255,0.72);
-      max-width: 40ch;
-      margin: 0 0 48px;
-      line-height: 1.65;
-      font-weight: 400;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: clamp(16px,1.6vw,28px) clamp(28px,2.8vw,52px);
-      background: var(--teal);
-      color: #fff; font-weight: 700; font-size: clamp(18px,1.6vw,28px);
-      border-radius: var(--r-btn);
-      text-decoration: none;
-      align-self: flex-start;
-      transition:
-        background 0.18s var(--ease-out),
-        transform 0.16s var(--ease-out),
-        box-shadow 0.2s var(--ease-out);
-    }
-    .btn-primary:hover {
-      background: var(--teal-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(14,124,114,0.38);
-    }
-    .btn-primary:active {
-      transform: scale(0.97);
-      transition-duration: 0.1s;
-    }
-    .btn-arrow { transition: transform 0.18s var(--ease-out); }
-    .btn-primary:hover .btn-arrow { transform: translateX(3px); }
-    .hero-cta-row {
-      display: flex; align-items: center; gap: clamp(14px,1.5vw,24px); flex-wrap: wrap;
-    }
-
-    /* Sits at bottom-center of the right (content) column */
-    .scroll-hint {
-      position: absolute; bottom: 32px; left: 75%;
-      transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: rgba(255,255,255,0.35);
-      pointer-events: none;
-    }
-    .scroll-line {
-      width: 1px; height: 36px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
-      animation: drop 1.8s cubic-bezier(0.23,1,0.32,1) infinite;
-    }
-    @keyframes drop {
-      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
-      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-      51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-    }
-
-    /* ═══════════════════════════════════════════════
-       STAT SLAB
-    ═══════════════════════════════════════════════ */
-    .stat-slab {
-      background: var(--teal-deep);
-      padding: clamp(56px,8vw,100px) 0;
-      text-align: center;
-      overflow: hidden;
-    }
-    .stat-big {
-      font-size: clamp(72px, 14vw, 148px);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.045em;
-      color: #fff;
-    }
-    .stat-big em {
-      font-style: normal;
-      color: var(--teal);
-    }
-    .stat-desc {
-      font-size: clamp(19px,2vw,30px);
-      color: rgba(255,255,255,0.62);
-      max-width: 40ch;
-      margin: 20px auto 0;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-    .stat-pills {
-      display: flex; justify-content: center; flex-wrap: wrap;
-      gap: 12px; margin-top: clamp(36px,5vw,56px);
-    }
-    .stat-pill {
-      display: flex; align-items: center; gap: 9px;
-      padding: clamp(9px,0.9vw,14px) clamp(18px,1.8vw,28px);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 999px;
-      font-size: clamp(15px,1.2vw,20px); font-weight: 600;
-      color: rgba(255,255,255,0.78);
-    }
-    .stat-pill::before {
-      content: "";
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal);
-    }
-
-    /* ═══════════════════════════════════════════════
-       EDITORIAL ROWS
-    ═══════════════════════════════════════════════ */
-    .editorial {
-      display: grid;
-      grid-template-columns: 46% 54%;
-    }
-    .editorial-flip {
-      grid-template-columns: 54% 46%;
-    }
-    .editorial-photo {
-      position: relative;
-      overflow: hidden;
-      background: var(--teal-mid);
-      min-height: clamp(500px, 58vw, 760px);
-    }
-    .editorial-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .editorial-body {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: clamp(56px,7vw,96px) clamp(40px,5.5vw,72px);
-    }
-    .editorial-body.dark { background: var(--teal-deep); }
-    .editorial-body.light { background: var(--surface); }
-
-    .editorial-quote {
-      font-size: clamp(50px, 5.6vw, 124px);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: #fff;
-      max-width: 16ch;
-      margin-bottom: clamp(28px,3vw,44px);
-      text-wrap: balance;
-    }
-    .editorial-quote-sub {
-      font-size: clamp(21px,2.1vw,37px);
-      color: rgba(255,255,255,0.72);
-      line-height: 1.6;
-      max-width: 42ch;
-      margin-bottom: clamp(40px,4vw,60px);
-    }
-
-    /* ═══════════════════════════════════════════════
-       PROBLEM SECTION (inside editorial body)
-    ═══════════════════════════════════════════════ */
-    .editorial-body h2 { margin-bottom: 22px; max-width: 28ch; }
-    h2 {
-      font-size: clamp(40px,4.8vw,98px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: clamp(22px,2vw,34px);
-      text-wrap: balance;
-    }
-    .lead {
-      font-size: clamp(19px,1.9vw,32px);
-      color: var(--ink-2);
-      line-height: 1.65;
-      max-width: 46ch;
-    }
-    .lead + .lead { margin-top: 16px; }
-
-    /* Phone mock */
-    .phone-scene {
-      display: flex; justify-content: flex-start;
-      margin-top: clamp(32px,4vw,48px);
-    }
-    .phone {
-      width: clamp(240px,28vw,320px);
-      border-radius: 44px; padding: 13px;
-      background: #0A1210;
-      box-shadow: var(--shadow-lg);
-    }
-    .screen-shot {
-      width: 100%;
-      border-radius: 32px;
-      display: block;
-    }
-    .screen {
-      background: var(--bg);
-      border-radius: 32px; overflow: hidden;
-    }
-    .screen-bar {
-      padding: 18px 18px 6px;
-    }
-    .screen-day {
-      font-size: 12px; color: var(--ink-3); font-weight: 600;
-    }
-    .gauge-ring {
-      display: flex; justify-content: center;
-      padding: 10px 0 4px;
-    }
-    .gauge {
-      width: 150px; height: 150px; border-radius: 50%;
-      background:
-        radial-gradient(closest-side, var(--surface) 78%, transparent 79% 100%),
-        conic-gradient(var(--good) 0 72%, var(--surface-2) 72% 100%);
-      display: grid; place-items: center;
-    }
-    .gauge-inner { text-align: center; }
-    .gauge-num { font-size: 30px; font-weight: 900; line-height: 1; }
-    .gauge-label { font-size: 11px; color: var(--ink-3); font-weight: 600; margin-top: 2px; }
-    .s-card {
-      margin: 10px 14px 14px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card); padding: 13px 14px;
-      box-shadow: var(--shadow-sm);
-    }
-    .s-card-head {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .s-card h4 { font-size: 13px; font-weight: 700; }
-    .nutr {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; margin: 7px 0;
-    }
-    .nutr-lab { width: 58px; color: var(--ink-3); flex-shrink: 0; }
-    .nutr-track {
-      flex: 1; height: 6px; border-radius: 5px;
-      background: var(--surface-2); overflow: hidden;
-    }
-    .nutr-fill { height: 100%; border-radius: 5px; }
-    .pill {
-      font-size: 10.5px; font-weight: 700;
-      padding: 1px 7px; border-radius: 999px;
-      flex-shrink: 0;
-    }
-    .pill-bad  { background: var(--bad-weak);  color: var(--bad); }
-    .pill-good { background: var(--good-weak); color: var(--good); }
-
-    /* ═══════════════════════════════════════════════
-       HOW IT WORKS
-    ═══════════════════════════════════════════════ */
-    .how {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      padding: clamp(64px,9vw,120px) 0;
-    }
-    .how h2 { max-width: 20ch; margin-bottom: clamp(40px,5vw,64px); }
-    .step-list { display: flex; flex-direction: column; }
-    .step-row {
-      display: grid; grid-template-columns: 88px 1fr;
-      gap: 24px; align-items: start;
-      padding: clamp(24px,3.5vw,40px) 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .step-row:last-child { border-bottom: none; }
-    .step-n {
-      font-size: clamp(52px,7vw,76px);
-      font-weight: 900;
-      color: var(--border);
-      line-height: 1;
-      letter-spacing: -0.05em;
-      padding-top: 4px;
-    }
-    .step-body h3 {
-      font-size: clamp(24px,2.6vw,46px);
-      font-weight: 800; letter-spacing: -0.025em;
-      margin-bottom: 8px;
-    }
-    .step-body p {
-      font-size: clamp(18px,1.7vw,29px);
-      color: var(--ink-2); line-height: 1.65; max-width: 52ch;
-    }
-
-    /* ═══════════════════════════════════════════════
-       HONEST DATA
-    ═══════════════════════════════════════════════ */
-    .honest {
-      background: var(--teal-deep);
-      padding: clamp(64px,9vw,120px) 0;
-      color: #fff;
-    }
-    .honest h2 {
-      color: #fff; max-width: 24ch;
-      margin-bottom: clamp(32px,4vw,52px);
-    }
-    .honest-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: clamp(16px,3vw,32px);
-    }
-    .honest-card {
-      padding: clamp(24px,3vw,40px);
-      border-radius: var(--r-card);
-    }
-    .hc-yes {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-    }
-    .hc-no {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-    .honest-icon {
-      font-size: 20px; margin-bottom: 16px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .honest-icon-yes { color: var(--teal); }
-    .honest-icon-no  { color: rgba(255,255,255,0.35); }
-    .honest-card h3 {
-      font-size: clamp(21px,2.1vw,37px);
-      font-weight: 800; margin-bottom: 10px; color: #fff;
-    }
-    .honest-card p {
-      font-size: clamp(17px,1.6vw,27px);
-      color: rgba(255,255,255,0.6); line-height: 1.65;
-    }
-
-    /* ═══════════════════════════════════════════════
-       CATS TEASE
-    ═══════════════════════════════════════════════ */
-    .cats-tease {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-    .cats-tease-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: clamp(260px,35vw,440px);
-    }
-    .cats-tease-photo {
-      overflow: hidden;
-      position: relative;
-      background: var(--teal-mid);
-    }
-    .cats-tease-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 30%;
-      transition: transform 0.8s var(--ease-inout);
-    }
-    .cats-tease-photo:hover img { transform: scale(1.04); }
-    .cats-tease-copy {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: clamp(32px,5vw,72px);
-    }
-    .cats-coming {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 5px 13px;
-      background: var(--teal-weak); color: var(--teal-dark);
-      border-radius: 999px; font-size: 12px; font-weight: 700;
-      letter-spacing: 0.03em; margin-bottom: 18px; align-self: flex-start;
-    }
-    .cats-tease-copy h2 { font-size: clamp(31px,3.6vw,70px); margin-bottom: 14px; }
-    .cats-tease-copy p {
-      font-size: clamp(18px,1.7vw,29px);
-      color: var(--ink-2); max-width: 38ch; line-height: 1.65;
-    }
-
-    /* ═══════════════════════════════════════════════
-       FAQ
-    ═══════════════════════════════════════════════ */
-    .faq-section {
-      padding: clamp(64px,9vw,120px) 0;
-    }
-    .faq-section h2 {
-      text-align: center;
-      margin-bottom: clamp(36px,5vw,56px);
-    }
-    .faq-list { max-width: 700px; margin: 0 auto; }
-    details {
-      border-bottom: 1px solid var(--border);
-    }
-    details:first-of-type { border-top: 1px solid var(--border); }
-    summary {
-      cursor: pointer; list-style: none;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: clamp(20px,1.8vw,30px) 0;
-      font-weight: 700; font-size: clamp(17px,1.6vw,26px);
-      color: var(--ink); user-select: none;
-    }
-    summary::-webkit-details-marker { display: none; }
-    .faq-toggle {
-      flex-shrink: 0;
-      width: 26px; height: 26px; border-radius: 50%;
-      background: var(--teal-weak); color: var(--teal-dark);
-      display: grid; place-items: center;
-      font-size: 15px; font-weight: 600;
-      transition:
-        background 0.2s var(--ease-out),
-        color 0.2s var(--ease-out),
-        transform 0.25s var(--ease-out);
-    }
-    details[open] .faq-toggle {
-      background: var(--teal); color: #fff;
-      transform: rotate(45deg);
-    }
-    .faq-ans {
-      padding: 0 0 20px;
-      font-size: clamp(17px,1.6vw,27px);
-      color: var(--ink-2); line-height: 1.7; max-width: 56ch;
-    }
-
-    /* ═══════════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════════ */
-    footer {
-      background: var(--teal-deep);
-      padding: clamp(44px,6vw,72px) 0;
-    }
-    .footer-inner { display: flex; flex-direction: column; gap: 28px; }
-    .footer-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 800; font-size: 17px; color: #fff;
-    }
-    .footer-logo .logo-mark {
-      width: 30px; height: 30px; border-radius: 9px;
-      object-fit: cover; display: block;
-    }
-    .footer-disclaimer {
-      font-size: 12.5px; line-height: 1.7; max-width: 68ch;
-      color: rgba(255,255,255,0.35);
-    }
-    .footer-bottom {
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 12px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 13px; color: rgba(255,255,255,0.4);
-    }
-    .footer-bottom a {
-      color: rgba(255,255,255,0.55); text-decoration: none;
-      transition: color 0.15s;
-    }
-    .footer-bottom a:hover { color: #fff; }
-
-    /* ═══════════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════════ */
-    @media (max-width: 760px) {
-      /* Hero: stack photo above content */
-      .hero { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
-      .hero-photo { min-height: clamp(280px, 72vw, 400px); max-height: 60svh; }
-      .hero-content { padding: clamp(48px,8vw,64px) clamp(20px,5vw,28px); }
-      h1 { font-size: clamp(34px, 8vw, 52px); }
-      .scroll-hint { left: 50%; }
-
-      /* Editorial: stack photo above body */
-      .editorial, .editorial-flip { grid-template-columns: 1fr; }
-      .editorial-photo { min-height: clamp(260px, 68vw, 380px); }
-      /* Flip rows: bring photo to top on mobile */
-      .editorial-flip .editorial-photo { order: -1; }
-      .editorial-body { padding: clamp(40px,6vw,56px) clamp(20px,5vw,28px); }
-      .btn-primary { align-self: stretch; justify-content: center; }
-
-      .honest-grid { grid-template-columns: 1fr; }
-      .step-row { grid-template-columns: 60px 1fr; }
-      .cats-tease-inner { grid-template-columns: 1fr; }
-      .cats-tease-photo { min-height: 240px; order: -1; }
-    }
-  </style>
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding-top:130px;gap:30px}
+  .stage{min-height:520px}
+  .steps{grid-template-columns:1fr;gap:40px}
+  .hero-trust{gap:16px}
+}
+</style>
 </head>
 <body>
 
-  <!-- ══ HEADER ══════════════════════════════════ -->
-  <header id="hdr">
-    <div class="wrap">
-    </div>
-  </header>
+<header id="hdr"><div class="wrap nav">
+  <a href="/" class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-4 0-7-2.6-7-6 0-2.2 1.6-3.6 3.4-3.6 1.2 0 2 .6 3.6.6s2.4-.6 3.6-.6C18.4 11.4 20 12.8 20 15c0 3.4-3 6-8 6Z" fill="#fff"/><circle cx="6.5" cy="7.5" r="1.7" fill="#fff"/><circle cx="11" cy="5.5" r="1.7" fill="#fff"/><circle cx="15.5" cy="6" r="1.7" fill="#fff"/></svg></span>PetFuel</a>
+  <nav class="nav-links">
+    <a href="#how">How it works</a>
+  </nav>
+  <a href="#waitlist" class="pill pill-ghost">Join the waitlist</a>
+</div></header>
 
-  <!-- ══ HERO ════════════════════════════════════ -->
-  <section class="hero">
-    <div class="hero-photo" id="heroBg">
-      <img src="img/hero.jpg" alt="Dog owner standing with two greyhounds at the edge of a sunlit forest lake" id="heroImg" />
-    </div>
-    <div class="hero-content">
-      <a href="/" class="hero-logo">
-        <img class="logo-mark" src="img/logo.png" alt="PetFuel" />
-        PetFuel
-      </a>
-      <div class="hero-main">
-        <h1 id="hH1">Know what your dog is actually eating.</h1>
-        <p class="hero-sub" id="hSub">
-          Photograph your dog's bowl and get a complete nutrition analysis in seconds.
-          See exactly what's missing against NRC&nbsp;/&nbsp;AAFCO targets — honest data, no guesswork.
-        </p>
-        <div class="hero-cta-row">
-          <span class="badge">
-            <span class="badge-dot"></span>
-            Coming soon to iOS
-          </span>
-          <a href="#faq" class="btn-primary" id="hCta">
-            Join the waitlist
-            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">AI nutrition tracker · dogs</span>
+      <h1>Every meal,<br><em>complete.</em></h1>
+      <p class="hero-sub">PetFuel weighs your dog's home-cooked bowl against real veterinary nutrition science — and shows you anything it's missing.</p>
+      <div class="hero-cta">
+        <a href="#waitlist" class="pill pill-cream">Join the waitlist</a>
+        <span class="appstore">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.1c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8Zm-2.3-7c.6-.8 1.1-1.9 1-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2-.5 2.7-1.3Z"/></svg>
+          <span><span class="s1">Coming soon</span><span class="s2">App&nbsp;Store</span></span>
+        </span>
+      </div>
+      <div class="hero-trust">
+        <span>USDA FoodData Central</span>
+        <span>NRC / AAFCO targets</span>
+        <span>Honest data</span>
       </div>
     </div>
-    <div class="scroll-hint" aria-hidden="true">
-      <div class="scroll-line"></div>
-    </div>
-  </section>
 
-  <!-- ══ STAT SLAB ════════════════════════════════ -->
-  <div class="stat-slab">
-    <div class="wrap">
-      <div class="stat-big" data-reveal="hidden">~<em>94%</em></div>
-      <p class="stat-desc" data-reveal="hidden" data-delay="1">
-        of homemade dog diets are nutritionally incomplete — gaps you can't see in the bowl, that compound over months
-      </p>
-      <div class="stat-pills" data-reveal="hidden" data-delay="2">
-        <span class="stat-pill">NRC / AAFCO targets</span>
-        <span class="stat-pill">USDA FoodData Central</span>
-        <span class="stat-pill">Honest data — never faked</span>
+    <div class="stage">
+      <div class="phone phone-back">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="sb"><span>9:41</span><span class="dots"><i></i></span></div>
+          <div class="app">
+            <div class="app-head"><div><span class="lab">Build · dinner</span><h3>Luna's bowl</h3></div><div class="pet-av">🐕</div></div>
+            <div class="snap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><div><div class="st">Snap the bowl</div><div class="ss">AI fills in the ingredients</div></div></div>
+            <div class="card" style="margin-top:10px;padding:4px 14px">
+              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🍗</span><span class="nm">Chicken thigh</span></span><span class="gr">150 g</span></div>
+              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🍠</span><span class="nm">Sweet potato</span></span><span class="gr">80 g</span></div>
+              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🥬</span><span class="nm">Spinach</span></span><span class="gr">20 g</span></div>
+              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🐟</span><span class="nm">Salmon oil</span></span><span class="gr">5 g</span></div>
+            </div>
+            <button class="addrow"><span class="plus">+</span> Add ingredient</button>
+            <div class="totals"><span>Meal total</span><span><b>255 g</b> · 410 kcal</span></div>
+            <button class="cta-btn">See completeness →</button>
+            <div class="tabs">
+              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z" stroke-linejoin="round"/></svg>Home</span>
+              <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>Build</span>
+              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8" stroke-linecap="round"/></svg>Trends</span>
+              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.3 3-5.5 7-5.5s7 2.2 7 5.5" stroke-linecap="round"/></svg>Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone phone-front">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="sb"><span>9:41</span><span class="dots"><i></i></span></div>
+          <div class="app">
+            <div class="app-head"><div><span class="lab">Today</span><h3>Luna</h3><div class="meta">4 yr · Labrador · 30 kg</div></div><div class="pet-av">🐕</div></div>
+            <div class="ring-wrap"><div class="ring"><div style="text-align:center"><div class="num">98%</div><div class="cap">COMPLETE</div><div class="vs">vs AAFCO adult</div></div></div></div>
+            <div class="card">
+              <div class="kcal"><span>Calories fed</span><span><b>1,000</b> / 1,290 kcal</span></div>
+              <div class="bar"><i style="width:78%"></i></div>
+              <div class="macros">
+                <div class="macro"><div class="mv">82g</div><div class="ml">Protein</div></div>
+                <div class="macro"><div class="mv">31g</div><div class="ml">Fat</div></div>
+                <div class="macro"><div class="mv">60g</div><div class="ml">Carbs</div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="nrow"><span class="nl">Calcium</span><span class="ntrack"><span class="nfill" style="width:92%;background:var(--good)"></span></span><span class="npill g">Good</span></div>
+              <div class="nrow"><span class="nl">Zinc</span><span class="ntrack"><span class="nfill" style="width:58%;background:var(--amber)"></span></span><span class="npill a">Top up</span></div>
+              <div class="nrow"><span class="nl">Omega-3</span><span class="ntrack"><span class="nfill" style="width:88%;background:var(--good)"></span></span><span class="npill g">Good</span></div>
+            </div>
+            <div class="tabs">
+              <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z" stroke-linejoin="round"/></svg>Home</span>
+              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>Build</span>
+              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8" stroke-linecap="round"/></svg>Trends</span>
+              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.3 3-5.5 7-5.5s7 2.2 7 5.5" stroke-linecap="round"/></svg>Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float float-b">
+        <span class="fi" style="background:#DCEFEB"><svg viewBox="0 0 20 20" fill="none" stroke="#0A5F58" stroke-width="1.8"><path d="M3 15V8m5 7V4m5 11v-6m5 6V6" stroke-linecap="round"/></svg></span>
+        <span class="ft">Completeness this week<b>91% → 98% ↑</b></span>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ══ EDITORIAL 1: BORDER COLLIE + PROBLEM ════ -->
-  <div class="editorial">
-    <div class="editorial-photo">
-      <img src="img/teal-dog.jpg" alt="Black and white Border Collie against a deep teal painted door, mouth open and joyful" />
-    </div>
-    <div class="editorial-body light">
-      <h2 data-reveal="hidden">Cooking for your dog is loving —&nbsp;and easy to get wrong.</h2>
-      <p class="lead" data-reveal="hidden" data-delay="1">
-        Most home-cooked and raw recipes run short on calcium, the calcium-to-phosphorus ratio,
-        zinc, or vitamin E. Gaps you can't taste in the bowl, that add up over months.
-      </p>
-      <p class="lead" data-reveal="hidden" data-delay="2" style="margin-top:16px">
-        PetFuel does the nutrient math so you don't need a spreadsheet or a degree in animal
-        nutrition. Real science. Surface-level simplicity.
-      </p>
-
-      <div class="phone-scene" data-reveal="hidden" data-delay="3">
-        <div class="phone">
-          <img class="screen-shot" src="img/app-home.png" alt="PetFuel home screen: Luna the Labrador's daily dashboard showing 1,000 of 1,290 kcal fed, protein and fat bars, and a 98% nutrient-completeness ring marked Complete" />
-        </div>
-      </div>
-    </div>
+<!-- STAT BAND -->
+<section class="band">
+  <div class="band-bg" style="background-image:url(img/teal-dog.jpg);background-position:center 30%"></div>
+  <div class="band-scrim" style="background:linear-gradient(to right,rgba(8,20,17,.78),rgba(8,20,17,.5)),linear-gradient(to top,rgba(8,20,17,.7),rgba(8,20,17,.2))"></div>
+  <div class="wrap">
+    <div class="stat">~<em>94%</em></div>
+    <p class="statsub">of homemade dog diets are nutritionally incomplete. Yours doesn't have to be.</p>
   </div>
+</section>
 
-  <!-- ══ HOW IT WORKS ═════════════════════════════ -->
-  <section class="how">
-    <div class="wrap">
-      <h2 data-reveal="hidden">From photo to<br>nutritionally complete.</h2>
-      <div class="step-list">
-        <div class="step-row" data-reveal="hidden" data-delay="1">
-          <div class="step-n">1</div>
-          <div class="step-body">
-            <h3>Snap your bowl</h3>
-            <p>Photograph your dog's meal and AI identifies the ingredients instantly. Confirm the grams, add anything it missed. Done in seconds — no manual searching required.</p>
-          </div>
-        </div>
-        <div class="step-row" data-reveal="hidden" data-delay="2">
-          <div class="step-n">2</div>
-          <div class="step-body">
-            <h3>See every gap</h3>
-            <p>Get a full nutrition breakdown against your dog's NRC / AAFCO life-stage targets — every shortfall named and ranked. Backed by USDA FoodData Central, the database researchers use.</p>
-          </div>
-        </div>
-        <div class="step-row" data-reveal="hidden" data-delay="3">
-          <div class="step-n">3</div>
-          <div class="step-body">
-            <h3>Fix &amp; track over time</h3>
-            <p>Apply a whole-food fix to close the gaps, then track completeness week by week — so you see the diet improving, not just today's score.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ EDITORIAL 2: QUOTE + FLOWERS ════════════ -->
-  <div class="editorial editorial-flip">
-    <div class="editorial-body dark">
-      <p class="editorial-quote" data-reveal="hidden">Your dog can't tell you what's missing.</p>
-      <p class="editorial-quote-sub" data-reveal="hidden" data-delay="1">
-        A home-cooked meal can look complete — chicken, sweet potato, kale. What's invisible
-        is the balance: calcium ratios, zinc levels, vitamin E. PetFuel makes the invisible visible.
-      </p>
-      <a href="#faq" class="btn-primary" data-reveal="hidden" data-delay="2">
-        Join the waitlist
-        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M9 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-    <div class="editorial-photo">
-      <img src="img/flowers.jpg" alt="Golden Nova Scotia Duck Tolling Retriever sitting in a yellow rapeseed flower field" />
-    </div>
+<!-- STEPS -->
+<section class="steps-sec" id="how"><div class="wrap">
+  <span class="eyebrow">How it works</span>
+  <h2>Three taps to a complete bowl.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><div class="ln"></div><h3>Add the meal</h3><p>Search real ingredients, or snap the bowl and let AI fill them in.</p></div>
+    <div class="step"><div class="n">02</div><div class="ln"></div><h3>See every gap</h3><p>A full nutrient read against your dog's life-stage targets — not a vague score.</p></div>
+    <div class="step"><div class="n">03</div><div class="ln"></div><h3>Fix &amp; track</h3><p>Close the gaps and watch completeness climb, week over week.</p></div>
   </div>
+</div></section>
 
-  <!-- ══ HONEST DATA ══════════════════════════════ -->
-  <section class="honest">
-    <div class="wrap">
-      <h2 data-reveal="hidden">We'd rather say "we don't know"<br>than fake it.</h2>
-      <div class="honest-grid">
-        <div class="honest-card hc-yes" data-reveal="hidden" data-delay="1">
-          <div class="honest-icon honest-icon-yes">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M6.5 10.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Homemade meals
-          </div>
-          <h3>Full micronutrient breakdown</h3>
-          <p>Computed from USDA ingredient data — because every gram is accounted for. You see exactly where your dog's diet stands against NRC/AAFCO targets.</p>
-        </div>
-        <div class="honest-card hc-no" data-reveal="hidden" data-delay="2">
-          <div class="honest-icon honest-icon-no">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-            </svg>
-            Packaged food (barcode)
-          </div>
-          <h3>Calories &amp; macros only</h3>
-          <p>Pet-food labels don't publish micronutrients — so we show only what's actually there: calories, macros, and the manufacturer's AAFCO "complete &amp; balanced" status. We won't invent numbers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="final-bg"></div>
+  <div class="final-scrim"></div>
+  <div class="wrap">
+    <span class="eyebrow">Be first in line</span>
+    <h2>Feed with certainty.</h2>
+    <p>Join the waitlist and we'll tell you the moment PetFuel reaches the App&nbsp;Store.</p>
+    <form class="wl-form" id="waitlist" action="https://formspree.io/f/FORMSPREE_ID" method="POST">
+      <input type="email" name="email" placeholder="you@email.com" autocomplete="email" required aria-label="Email address" />
+      <button type="submit" class="pill pill-cream">Join the waitlist</button>
+    </form>
+    <p class="wl-note">No spam — just one email when we launch on iOS.</p>
+    <p class="wl-success">You're on the list — we'll be in touch the day we launch. 🐾</p>
+  </div>
+</section>
 
-  <!-- ══ CATS TEASE ═══════════════════════════════ -->
-  <section class="cats-tease">
-    <div class="cats-tease-inner">
-      <div class="cats-tease-photo">
-        <!-- Save image 1 from batch 2 (human eye + cat eye side-by-side) as: PetFuel-site/img/cats.jpg -->
-        <img src="img/cats.jpg" alt="Close-up of a human eye and a cat's eye side by side — the bond between owner and pet" />
-      </div>
-      <div class="cats-tease-copy" data-reveal="hidden">
-        <span class="cats-coming">Coming next</span>
-        <h2>Dogs first.<br>Cats are on their way.</h2>
-        <p>PetFuel is built dog-first — cats have different nutritional requirements and deserve the same precision. We're designing their profiles next.</p>
-      </div>
-    </div>
-  </section>
+<!-- FOOTER -->
+<footer><div class="wrap foot">
+  <a href="/" class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-4 0-7-2.6-7-6 0-2.2 1.6-3.6 3.4-3.6 1.2 0 2 .6 3.6.6s2.4-.6 3.6-.6C18.4 11.4 20 12.8 20 15c0 3.4-3 6-8 6Z" fill="#fff"/><circle cx="6.5" cy="7.5" r="1.7" fill="#fff"/><circle cx="11" cy="5.5" r="1.7" fill="#fff"/><circle cx="15.5" cy="6" r="1.7" fill="#fff"/></svg></span>PetFuel</a>
+  <p class="disc">Informational only — not veterinary advice. Nutrient targets are based on NRC/AAFCO life-stage profiles. Always consult your veterinarian about your pet's individual diet and health.</p>
+  <div class="foot-bot"><span>© 2026 PetFuel · a Scarabyte product</span><span style="display:flex;gap:22px"><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></span></div>
+</div></footer>
 
-  <!-- ══ FAQ ══════════════════════════════════════ -->
-  <section class="faq-section" id="faq">
-    <div class="wrap">
-      <h2 data-reveal="hidden">Questions</h2>
-      <div class="faq-list">
-        <details data-reveal="hidden" data-delay="1">
-          <summary>Is this veterinary advice? <span class="faq-toggle">+</span></summary>
-          <p class="faq-ans">No. PetFuel is an informational nutrition tool, not a substitute for your vet. Illness, weight issues, or special diets should go through your veterinarian. We'll always point you there.</p>
-        </details>
-        <details data-reveal="hidden" data-delay="2">
-          <summary>Which pets does it support? <span class="faq-toggle">+</span></summary>
-          <p class="faq-ans">Dogs first. Cats are the planned next step — they have distinct nutritional requirements and will get their own science-based profiles.</p>
-        </details>
-        <details data-reveal="hidden" data-delay="3">
-          <summary>Where does the nutrient data come from? <span class="faq-toggle">+</span></summary>
-          <p class="faq-ans">Ingredient nutrition comes from USDA FoodData Central. Requirement targets come from NRC and AAFCO life-stage profiles. For packaged foods we show only what's on the label.</p>
-        </details>
-        <details data-reveal="hidden" data-delay="4">
-          <summary>When does it launch? <span class="faq-toggle">+</span></summary>
-          <p class="faq-ans">We're building toward an iOS launch. Follow <a href="https://scarabyte.app">Scarabyte</a> for updates on the release date.</p>
-        </details>
-      </div>
-    </div>
-  </section>
+<script>
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
 
-  <!-- ══ FOOTER ════════════════════════════════════ -->
-  <footer>
-    <div class="wrap">
-      <div class="footer-inner">
-        <div class="footer-logo">
-          <img class="logo-mark" src="img/logo.png" alt="PetFuel" />
-          PetFuel
-        </div>
-        <p class="footer-disclaimer">
-          Informational only — not veterinary advice. Nutrient targets are based on NRC/AAFCO
-          life-stage profiles. Always consult your veterinarian about your pet's individual diet and health.
-        </p>
-        <div class="footer-bottom">
-          <span>© 2026 PetFuel · a <a href="https://scarabyte.app">Scarabyte</a> product</span>
-          <span style="display:flex;gap:20px;">
-            <a href="/privacy">Privacy</a>
-            <a href="/disclaimer">Disclaimer</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ══ MOTION ═══════════════════════════════════ -->
-  <script>
-    /* ── Header: transparent ➜ frosted on scroll ── */
-    const hdr = document.getElementById('hdr');
-    const hero = document.querySelector('.hero');
-    const headerObs = new IntersectionObserver(
-      ([e]) => hdr.classList.toggle('scrolled', !e.isIntersecting),
-      { threshold: 0, rootMargin: '-1px 0px 0px 0px' }
-    );
-    headerObs.observe(hero);
-
-    /* ── Hero image error fallback ── */
-    const heroImg = document.getElementById('heroImg');
-    if (heroImg) {
-      heroImg.addEventListener('error', () => {
-        document.getElementById('heroBg').classList.add('no-img');
-      });
+// Waitlist: submit to Formspree via fetch, show inline confirmation (falls back to a normal POST)
+const wf=document.getElementById('waitlist');
+if(wf){
+  wf.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const f=document.querySelector('.final');
+    if(wf.action.includes('FORMSPREE_ID')){ // endpoint not wired yet — honest interim, no false claim
+      document.querySelector('.wl-success').textContent="Thanks for your interest! 🐾 We're switching sign-ups on shortly — check back soon.";
+      f.classList.add('wl-ok'); return;
     }
-
-    /* ── Hero entrance — stagger each element ── */
-    const heroEls = [
-      { id: 'hH1',  delay: 120 },
-      { id: 'hSub', delay: 290 },
-      { id: 'hCta', delay: 440 },
-    ];
-    heroEls.forEach(({ id, delay }) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.style.cssText = 'opacity:0;transform:translateY(20px);transition:opacity 0.72s cubic-bezier(0.23,1,0.32,1),transform 0.72s cubic-bezier(0.23,1,0.32,1)';
-    });
-    /* Small timeout ensures the initial hidden state paints before we animate in */
-    setTimeout(() => {
-      heroEls.forEach(({ id, delay }) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        setTimeout(() => {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, delay);
-      });
-    }, 60);
-
-    /* ── Scroll reveals ── */
-    const revealObs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.dataset.reveal = 'visible';
-            revealObs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
-    document.querySelectorAll('[data-reveal="hidden"]').forEach(el => revealObs.observe(el));
-
-    /* ── FAQ: rotate icon on toggle ── */
-    document.querySelectorAll('details').forEach(d => {
-      /* icon rotation handled by CSS details[open] rule */
-    });
-  </script>
+    try{
+      const r=await fetch(wf.action,{method:'POST',body:new FormData(wf),headers:{Accept:'application/json'}});
+      if(r.ok){f.classList.add('wl-ok');}
+      else{wf.submit();}
+    }catch(_){wf.submit();}
+  });
+}
+</script>
 </body>
 </html>
