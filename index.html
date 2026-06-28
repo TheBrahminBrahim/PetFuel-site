@@ -152,7 +152,7 @@ h1 em{font-style:normal;font-weight:500}
 
 /* SECTION: steps (calm dark) */
 .steps-sec{position:relative;min-height:100vh;display:flex;align-items:center;padding:clamp(70px,10vw,130px) 0;overflow:hidden}
-.steps-sec-bg{position:absolute;inset:0;background:url(img/hero-f.jpg) center 40%/cover no-repeat;transform:scale(1.03)}
+.steps-sec-bg{position:absolute;inset:0;background:url(img/hero-c.jpg) center 40%/cover no-repeat;transform:scale(1.03)}
 .steps-sec-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.82) 0%,rgba(8,20,17,.65) 50%,rgba(8,20,17,.80) 100%)}
 .steps-sec .wrap{position:relative;z-index:3}
 .steps-sec .eyebrow{display:block;text-align:center;margin-bottom:18px}
@@ -165,8 +165,8 @@ h1 em{font-style:normal;font-weight:500}
 .step p{font-size:15.5px;font-weight:300;color:rgba(244,240,230,.6);line-height:1.6;max-width:30ch;margin:0 auto}
 
 /* FINAL CTA band */
-.final{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;text-align:center}
-.final-bg{position:absolute;inset:0;background:url(img/hero-d.jpg) center 30%/cover no-repeat;transform:scale(1.03)}
+.final{position:relative;min-height:78vh;display:flex;align-items:flex-start;overflow:hidden;text-align:center;padding-top:clamp(80px,10vh,130px)}
+.final-bg{position:absolute;inset:0;background:url(img/hero-d.jpg) center 72%/cover no-repeat;transform:scale(1.03)}
 .final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.5),rgba(8,20,17,.7))}
 .final .wrap{position:relative;z-index:3}
 .final .eyebrow{display:block;margin-bottom:20px}
@@ -225,8 +225,8 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
 }
 
 /* LOGGING METHODS */
-.log-sec{background:#0d1e1a;padding:clamp(90px,12vw,150px) 0;position:relative;overflow:hidden}
-.log-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(14,124,114,.08) 0%,transparent 70%);pointer-events:none}
+.log-sec{background:#0d1e1a url(img/hero-f.jpg) center 55%/cover no-repeat;padding:clamp(90px,12vw,150px) 0;position:relative;overflow:hidden}
+.log-sec::before{content:'';position:absolute;inset:0;background:rgba(8,20,17,.78);pointer-events:none}
 .log-zone{position:relative;cursor:none}
 .log-cur{position:absolute;top:0;left:0;width:44px;height:44px;pointer-events:none;z-index:50;opacity:0;color:var(--sage);transition:color .28s,opacity .18s,width .34s var(--ease),height .34s var(--ease)}
 .log-cur.on-target{color:var(--teal)}
@@ -352,7 +352,7 @@ footer{background:#070F0D;padding:clamp(46px,6vw,72px) 0;color:rgba(244,240,230,
 
 <!-- STAT BAND -->
 <section class="band">
-  <div class="band-bg" style="background-image:url(img/hero-c.jpg);background-position:center 35%"></div>
+  <div class="band-bg" style="background-image:url(img/hero-b.jpg);background-position:center 50%"></div>
   <div class="band-scrim" style="background:linear-gradient(to right,rgba(8,20,17,.92) 0%,rgba(8,20,17,.75) 38%,rgba(8,20,17,.22) 65%,rgba(8,20,17,.1) 100%),linear-gradient(to top,rgba(8,20,17,.55) 0%,rgba(8,20,17,0) 40%)"></div>
   <div class="wrap" style="text-align:left;margin-left:0;max-width:560px">
     <div class="stat">~<em>94%</em></div>
