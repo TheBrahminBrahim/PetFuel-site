@@ -281,10 +281,25 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
 .tabs{padding:8px 6px 11px}
 
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;padding-top:130px;gap:30px}
+  .hero-inner{grid-template-columns:1fr;padding-top:140px;gap:36px}
+  .hero-copy{margin-top:0}
+  .hero-sub{margin-top:20px}
+  .hero-cta{margin-top:32px}
   .stage{min-height:520px}
   .steps{grid-template-columns:1fr;gap:40px}
   .hero-trust{gap:16px}
+}
+
+@media(max-width:600px){
+  .hero-inner{padding-top:132px;padding-bottom:48px}
+  .hero-copy{margin-top:0}
+  .mark{width:48px;height:48px;border-radius:13px}
+  .mark img{width:48px!important;height:48px!important}
+  h1{font-size:clamp(40px,12vw,58px)}
+  .hero-sub{margin-top:16px}
+  .hero-cta{margin-top:28px;gap:14px}
+  .hero-trust{margin-top:32px}
+  .stage{min-height:420px;transform:scale(.72);margin-top:8px}
 }
 
 /* LOGGING METHODS */
