@@ -220,11 +220,12 @@ h1 em{font-style:normal;font-weight:500}
 .hc-ing .pl{color:var(--teal);font-size:19px;font-weight:700;flex-shrink:0}
 .hc-mfoot{font-size:10px;color:var(--ink-3);font-weight:600;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-app)}
 @media(max-width:1024px){
-  .steps-sec{display:block}
+  .steps-sec{display:block;height:auto;min-height:0;overflow:visible;padding:clamp(56px,10vw,90px) 0}
   .how-copy{max-width:none}
   .how-stage{position:static;width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:32px}
   .how-card{position:static;transform:none;width:min(340px,94%)!important}
   .how-card:hover{transform:translateY(-6px)!important}
+  .log-sec .log-h2,.log-sec .log-sub{white-space:normal}
 }
 
 /* FINAL CTA band */
