@@ -30,7 +30,7 @@
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:116px}
 body{background:var(--ink);color:var(--cream);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -231,7 +231,7 @@ h1 em{font-style:normal;font-weight:500}
 /* FINAL CTA band */
 .final{position:relative;min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;text-align:center;padding-top:clamp(80px,10vh,130px)}
 .final-bg{position:absolute;inset:0;background:url(img/hero-d.jpg) center 72%/cover no-repeat;transform:scale(1.03)}
-.final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.55) 0%,rgba(8,20,17,.38) 45%,rgba(8,20,17,.72) 80%,rgba(8,20,17,.88) 100%)}
+.final-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,17,.55) 0%,rgba(8,20,17,.38) 45%,rgba(8,20,17,.72) 80%,rgba(8,20,17,.9) 94%,rgba(8,20,17,1) 100%)}
 .final .wrap{position:relative;z-index:3}
 .final .eyebrow{display:block;margin-bottom:20px}
 .final h2{font-weight:300;font-size:clamp(40px,5.5vw,82px);line-height:1.02;letter-spacing:-.02em;color:#fff;max-width:16ch;margin:0 auto}
@@ -335,7 +335,7 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
 
 <header id="hdr"><div class="wrap nav">
   <a href="/" class="brand"><span class="mark"><img src="img/logo.png" style="width:68px;height:68px;object-fit:cover;display:block" alt="PetFuel" /></span>PetFuel</a>
-  <a href="#waitlist" class="pill pill-ghost">Join the waitlist</a>
+  <a href="#join" class="pill pill-ghost">Join the waitlist</a>
 </div></header>
 
 <!-- HERO -->
@@ -347,7 +347,7 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
       <span class="eyebrow">AI Nutrition Tracker for Pets</span>
       <h1>Every meal,<br><em>complete.</em></h1>
 <div class="hero-cta">
-        <a href="#waitlist" class="pill pill-cream">Join the waitlist</a>
+        <a href="#join" class="pill pill-cream">Join the waitlist</a>
         <span class="appstore">
           <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.1c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8Zm-2.3-7c.6-.8 1.1-1.9 1-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2-.5 2.7-1.3Z"/></svg>
           <span><span class="s1">Coming soon</span><span class="s2">App&nbsp;Store</span></span>
@@ -574,7 +574,7 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
 </section>
 
 <!-- FINAL CTA -->
-<section class="final">
+<section class="final" id="join">
   <div class="final-bg"></div>
   <div class="final-scrim"></div>
   <div class="wrap">
