@@ -71,6 +71,7 @@ h1 em{font-style:normal;font-weight:500}
 .appstore svg{width:30px;height:30px;opacity:.95}
 .appstore .s1{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;line-height:1.2}
 .appstore .s2{font-size:16px;font-weight:500;letter-spacing:.02em;line-height:1.15}
+.appstore .as-copy{display:flex;flex-direction:column}
 .hero-trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:46px}
 .hero-trust span{font-size:12.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:8px}
 .hero-trust span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--sage)}
@@ -81,8 +82,9 @@ h1 em{font-style:normal;font-weight:500}
 .phone::after{content:"";position:absolute;inset:3px;border-radius:43px;border:1px solid rgba(255,255,255,.10);pointer-events:none}
 .phone .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:78px;height:23px;background:#000;border-radius:999px;z-index:5}
 .screen{background:#F4F8F7;border-radius:38px;overflow:hidden;position:relative;aspect-ratio:9/19.5;display:flex;flex-direction:column}
+.screen .shot{width:100%;height:100%;object-fit:cover;display:block}
 .phone-front{position:relative;z-index:3}
-.phone-back{position:absolute;z-index:1;left:calc(50% + 16px);top:30px;transform:rotate(6deg) scale(.85);transform-origin:bottom left}
+.phone-back{position:absolute;z-index:1;left:calc(50% + 28px);top:30px;transform:rotate(6deg);transform-origin:bottom left}
 .float{position:absolute;z-index:4;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,.3);padding:11px 14px;display:flex;align-items:center;gap:10px}
 .float .fi{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
 .float .ft{font-size:11.5px;font-weight:500;color:#45605C;line-height:1.3;font-family:var(--font-app)}
@@ -350,7 +352,7 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
         <a href="#join" class="pill pill-cream">Join the waitlist</a>
         <span class="appstore">
           <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.1c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8Zm-2.3-7c.6-.8 1.1-1.9 1-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2-.5 2.7-1.3Z"/></svg>
-          <span><span class="s1">Coming soon</span><span class="s2">App&nbsp;Store</span></span>
+          <span class="as-copy"><span class="s1">Coming soon</span><span class="s2">App&nbsp;Store</span></span>
         </span>
       </div>
       <div class="hero-trust">
@@ -364,63 +366,15 @@ footer{background:#070F0D;padding:clamp(28px,3.5vw,40px) 0;color:rgba(244,240,23
       <div class="phone phone-back">
         <div class="notch"></div>
         <div class="screen">
-          <div class="sb"><span>9:41</span><span class="dots"><i></i></span></div>
-          <div class="app">
-            <div class="app-head"><div><span class="lab">Build · dinner</span><h3>Luna's bowl</h3></div><div class="pet-av">🐕</div></div>
-            <div class="snap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><div><div class="st">Snap the bowl</div><div class="ss">AI fills in the ingredients</div></div></div>
-            <div class="card" style="margin-top:10px;padding:4px 14px">
-              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🍗</span><span class="nm">Chicken thigh</span></span><span class="gr">150 g</span></div>
-              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🍠</span><span class="nm">Sweet potato</span></span><span class="gr">80 g</span></div>
-              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🥬</span><span class="nm">Spinach</span></span><span class="gr">20 g</span></div>
-              <div class="ing"><span style="display:flex;align-items:center"><span class="ic">🐟</span><span class="nm">Salmon oil</span></span><span class="gr">5 g</span></div>
-            </div>
-            <button class="addrow"><span class="plus">+</span> Add ingredient</button>
-            <div class="totals"><span>Meal total</span><span><b>255 g</b> · 410 kcal</span></div>
-            <button class="cta-btn">See completeness →</button>
-            <div class="tabs">
-              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z" stroke-linejoin="round"/></svg>Home</span>
-              <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>Build</span>
-              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8" stroke-linecap="round"/></svg>Trends</span>
-              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.3 3-5.5 7-5.5s7 2.2 7 5.5" stroke-linecap="round"/></svg>Profile</span>
-            </div>
-          </div>
+          <img class="shot" src="img/screen-diary.jpg" alt="PetFuel Diary screen showing a day of logged meals for Loza" />
         </div>
       </div>
 
       <div class="phone phone-front">
         <div class="notch"></div>
         <div class="screen">
-          <div class="sb"><span>9:41</span><span class="dots"><i></i></span></div>
-          <div class="app">
-            <div class="app-head"><div><span class="lab">Today</span><h3>Luna</h3><div class="meta">4 yr · Labrador · 30 kg</div></div><div class="pet-av">🐕</div></div>
-            <div class="ring-wrap"><div class="ring"><div style="text-align:center"><div class="num">98%</div><div class="cap">COMPLETE</div><div class="vs">vs AAFCO adult</div></div></div></div>
-            <div class="card">
-              <div class="kcal"><span>Calories fed</span><span><b>1,000</b> / 1,290 kcal</span></div>
-              <div class="bar"><i style="width:78%"></i></div>
-              <div class="macros">
-                <div class="macro"><div class="mv">82g</div><div class="ml">Protein</div></div>
-                <div class="macro"><div class="mv">31g</div><div class="ml">Fat</div></div>
-                <div class="macro"><div class="mv">60g</div><div class="ml">Carbs</div></div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="nrow"><span class="nl">Calcium</span><span class="ntrack"><span class="nfill" style="width:92%;background:var(--good)"></span></span><span class="npill g">Good</span></div>
-              <div class="nrow"><span class="nl">Zinc</span><span class="ntrack"><span class="nfill" style="width:58%;background:var(--amber)"></span></span><span class="npill a">Top up</span></div>
-              <div class="nrow"><span class="nl">Omega-3</span><span class="ntrack"><span class="nfill" style="width:88%;background:var(--good)"></span></span><span class="npill g">Good</span></div>
-            </div>
-            <div class="tabs">
-              <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z" stroke-linejoin="round"/></svg>Home</span>
-              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>Build</span>
-              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8" stroke-linecap="round"/></svg>Trends</span>
-              <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.3 3-5.5 7-5.5s7 2.2 7 5.5" stroke-linecap="round"/></svg>Profile</span>
-            </div>
-          </div>
+          <img class="shot" src="img/screen-home.jpg" alt="PetFuel Home screen showing Loza's calories and nutrition for the day" />
         </div>
-      </div>
-
-      <div class="float float-b">
-        <span class="fi" style="background:#DCEFEB"><svg viewBox="0 0 20 20" fill="none" stroke="#0A5F58" stroke-width="1.8"><path d="M3 15V8m5 7V4m5 11v-6m5 6V6" stroke-linecap="round"/></svg></span>
-        <span class="ft">Completeness this week<b>91% → 98% ↑</b></span>
       </div>
     </div>
   </div>
