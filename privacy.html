@@ -43,8 +43,8 @@
     header.bar { padding: 18px 0; border-bottom: 1px solid var(--border); }
     .bar .wrap { display: flex; align-items: center; justify-content: space-between; }
     .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; text-decoration: none; color: var(--text); }
-    .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--accent);
-      display: grid; place-items: center; color: #fff; font-size: 15px; }
+    .logo .dot { width: 26px; height: 26px; border-radius: 8px; overflow: hidden; display: block; }
+    .logo .dot img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .back { font-size: 14px; color: var(--text-2); text-decoration: none; }
     .back:hover { color: var(--accent-2); }
 
@@ -86,7 +86,7 @@
   <!-- ════════ Top bar ════════ -->
   <header class="bar">
     <div class="wrap">
-      <a class="logo" href="/"><span class="dot">🐾</span> PetFuel</a>
+      <a class="logo" href="/"><span class="dot"><img src="img/logo.png" alt="PetFuel" /></span> PetFuel</a>
       <a class="back" href="/">← Back to home</a>
     </div>
   </header>
@@ -185,7 +185,7 @@
       <h2>Contact</h2>
       <div class="contact-card">
         <strong>Questions about this policy?</strong>
-        Email us at <a href="mailto:hello@scarabyte.app">hello@scarabyte.app</a>.<br />
+        Email us at <a href="mailto:privacy@petfuel.app">privacy@petfuel.app</a>.<br />
         PetFuel is a Scarabyte product.
       </div>
 
