@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "4N68Z3W3PY.com.scarabyte.petfuel",
+        "paths": ["/join", "/join/*"]
+      }
+    ]
+  }
+}
