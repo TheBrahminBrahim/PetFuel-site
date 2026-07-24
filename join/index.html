@@ -104,6 +104,10 @@
     <h1>Join a family on PetFuel</h1>
     <p>You've been invited to share meal tracking for a pet.</p>
 
+    <p style="margin: 24px 0;">
+      <a href="#" class="button" id="open-app">Open in PetFuel</a>
+    </p>
+
     <div class="steps">
       <ol>
         <li>Open the <strong>PetFuel</strong> app</li>
@@ -117,5 +121,17 @@
       <a href="https://apps.apple.com/app/id6779467232">Get it on the App Store</a>.
     </p>
   </div>
+  <script>
+    // Links tapped inside WhatsApp/Instagram/etc. open in an in-app browser,
+    // which iOS does not hand off to installed apps via Universal Links (an
+    // Apple anti-hijack restriction). A custom URL scheme isn't subject to
+    // that restriction and opens the already-installed app directly, so we
+    // try it automatically and also expose it as a tappable fallback for
+    // browsers that block the auto-attempt.
+    var code = new URLSearchParams(window.location.search).get('code') || '';
+    var appUrl = 'petfuel://join' + (code ? ('?code=' + encodeURIComponent(code)) : '');
+    document.getElementById('open-app').href = appUrl;
+    window.location.href = appUrl;
+  </script>
 </body>
 </html>
