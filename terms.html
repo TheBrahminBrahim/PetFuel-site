@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetFuel — Terms of Use</title>
+  <meta name="description" content="PetFuel's terms of use: what the app is, how subscriptions and family sharing work, and the rules for using it." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design tokens: matched 1:1 to the app & landing page (deep teal) ── */
+    :root {
+      --bg: #EFF3F2; --surface: #FFFFFF; --surface-2: #E7EDEC;
+      --text: #16201F; --text-2: #5B6968; --text-3: #8B9897;
+      --border: #E0E6E5; --border-2: #D2DAD9;
+      --accent: #0E7C72; --accent-2: #0A5F58; --accent-weak: #DAEAE7;
+      --good: #15876A;
+      --shadow-sm: 0 1px 2px rgba(16,40,38,.06);
+      --radius-card: 18px; --radius-btn: 13px;
+      --font: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+      --label-spacing: .08em;
+      --maxw: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font); -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility; line-height: 1.65;
+    }
+    a { color: var(--accent-2); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: var(--label-spacing);
+      font-size: 12.5px; font-weight: 700; color: var(--accent-2);
+    }
+
+    /* ── Top bar ── */
+    header.bar { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; text-decoration: none; color: var(--text); }
+    .logo .dot { width: 26px; height: 26px; border-radius: 8px; overflow: hidden; display: block; }
+    .logo .dot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .back { font-size: 14px; color: var(--text-2); text-decoration: none; }
+    .back:hover { color: var(--accent-2); }
+
+    /* ── Policy header ── */
+    .policy-head { padding: 48px 0 8px; }
+    h1 { font-size: clamp(30px, 4.5vw, 40px); line-height: 1.08; letter-spacing: -.02em; margin: 10px 0 8px; font-weight: 800; }
+    .updated { font-size: 14px; color: var(--text-3); font-weight: 600; }
+    .intro { font-size: 18px; color: var(--text-2); max-width: 62ch; margin: 18px 0 0; }
+
+    /* ── Body ── */
+    main { padding: 8px 0 64px; }
+    h2 { font-size: 21px; letter-spacing: -.01em; margin: 40px 0 12px; font-weight: 800;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    p { font-size: 16px; color: var(--text); margin: 0 0 14px; }
+    ul { margin: 0 0 16px; padding-left: 22px; }
+    li { font-size: 16px; margin-bottom: 8px; }
+    li strong { font-weight: 700; }
+
+    .callout {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+      padding: 16px 20px; margin: 18px 0; box-shadow: var(--shadow-sm); font-size: 15.5px; color: var(--text-2);
+    }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card);
+      padding: 22px 24px; margin: 18px 0; box-shadow: var(--shadow-sm);
+    }
+    .contact-card strong { display: block; margin-bottom: 4px; }
+
+    /* ── Footer ── */
+    footer { padding: 34px 0; border-top: 1px solid var(--border); color: var(--text-3); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--text-3); }
+    footer a:hover { color: var(--accent-2); }
+  </style>
+</head>
+<body>
+
+  <!-- ════════ Top bar ════════ -->
+  <header class="bar">
+    <div class="wrap">
+      <a class="logo" href="/"><span class="dot"><img src="img/logo.png" alt="PetFuel" /></span> PetFuel</a>
+      <a class="back" href="/">← Back to home</a>
+    </div>
+  </header>
+
+  <!-- ════════ Header ════════ -->
+  <section class="policy-head">
+    <div class="wrap">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms of Use</h1>
+      <p class="updated">Last updated: September 2026</p>
+      <p class="intro">
+        These terms are an agreement between you and Scarabyte ("we", "us", "our"), the
+        maker of PetFuel ("the app"), a nutrition tracker for dogs and cats on iOS. By
+        downloading or using PetFuel you agree to them. If you don't agree, please don't use the app.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+
+      <h2>1. What PetFuel is — and isn't</h2>
+      <p>
+        PetFuel helps you log what your pet eats and compare it with published nutrient
+        reference values (such as NRC and AAFCO guidelines). It is an
+        <strong>informational tool only</strong>.
+      </p>
+      <div class="callout">
+        PetFuel is not veterinary advice and does not diagnose, treat, cure, or prevent any
+        disease or condition. If your pet is ill, growing, pregnant or nursing, has a medical
+        condition, or needs a therapeutic diet, talk to your veterinarian or a board-certified
+        veterinary nutritionist before changing what they eat.
+      </div>
+      <p>
+        You are responsible for the decisions you make about your pet's diet and care. See our
+        <a href="disclaimer.html">disclaimer</a> for more.
+      </p>
+
+      <h2>2. Nutrition data and estimates</h2>
+      <ul>
+        <li><strong>Homemade meals</strong> — nutrient values are calculated from the USDA FoodData Central database and the amounts you enter. Real ingredients vary, so results are estimates.</li>
+        <li><strong>Commercial foods</strong> — we show only what's available from the label or product databases: calories, macros, and whether the food states it is "complete and balanced." We don't invent micronutrient values we don't have.</li>
+        <li><strong>AI photo and label features</strong> — some features send a photo you take to an AI service (currently Google Gemini) to estimate a bowl's contents or read a label. These estimates can be wrong; review and edit them before saving.</li>
+        <li><strong>Targets</strong> — daily targets are reference values based on the details you enter (like weight and life stage). They are not personalised medical recommendations, and they're only as accurate as the information you provide.</li>
+      </ul>
+
+      <h2>3. Your account and your data</h2>
+      <p>
+        You can use PetFuel without an account; your pets and logs are stored on your device.
+        If you choose to sign in with Apple, some data is stored on our servers so features
+        like family sharing work. You're responsible for keeping access to your device and
+        Apple ID secure.
+      </p>
+      <p>
+        How we collect, use, and protect your information is explained in our
+        <a href="privacy.html">Privacy Policy</a>.
+      </p>
+
+      <h2>4. Free and Pro subscriptions</h2>
+      <p>
+        PetFuel has a free tier and an optional paid subscription, PetFuel Pro, which unlocks
+        extra features. Current features, plans, and prices are shown in the app before you buy.
+      </p>
+      <ul>
+        <li><strong>Billing</strong> — payment is charged to your Apple ID account at confirmation of purchase. We never see or store your payment details.</li>
+        <li><strong>Auto-renewal</strong> — subscriptions renew automatically at the end of each period, and your account is charged for renewal within 24 hours before the period ends, unless you turn off auto-renew at least 24 hours before then.</li>
+        <li><strong>Free trials</strong> — if a free trial is offered, you'll be charged when it ends unless you cancel at least 24 hours before. Any unused part of a trial is forfeited when you buy a subscription.</li>
+        <li><strong>Managing and cancelling</strong> — manage or cancel in your Apple Account settings (Settings → your name → Subscriptions). Cancelling stops future renewals; you keep Pro until the end of the period you've paid for.</li>
+        <li><strong>Refunds</strong> — purchases are handled by Apple, so refund requests go to Apple under its policies.</li>
+        <li><strong>Price changes</strong> — if a price changes, you'll be notified in advance as required by Apple, and you can cancel before the new price applies.</li>
+      </ul>
+
+      <h2>5. Family sharing</h2>
+      <p>
+        A Pro subscriber can create a family and invite others to view and log meals for shared
+        pets. Invited members don't need their own subscription. Everyone in a family can see
+        the shared pets' profiles and logs, including who logged what.
+      </p>
+      <p>
+        If the family owner's Pro subscription ends, the family becomes read-only until Pro is
+        active again. Only invite people you trust, and don't share pets or information you
+        don't have the right to share.
+      </p>
+
+      <h2>6. Content you contribute</h2>
+      <p>
+        If you turn on the optional setting to help build the food database, details from
+        product labels you scan (such as product name, brand, ingredients, and guaranteed
+        analysis) are shared with <a href="https://world.openpetfoodfacts.org/">Open Pet Food Facts</a>,
+        a public database. That information becomes publicly available under Open Pet Food
+        Facts' own terms and open licence. Only contribute label information, not personal details.
+      </p>
+      <p>
+        For anything you enter into PetFuel, you keep your rights to it and give us permission
+        to store and process it only as needed to run the app for you and the people you share with.
+      </p>
+
+      <h2>7. Acceptable use</h2>
+      <p>You agree to use PetFuel for personal, lawful pet nutrition tracking. You won't:</p>
+      <ul>
+        <li>copy, modify, reverse-engineer, or resell the app, except where the law allows it;</li>
+        <li>interfere with, overload, or try to gain unauthorised access to the app, our servers, or other users' data;</li>
+        <li>scrape or bulk-extract data from the app or its data sources;</li>
+        <li>upload anything unlawful, harmful, or that infringes someone else's rights.</li>
+      </ul>
+
+      <h2>8. Our app and licence to use it</h2>
+      <p>
+        PetFuel, including its design, text, graphics, and software, belongs to Scarabyte or
+        its licensors. We give you a personal, non-exclusive, non-transferable, revocable
+        licence to use the app on Apple devices you own or control, as permitted by these
+        terms and the App Store's Usage Rules. Third-party data (such as USDA FoodData Central
+        and Open Pet Food Facts) remains subject to its own terms.
+      </p>
+
+      <h2>9. Third-party services</h2>
+      <p>
+        PetFuel relies on third parties, including Apple (sign-in and payments), RevenueCat
+        (subscription status), Google (AI features), and public food databases. We aren't
+        responsible for their services, availability, or content, and your use of them may be
+        subject to their own terms.
+      </p>
+
+      <h2>10. Disclaimers and limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, PetFuel is provided "as is" and "as available,"
+        without warranties of any kind. We don't promise the app will be error-free or always
+        available, or that nutrition information is complete, accurate, or suitable for your
+        particular pet.
+      </p>
+      <p>
+        To the fullest extent permitted by law, Scarabyte is not liable for indirect,
+        incidental, special, or consequential damages, or for harm resulting from relying on
+        information in the app. Our total liability for any claim relating to the app is limited
+        to the amount you paid for PetFuel in the 12 months before the claim.
+      </p>
+      <div class="callout">
+        Nothing in these terms limits rights you have under consumer protection laws that can't
+        be waived by contract, including Ontario's <em>Consumer Protection Act</em> or the laws
+        where you live.
+      </div>
+
+      <h2>11. Changes and ending these terms</h2>
+      <p>
+        We may update PetFuel or these terms. If we make a material change, we'll update the
+        date above and, where appropriate, let you know in the app. Continuing to use PetFuel
+        after a change means you accept the updated terms.
+      </p>
+      <p>
+        You can stop using PetFuel at any time. We may suspend or end your access if you
+        seriously or repeatedly break these terms. Sections that by their nature should
+        continue (such as disclaimers and limits of liability) survive after these terms end.
+      </p>
+
+      <h2>12. Governing law</h2>
+      <p>
+        These terms are governed by the laws of the Province of Ontario and the federal laws of
+        Canada that apply there. Disputes will be heard in the courts of Ontario, unless the
+        consumer protection laws where you live give you the right to bring a claim locally.
+      </p>
+
+      <h2>13. Apple App Store terms</h2>
+      <p>If you downloaded PetFuel from Apple's App Store, you also agree that:</p>
+      <ul>
+        <li>These terms are between you and Scarabyte only, not Apple. Scarabyte, not Apple, is solely responsible for the app and its content.</li>
+        <li>Your licence to use the app is limited to Apple-branded products you own or control, as permitted by the App Store Terms of Service Usage Rules.</li>
+        <li>Apple has no obligation to provide maintenance or support for the app.</li>
+        <li>If the app fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the app's purchase price (if any). To the maximum extent permitted by law, Apple has no other warranty obligation for the app.</li>
+        <li>Scarabyte, not Apple, is responsible for addressing any claims relating to the app or your use of it, including product liability claims, claims that the app fails to meet legal or regulatory requirements, and consumer protection or privacy claims.</li>
+        <li>If a third party claims the app or your use of it infringes their intellectual property rights, Scarabyte, not Apple, is responsible for investigating, defending, settling, and discharging that claim.</li>
+        <li>You confirm you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and you are not on any U.S. Government list of prohibited or restricted parties.</li>
+        <li>You must comply with any applicable third-party terms when using the app.</li>
+        <li>Apple and its subsidiaries are third-party beneficiaries of these terms, and once you accept them, Apple may enforce them against you as a third-party beneficiary.</li>
+      </ul>
+
+      <h2>14. Contact</h2>
+      <div class="contact-card">
+        <strong>Questions about these terms?</strong>
+        Email us at <a href="mailto:support@petfuel.app">support@petfuel.app</a>.<br />
+        PetFuel is a Scarabyte product · Ontario, Canada.
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ════════ Footer ════════ -->
+  <footer>
+    <div class="wrap">
+      <span>© 2026 PetFuel · a Scarabyte product</span>
+      <span><a href="/">Home</a> · <a href="/#faq">FAQ</a> · <a href="/privacy">Privacy Policy</a> · <a href="/disclaimer">Disclaimer</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
