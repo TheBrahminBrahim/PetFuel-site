@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PetFuel — Privacy Policy</title>
-  <meta name="description" content="PetFuel's privacy policy: what we collect, how we use it, who we share it with, and your rights." />
+  <meta name="description" content="PetFuel's privacy policy: what data the app handles, where it goes, who it's shared with, and your rights." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -96,12 +96,12 @@
     <div class="wrap">
       <span class="eyebrow">Legal</span>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: June 2026</p>
+      <p class="updated">Last updated: September 2026</p>
       <p class="intro">
-        PetFuel ("we", "our", or "the app") is a pet nutrition tracker for iOS. It helps
-        owners who home-cook or fresh-feed their dogs understand whether a meal meets
-        science-based nutritional requirements. This policy explains what data we collect
-        and how we use it.
+        PetFuel ("we", "our", or "the app") is a nutrition tracker for dogs and cats on iOS,
+        made by Scarabyte. It's built to work on your device first — you don't need an account
+        to use it. This policy explains what data the app handles, where it goes, and the
+        choices you have.
       </p>
     </div>
   </section>
@@ -109,36 +109,85 @@
   <main>
     <div class="wrap">
 
-      <h2>What data we collect</h2>
+      <h2>The short version</h2>
       <ul>
-        <li><strong>Account information</strong> — your name and email address when you sign in with Apple or Google.</li>
-        <li><strong>Pet profiles</strong> — your dog's name, breed, age, weight history, and optionally a profile photo.</li>
-        <li><strong>Meal logs</strong> — ingredients you enter, commercial foods you scan by barcode, and the nutritional analysis we compute from them.</li>
-        <li><strong>Crash reports</strong> — device type, app version, and error context via Sentry, to help us fix bugs. This does not include your pet data.</li>
-        <li><strong>Anonymous usage data</strong> — which features are used and how, via Amplitude, to improve the app. This is not linked to your identity.</li>
-        <li><strong>Subscription status</strong> — managed via RevenueCat to verify your active plan.</li>
+        <li>Without an account, your pets and meal logs stay on your phone.</li>
+        <li>If you sign in with Apple, your data is backed up to our servers so it syncs and can be shared with family.</li>
+        <li>No ads, no analytics or tracking tools, no location, no advertising identifiers.</li>
+        <li>We never sell your data.</li>
       </ul>
 
-      <h2>What data we do NOT collect</h2>
+      <h2>What data the app handles</h2>
       <ul>
-        <li>We do not collect your location.</li>
-        <li>We do not collect advertising identifiers (IDFA).</li>
-        <li>We do not sell your data to anyone.</li>
+        <li><strong>Pet profiles</strong> — your pet's name, species, breed, sex, birthday, weight and body-condition history, diet preferences, allergies, and optionally a profile photo.</li>
+        <li><strong>Meal logs</strong> — ingredients and amounts you enter, commercial foods you scan or search for, and the nutrition analysis the app computes.</li>
+        <li><strong>Account information (only if you sign in)</strong> — Sign in with Apple gives us an account ID and an email address (which can be Apple's private relay address if you choose "Hide My Email"), and your first name on first sign-in. We use your first name as a display name you can change.</li>
+        <li><strong>Family sharing (only if you use it)</strong> — which family you belong to, your role, and invite codes. Your display name is shown to family members next to the meals you log.</li>
+        <li><strong>Subscription status</strong> — whether you have PetFuel Pro, verified through Apple and RevenueCat.</li>
+        <li><strong>App settings and reminders</strong> — preferences such as units and theme, and meal reminders, which are scheduled on your device.</li>
       </ul>
+
+      <h2>What we do NOT collect</h2>
+      <ul>
+        <li>We don't collect your location.</li>
+        <li>We don't use advertising identifiers (IDFA) or track you across other apps and websites.</li>
+        <li>We don't use third-party analytics or advertising tools.</li>
+        <li>We don't see or store your payment details — Apple handles all payments.</li>
+        <li>We don't sell your data to anyone.</li>
+      </ul>
+
+      <h2>Where your data is stored</h2>
+      <p>
+        <strong>On your device.</strong> By default, everything is stored locally on your iPhone.
+        Photos you take of meals and your pet's profile photo stay on your device.
+      </p>
+      <p>
+        <strong>On our servers, if you sign in.</strong> When you sign in with Apple, your pet
+        profiles, meal logs, weight and body-condition entries, and family membership are
+        stored with our hosting provider, Supabase, so they can sync across devices and be shared
+        with family members you invite. Data is encrypted in transit. Our servers may be located
+        outside Canada, including in the United States, where it may be subject to local laws.
+      </p>
 
       <h2>Camera and photos</h2>
       <p>
-        PetFuel uses your camera to scan product barcodes so it can look up nutritional
-        information for commercial pet foods. It also uses your photo library so you can
-        set a profile picture for your dog. Photos are used only to display them in the app.
+        PetFuel uses your camera to scan barcodes and product labels and to photograph a meal,
+        and your photo library so you can choose a profile photo for your pet. We only access
+        them when you use those features.
+      </p>
+      <p>
+        When you use the AI photo feature ("Snap") or scan a nutrition label, that photo is
+        sent to Google's Gemini AI service to estimate the meal or read the label. The photo is
+        used only to return that result. Avoid including people or personal information in
+        these photos.
+      </p>
+
+      <h2>Services we share data with</h2>
+      <p>We share data only with the services that make the app work:</p>
+      <ul>
+        <li><strong>Apple</strong> — Sign in with Apple and App Store purchases.</li>
+        <li><strong>Supabase</strong> — hosts account, sync, and family-sharing data if you sign in.</li>
+        <li><strong>RevenueCat</strong> — confirms your subscription status using an anonymous app user ID and your App Store purchase records. See <a href="https://www.revenuecat.com/privacy">RevenueCat's privacy policy</a>.</li>
+        <li><strong>Google (Gemini)</strong> — processes photos you submit to the AI photo and label-scan features.</li>
+        <li><strong>USDA FoodData Central</strong> — receives the ingredient searches you type, to look up nutrition values.</li>
+        <li><strong>Open Pet Food Facts</strong> — receives barcodes and product searches to look up commercial foods.</li>
+        <li><strong>Family members you invite</strong> — see the pets you share with them, their logs, and your display name.</li>
+      </ul>
+      <p>Each of these services has its own privacy policy. We may also disclose information if required by law.</p>
+
+      <h2>Contributing to Open Pet Food Facts (optional)</h2>
+      <p>
+        There's an optional setting, off by default, to help build the public pet-food database.
+        If you turn it on, details from labels you confirm — product name, brand, size,
+        ingredients, and guaranteed analysis — are sent to Open Pet Food Facts and published
+        openly. We don't send your name, account, or pet information with it.
       </p>
 
       <h2>Nutritional data and accuracy</h2>
       <p>
         For home-cooked and ingredient-based meals, nutritional values are computed from
-        the USDA FoodData Central database. For commercially-produced pet foods scanned by
-        barcode, we display only what the manufacturer publishes: calories, macros, and
-        whether the product is labeled "complete and balanced."
+        the USDA FoodData Central database. For commercially-produced pet foods, we display only
+        what's published: calories, macros, and whether the product is labeled "complete and balanced."
       </p>
       <div class="callout">
         We never fabricate or estimate micronutrient data for commercial foods. Pet-food
@@ -149,26 +198,23 @@
         veterinary advice. Consult your veterinarian for any health or medical concerns.
       </p>
 
-      <h2>How your data is stored</h2>
+      <h2>Keeping and deleting your data</h2>
+      <ul>
+        <li><strong>On your device</strong> — Settings → "Delete all data" erases your pets and logs from your phone. Deleting the app also removes them.</li>
+        <li><strong>On our servers</strong> — to delete your account and the data stored with it, email <a href="mailto:privacy@petfuel.app">privacy@petfuel.app</a> from the email linked to your Apple ID (or tell us your account's relay address). We'll delete it within 30 days.</li>
+        <li><strong>Family data</strong> — if you leave or delete a family, meals you logged for pets owned by someone else may remain in their records.</li>
+      </ul>
       <p>
-        Your data is stored securely on our servers so you can access it across devices.
-        We use industry-standard encryption in transit and at rest. If you delete your
-        account, your data is deleted from our servers within 30 days.
-      </p>
-
-      <h2>Who we share data with</h2>
-      <p>
-        We do not sell your data. We share information only with the third-party services
-        that make the app work — your sign-in provider (Apple or Google), Sentry, Amplitude,
-        and RevenueCat — each of which has its own privacy policy. See
-        <a href="https://www.revenuecat.com/privacy">RevenueCat's privacy policy</a> for how
-        subscription receipt data is handled.
+        Deleting your data doesn't cancel a PetFuel Pro subscription — cancel it in your Apple
+        Account settings (Settings → your name → Subscriptions).
       </p>
 
       <h2>Your rights</h2>
       <p>
-        You can delete your account and all associated data at any time from within the app,
-        or by contacting us at the address below. We will process deletion requests within 30 days.
+        Depending on where you live, including under Canada's privacy laws, you can ask to access,
+        correct, or delete your personal information, or withdraw your consent. Email us at the
+        address below and we'll respond within 30 days. If you're not satisfied with our response,
+        you can contact the Office of the Privacy Commissioner of Canada or your local privacy authority.
       </p>
 
       <h2>Children</h2>
@@ -178,15 +224,15 @@
 
       <h2>Changes to this policy</h2>
       <p>
-        If we update this policy, the new version will be posted here with an updated date.
-        Continued use of PetFuel after changes constitutes acceptance.
+        If we update this policy, the new version will be posted here with an updated date, and
+        we'll let you know in the app for significant changes.
       </p>
 
       <h2>Contact</h2>
       <div class="contact-card">
         <strong>Questions about this policy?</strong>
         Email us at <a href="mailto:privacy@petfuel.app">privacy@petfuel.app</a>.<br />
-        PetFuel is a Scarabyte product.
+        PetFuel is a Scarabyte product · Ontario, Canada.
       </div>
 
     </div>
