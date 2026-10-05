@@ -3,7 +3,7 @@
 The public landing page and privacy policy for **PetFuel**, an AI nutrition
 tracker for pets. A single-folder static site — no build step.
 
-- `index.html` — landing page (hero, problem, how-it-works, honest-data, waitlist)
+- `index.html` — landing page (hero, problem, how-it-works, FAQ, App Store download)
 - `privacy.html` — privacy policy (linked from the App Store listing)
 - `CNAME` — pins the GitHub Pages site to **petfuel.app**
 

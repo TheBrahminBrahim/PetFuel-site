@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <title>Join a family on PetFuel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-itunes-app" content="app-id=6779467232">
   <style>
     :root {
       color-scheme: light dark;
       --teal: #0E7C72;
-      --blue: #208AEF;
       --bg: #ffffff;
       --text: #1a1a1a;
       --text-secondary: #5b6664;
@@ -93,7 +93,14 @@
       color: var(--text-secondary);
       margin-top: 20px;
     }
-    .fine-print a { color: var(--blue); }
+    .get-app {
+      margin-top: 8px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .get-app .fine-print { margin-top: 0; }
+    .store-badge { display: inline-block; line-height: 0; margin-top: 4px; }
+    .store-badge img { height: 48px; width: auto; }
   </style>
 </head>
 <body>
@@ -116,10 +123,10 @@
       </ol>
     </div>
 
-    <p class="fine-print">
-      Don't have the app yet?
-      <a href="https://apps.apple.com/app/id6779467232">Get it on the App Store</a>.
-    </p>
+    <div class="get-app">
+      <p class="fine-print">Don't have PetFuel yet? It's free on the App Store. Install it, then tap your invite link again — or enter the code under <strong>Family</strong>.</p>
+      <a href="https://apps.apple.com/app/id6779467232" class="store-badge"><img src="/img/app-store-badge.svg" alt="Download on the App Store" width="144" height="48"></a>
+    </div>
   </div>
   <script>
     // Links tapped inside WhatsApp/Instagram/etc. open in an in-app browser,
