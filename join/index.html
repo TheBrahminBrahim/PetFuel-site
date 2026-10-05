@@ -133,12 +133,25 @@
     // which iOS does not hand off to installed apps via Universal Links (an
     // Apple anti-hijack restriction). A custom URL scheme isn't subject to
     // that restriction and opens the already-installed app directly, so we
-    // try it automatically and also expose it as a tappable fallback for
-    // browsers that block the auto-attempt.
+    // try it automatically there.
+    //
+    // In Safari and other real browsers we do NOT auto-attempt: if this page
+    // loaded, the Universal Link didn't open the app (not installed), and
+    // firing petfuel:// would just show an "invalid address" pop-up. There
+    // the "Open in PetFuel" button is the only trigger.
     var code = new URLSearchParams(window.location.search).get('code') || '';
     var appUrl = 'petfuel://join' + (code ? ('?code=' + encodeURIComponent(code)) : '');
     document.getElementById('open-app').href = appUrl;
-    window.location.href = appUrl;
+
+    var ua = navigator.userAgent;
+    var isIOS = /iPhone|iPad|iPod/.test(ua);
+    // Real iOS browsers (Safari, Chrome, Firefox) all include "Safari/" in the
+    // user agent; bare WebViews (WhatsApp and similar) don't.
+    var isWebView = isIOS && !/Safari\//.test(ua);
+    var isKnownInApp = /FBAN|FBAV|Instagram|WhatsApp|Line\/|MicroMessenger|Snapchat|Twitter|TikTok/i.test(ua);
+    if (isWebView || isKnownInApp) {
+      window.location.href = appUrl;
+    }
   </script>
 </body>
 </html>
