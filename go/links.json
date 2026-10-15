@@ -1,0 +1,53 @@
+{
+  "_readme": "Source of truth for petfuel.app/go/<slug> links. Edit, then run: python3 go/build.py  (regenerates go/<slug>/index.html). Commit + push main to publish.",
+  "app_id": "6779467232",
+  "pt": "128801965",
+  "_pt_help": "Apple provider token. App Store Connect > App Analytics > Acquisition > Campaigns > Generate Campaign Link; copy the pt= value. Until it is set, links redirect without campaign tracking.",
+  "links": {
+    "ig": {
+      "ct": "ig-bio",
+      "ppid": "",
+      "note": "Instagram @petfuel.app link in bio"
+    },
+    "tt": {
+      "ct": "tt-bio",
+      "ppid": "",
+      "note": "TikTok @petfuelapp link in bio"
+    },
+    "feeding": {
+      "ct": "b1-feeding",
+      "ppid": "",
+      "note": "Brief 1: ASMR dog feeding"
+    },
+    "mealprep": {
+      "ct": "b2-mealprep",
+      "ppid": "",
+      "note": "Brief 2: ASMR meal prep"
+    },
+    "scan": {
+      "ct": "b3-scan",
+      "ppid": "",
+      "note": "Brief 3: pet store barcode scan"
+    },
+    "article": {
+      "ct": "b4-article",
+      "ppid": "",
+      "note": "Brief 4: green-screen article reaction"
+    },
+    "review": {
+      "ct": "b5-review",
+      "ppid": "",
+      "note": "Brief 5: straight app review"
+    },
+    "dayofeating": {
+      "ct": "b6-day",
+      "ppid": "",
+      "note": "Brief 6: what your dog eats in a day"
+    },
+    "halloween": {
+      "ct": "b7-halloween",
+      "ppid": "8ddc9d6b-24f5-4430-9510-3e40cf41ab38",
+      "note": "Brief 7: Halloween treat (Collabstr order 2026-10-09)"
+    }
+  }
+}
