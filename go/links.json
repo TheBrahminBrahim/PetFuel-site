@@ -1,5 +1,5 @@
 {
-  "_readme": "Source of truth for petfuel.app/go/<slug> links. Edit, then run: python3 go/build.py  (regenerates go/<slug>/index.html). Commit + push main to publish. RULE: ct must equal the slug, and the slug must equal the Growth Ledger link slug, or the ledger cannot match installs to the creator.",
+  "_readme": "Source of truth for petfuel.app/go/<slug> links. Edit, then run: python3 go/build.py  (regenerates go/<slug>/index.html). Commit + push main to publish. RULE: ct must equal the slug, and the slug must equal the Growth Ledger link slug, or the ledger cannot match installs to the creator. Creator slugs = lowercase initials (sm); if taken, first two letters of each name joined by a dash (sh-ma).",
   "app_id": "6779467232",
   "pt": "128801965",
   "_pt_help": "Apple provider token. App Store Connect > App Analytics > Acquisition > Campaigns > Generate Campaign Link; copy the pt= value. Until it is set, links redirect without campaign tracking.",
@@ -49,13 +49,13 @@
       "ppid": "8ddc9d6b-24f5-4430-9510-3e40cf41ab38",
       "note": "Brief 7: Halloween treat (Collabstr order 2026-10-09)"
     },
-    "sheri-mahnke": {
-      "ct": "sheri-mahnke",
+    "sm": {
+      "ct": "sm",
       "ppid": "",
       "note": "Creator: Sheri Mahnke (Growth Ledger slug)"
     },
-    "michael-l": {
-      "ct": "michael-l",
+    "ml": {
+      "ct": "ml",
       "ppid": "",
       "note": "Creator: Michael L (Growth Ledger slug)"
     }
