@@ -96,7 +96,7 @@
     <div class="wrap">
       <span class="eyebrow">Legal</span>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: October 2026</p>
+      <p class="updated">Last updated: November 2026</p>
       <p class="intro">
         PetFuel ("we", "our", or "the app") is a nutrition tracker for dogs and cats on iOS,
         made by Scarabyte. It's built to work on your device first — you don't need an account
@@ -114,7 +114,7 @@
         <li>Without an account, your pets and meal logs stay on your phone.</li>
         <li>If you sign in with Apple, your data is backed up to our servers so it syncs and can be shared with family.</li>
         <li>No ads, no cross-app tracking, no location, no advertising identifiers.</li>
-        <li>We count anonymous app usage (like how many people finish setup) to improve the app.</li>
+        <li>We count anonymous app usage (like how many people finish setup, which features get used, and how often the app is opened) to improve the app.</li>
         <li>We do collect anonymous purchase data to see which of our marketing works.</li>
         <li>We never sell your data.</li>
       </ul>
@@ -173,7 +173,7 @@
         <li><strong>Supabase</strong> — hosts account, sync, and family-sharing data if you sign in, and PetFuel's shared food catalog.</li>
         <li><strong>Apple App Attest</strong> — confirms, once per install, that catalog contributions come from a genuine copy of PetFuel.</li>
         <li><strong>RevenueCat</strong> — confirms your subscription status using an anonymous app user ID and your App Store purchase records. See <a href="https://www.revenuecat.com/privacy">RevenueCat's privacy policy</a>.</li>
-        <li><strong>PostHog</strong> — receives anonymous usage events (for example, which setup step was reached). See "Anonymous usage stats" below and <a href="https://posthog.com/privacy">PostHog's privacy policy</a>.</li>
+        <li><strong>PostHog</strong> — receives anonymous usage events (for example, which setup step was reached or which screen was opened). See "Anonymous usage stats" below and <a href="https://posthog.com/privacy">PostHog's privacy policy</a>.</li>
         <li><strong>Sentry</strong> — receives crash and performance reports so we can fix bugs. See "Crash reports" below.</li>
         <li><strong>Google (Gemini)</strong> — processes photos you submit to the AI photo and label-scan features.</li>
         <li><strong>USDA FoodData Central</strong> — receives the ingredient searches you type, to look up nutrition values.</li>
@@ -184,10 +184,23 @@
 
       <h2>Anonymous usage stats</h2>
       <p>
-        To see where people get stuck setting up the app, PetFuel sends PostHog a short note when
-        a setup step is shown and when setup is finished, tagged with a random ID created by the
-        app. These notes contain no name, email, pet details, meals or photos, aren't linked to
-        your account, and aren't used for ads or to track you across other apps.
+        To see where people get stuck and which features are useful, PetFuel sends PostHog short
+        anonymous notes about what happens in the app, tagged with a random ID created by the app.
+        The notes cover:
+      </p>
+      <ul>
+        <li><strong>Opening the app</strong> — when it is opened, installed, updated or sent to the background, and which app version is running.</li>
+        <li><strong>Setup</strong> — when each setup step is shown and when setup is finished.</li>
+        <li><strong>Screens</strong> — which main screen was opened, such as Home, Trends or Settings.</li>
+        <li><strong>Features</strong> — that you logged a meal (and by which method, such as barcode, label scan or photo), saved a recipe, added a pet (dog or cat), scanned a barcode or label, used the AI photo feature (and whether it worked), created or shared a family invite, or tapped a nutrient tip.</li>
+        <li><strong>Subscription screens</strong> — that the PetFuel Pro screen was shown, which plan was picked, whether a trial started, a purchase was cancelled or failed, or purchases were restored, and whether the app is currently on the free or Pro plan.</li>
+        <li><strong>Technical details</strong> — basic details PostHog receives with every note, such as the app version, your iPhone model and software version, and language setting.</li>
+      </ul>
+      <p>
+        These notes never contain your name, email, pet names, the foods or amounts you enter,
+        scanned products, or photos. They aren't linked to your account or to your pet profiles, and
+        they aren't used for ads or to track you across other apps. We don't create profiles of
+        individual users from them.
       </p>
 
       <h2>Purchase and marketing measurement</h2>
@@ -287,6 +300,7 @@
 
       <h2>What changed</h2>
       <ul>
+        <li><strong>November 2026:</strong> The anonymous usage notes sent to PostHog now cover more than setup: opening the app, which screens are used, which features are used, and the subscription screens. They remain anonymous, aren't linked to your account, and never include your name, email, pet names, meals or photos. See "Anonymous usage stats" above.</li>
         <li><strong>October 2026:</strong> The app now sends anonymous usage events to PostHog so we can see where people get stuck during setup. See "Anonymous usage stats" above.</li>
         <li><strong>October 2026:</strong> This policy now mentions crash reporting: the app sends crash and performance reports to Sentry so we can fix bugs. These have always been part of the app; they contain technical details only, never your name, email or personal content.</li>
         <li><strong>October 2026:</strong> We now receive anonymous purchase records (trials, subscriptions, renewals, refunds) from RevenueCat to see which of our marketing works. No name, email, or app data is included, and we don't track you. See "Purchase and marketing measurement" above.</li>
